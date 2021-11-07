@@ -1,0 +1,7 @@
+node_modules/*
+dist/*
+.lintstagedrc.json
+.babelrc.js
+.eslintrc.js
+package.json
+mock/*

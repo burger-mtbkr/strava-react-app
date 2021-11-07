@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  background-color: #fff;
+  color: #333;
+}
+
+.App {
+  align-content: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header-bar {
+  background-color: orangered !important;
+}
+
+/*Hide spinners from number inputs*/
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}

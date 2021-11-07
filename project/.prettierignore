@@ -1,0 +1,9 @@
+coverage/*
+dist/*
+identity_config/*
+package.json
+yarn.lock
+README.md
+mock/*
+.yalc/*
+yalc.lock
