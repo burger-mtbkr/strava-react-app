@@ -102,10 +102,10 @@ export const getActivities = async (
 export const getAthleteStats = async (): Promise<IAthleteStats | undefined> => {
   try {
     const stravaSession = getObject<IStravaSession>('strava_session');
-    const athelete = getObject<IStravaAthlete>('strava_athlete');
+    const athlete = getObject<IStravaAthlete>('strava_athlete');
 
-    if (!athelete) return undefined;
-    const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/athletes/${athelete?.id}/stats`;
+    if (!athlete) return undefined;
+    const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/athletes/${athlete?.id}/stats`;
     const response: AxiosResponse<unknown> = await axios.get(
       activitiesEndPoint,
       {

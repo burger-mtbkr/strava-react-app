@@ -3,6 +3,7 @@ import ProductTable from 'src/components/Products/ProductTable/ProductTable';
 import { TestIds } from 'src/utils';
 import { renderWithRedux } from 'src/test/utils';
 import { rootInitialState } from 'src/reducers';
+import StravaInfo from 'src/views/Strava/stravaInfo';
 import Home from './Home';
 
 describe(`${Home.name} tests`, () => {
@@ -14,7 +15,7 @@ describe(`${Home.name} tests`, () => {
     expect(linkElement).toBeInTheDocument();
   });
   test(`renders the ${ProductTable.name} view`, () => {
-    renderWithRedux(<ProductTable />, {
+    renderWithRedux(<StravaInfo />, {
       initialState: rootInitialState,
     });
 

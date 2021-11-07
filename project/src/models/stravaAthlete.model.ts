@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 /* eslint-disable camelcase */
 export interface IEquipment {
   id: string;
@@ -36,4 +38,10 @@ export interface IStravaAthlete {
   weight: number;
   bikes: Array<IEquipment>;
   shoes: Array<IEquipment>;
+}
+
+export interface IFetchStravaAthleteResponse {
+  products?: IStravaAthlete;
+  error?: AxiosError | Error;
+  isSuccessful?: boolean;
 }

@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { AxiosError } from 'axios';
 import { IStravaAthlete } from 'src/models';
 
 export interface IActivityMap {
@@ -57,4 +58,10 @@ export interface IStravaActivity {
   total_photo_count: number;
   has_kudoed: boolean;
   suffer_score: number;
+}
+
+export interface IFetchStravaActivitiesResponse {
+  products?: IStravaActivity[];
+  error?: AxiosError | Error;
+  isSuccessful?: boolean;
 }

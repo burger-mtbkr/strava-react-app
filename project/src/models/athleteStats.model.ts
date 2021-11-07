@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+
 /* eslint-disable camelcase */
 export interface IStatTotals {
   count: number;
@@ -20,4 +22,9 @@ export interface IAthleteStats {
   all_ride_totals: IStatTotals;
   all_run_totals: IStatTotals;
   all_swim_totals: IStatTotals;
+}
+export interface IFetchStravaAthleteStatsResponse {
+  products?: IAthleteStats;
+  error?: AxiosError | Error;
+  isSuccessful?: boolean;
 }
