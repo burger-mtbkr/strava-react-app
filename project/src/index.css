@@ -14,7 +14,7 @@ body {
 }
 
 .header-bar {
-  background-color: orangered !important;
+  background-color: #fc5200 !important;
 }
 
 /*Hide spinners from number inputs*/
