@@ -6,8 +6,8 @@ import {
 } from 'src/models';
 import { TStoreState } from 'src/reducers';
 
-export const getProductsLoadingState = (state: TStoreState): boolean =>
-  state.product.isLoading;
+// export const getProductsLoadingState = (state: TStoreState): boolean =>
+//   state.product.isLoading;
 
 export const selectAllProducts = (state: TStoreState): ProductListItem[] =>
   state.product.productListResponse?.products || [];

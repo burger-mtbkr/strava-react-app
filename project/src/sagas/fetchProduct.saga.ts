@@ -3,15 +3,11 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { IProductResponse } from 'src/models/product.model';
 import { getProduct } from 'src/api';
-import {
-  fetchProductDoneAction,
-  fetchProductAction,
-  isLoadingAction,
-} from 'src/actions';
+import { fetchProductDoneAction, fetchProductAction } from 'src/actions';
 
 export function* fetchProductsAsync(action: { payload: string }): SagaIterator {
   try {
-    yield put(isLoadingAction(true));
+    // yield put(isLoadingAction(true));
     const response: IProductResponse = yield call(getProduct, action.payload);
 
     yield put(fetchProductDoneAction(response));
@@ -24,7 +20,7 @@ export function* fetchProductsAsync(action: { payload: string }): SagaIterator {
       }),
     );
   } finally {
-    yield put(isLoadingAction(false));
+    // yield put(isLoadingAction(false));
   }
 }
 

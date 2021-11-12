@@ -18,10 +18,6 @@ export const setSelectedProductsAction = createAction<ProductListItem[]>(
   `${PRODUCT_PREFIX}_SET_SELECTED_PRODUCTS`,
 );
 
-export const isLoadingAction = createAction<boolean>(
-  `${PRODUCT_PREFIX}/API/PRODUCTS_IS_LOADING`,
-);
-
 /* LOAD PRODUCT */
 export const fetchProductAction = createAction<string>(
   `${PRODUCT_PREFIX}/API/FETCH_PRODUCT`,

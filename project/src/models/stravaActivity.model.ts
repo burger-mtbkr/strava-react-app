@@ -51,7 +51,7 @@ export interface IStravaActivity {
   kilojoules: number;
   device_watts: boolean;
   has_heartrate: boolean;
-  average_heartbroke: number;
+  average_heartrate: number;
   max_heartrate: number;
   max_watts: number;
   pr_count: number;

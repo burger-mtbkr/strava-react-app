@@ -4,7 +4,6 @@ import {
   getDeleteProductResponse,
   getEditProduct,
   getProductSaveResponse,
-  getProductsLoadingState,
   getSelectedProducts,
   selectAllProducts,
   selectIsSaving,
@@ -52,7 +51,6 @@ const state: TStoreState = {
   },
   product: {
     deleteModalOpen: true,
-    isLoading: true,
     isSaving: true,
     isDeleting: true,
     productListResponse: {
@@ -67,9 +65,9 @@ const state: TStoreState = {
 };
 
 describe(`[selectors] Product`, () => {
-  test(`${getProductsLoadingState.name} should return the loading state`, () => {
-    expect(getProductsLoadingState(state)).toEqual(true);
-  });
+  // test(`${getProductsLoadingState.name} should return the loading state`, () => {
+  //   expect(getProductsLoadingState(state)).toEqual(true);
+  // });
 
   test(`${selectAllProducts.name} should return the fetched products state`, () => {
     expect(selectAllProducts(state)).toEqual(allProducts);

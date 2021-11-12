@@ -1,14 +1,14 @@
 import {
-  IStravaAthlete,
-  IAthleteStats,
-  IStravaActivity,
-  IStravaSession,
+  IAuthenticateStravaResponse,
+  IFetchStravaAthleteResponse,
+  IFetchStravaActivitiesResponse,
+  IFetchStravaAthleteStatsResponse,
 } from 'src/models';
 
 export interface IStravaState {
   isLoading: boolean;
-  athlete?: IStravaAthlete;
-  athleteStats?: IAthleteStats;
-  activities?: IStravaActivity[];
-  stravaSession?: IStravaSession;
+  activitiesResponse?: IFetchStravaActivitiesResponse[];
+  stravaAuthResponse?: IAuthenticateStravaResponse;
+  athleteResponse?: IFetchStravaAthleteResponse;
+  athleteStatsResponse?: IFetchStravaAthleteStatsResponse;
 }

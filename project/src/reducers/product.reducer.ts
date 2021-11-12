@@ -2,7 +2,6 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   fetchAllProductsDoneAction,
   isDeletingAction,
-  isLoadingAction,
   isSavingAction,
   setDeleteModalOpenAction,
   setDeleteProductDoneAction,
@@ -13,7 +12,6 @@ import { IProductState } from 'src/models/product.model';
 
 export const productInitialState: IProductState = {
   deleteModalOpen: false,
-  isLoading: false,
   isSaving: false,
   isDeleting: false,
   selectedProducts: [],
@@ -21,10 +19,6 @@ export const productInitialState: IProductState = {
 
 export default createReducer(productInitialState, (builder) =>
   builder
-    .addCase(isLoadingAction, (state, { payload }) => ({
-      ...state,
-      isLoading: payload,
-    }))
     .addCase(isSavingAction, (state, { payload }) => ({
       ...state,
       isSaving: payload,

@@ -17,15 +17,16 @@ export const authenticateStravaAction =
     `${STRAVA_PREFIX}/API/AUTHENTICATE`,
   );
 
-export const fetchStravaActivities = createAction<
+export const fetchStravaActivitiesAction = createAction<
   IFetchStravaActivitiesResponse[]
 >(`${STRAVA_PREFIX}/API/_FETCH_ACTIVITIES`);
 
-export const fetchStravaAthlete = createAction<IFetchStravaAthleteResponse>(
-  `${STRAVA_PREFIX}/API/_FETCH_ATHLETE`,
-);
+export const fetchStravaAthleteAction =
+  createAction<IFetchStravaAthleteResponse>(
+    `${STRAVA_PREFIX}/API/_FETCH_ATHLETE`,
+  );
 
-export const fetchStravaAthleteStats =
+export const fetchStravaAthleteStatsAction =
   createAction<IFetchStravaAthleteStatsResponse>(
     `${STRAVA_PREFIX}/API/FETCH_ATHLETE_STATS`,
   );

@@ -5,7 +5,6 @@ import {
   ProductListItem,
 } from 'src/models';
 import {
-  isLoadingAction,
   isSavingAction,
   isDeletingAction,
   setDeleteModalOpenAction,
@@ -17,16 +16,6 @@ import {
 import reducer, { productInitialState } from 'src/reducers/product.reducer';
 
 describe(`[reducers] product reducer`, () => {
-  it(`reduces ${isLoadingAction.name} correctly when set to true`, () => {
-    const state = reducer(productInitialState, isLoadingAction(true));
-    expect(state.isLoading).toEqual(true);
-  });
-
-  it(`reduces ${isLoadingAction.name} correctly when set to false`, () => {
-    const state = reducer(productInitialState, isLoadingAction(false));
-    expect(state.isLoading).toEqual(false);
-  });
-
   it(`reduces ${isSavingAction.name} correctly when set to true`, () => {
     const state = reducer(productInitialState, isSavingAction(true));
     expect(state.isSaving).toEqual(true);

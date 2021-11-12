@@ -69,7 +69,7 @@ const StravaActivities = (): JSX.Element => {
             </Grid>
             <Grid item spacing={2} xs>
               <Typography gutterBottom variant="body2">
-                Ave HR: {a.average_heartbroke} bpm
+                Ave HR: {a.average_heartrate} bpm
               </Typography>
               <Typography gutterBottom variant="body2">
                 Max HR: {a.max_heartrate} bpm

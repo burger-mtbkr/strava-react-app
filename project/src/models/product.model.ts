@@ -33,7 +33,6 @@ export interface IDeleteProductResponse {
 
 export interface IProductState {
   deleteModalOpen: boolean;
-  isLoading: boolean;
   isSaving: boolean;
   isDeleting: boolean;
   productListResponse?: IFetchProductResponse;

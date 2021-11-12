@@ -1,59 +1,43 @@
-import { authenticateStrava } from 'src/api';
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  fetchAllProductsDoneAction,
-  fetchStravaActivities,
-  isDeletingAction,
+  authenticateStravaAction,
+  fetchStravaActivitiesAction,
+  fetchStravaAthleteAction,
+  fetchStravaAthleteStatsAction,
   isLoadingAction,
-  isSavingAction,
-  setDeleteModalOpenAction,
-  setDeleteProductDoneAction,
-  setSaveProductDoneAction,
-  setSelectedProductsAction,
 } from 'src/actions';
 import { IStravaState } from 'src/models/strava.model';
 
-export const productInitialState: IStravaState = {
+export const stravaInitialState: IStravaState = {
   isLoading: false,
-  athlete: undefined,
-  athleteStats: undefined,
-  activities: [],
-  stravaSession: undefined,
+  activitiesResponse: undefined,
+  stravaAuthResponse: undefined,
+  athleteResponse: undefined,
+  athleteStatsResponse: undefined,
 };
 
-export default createReducer(productInitialState, (builder) =>
+export default createReducer(stravaInitialState, (builder) =>
   builder
     .addCase(isLoadingAction, (state, { payload }) => ({
       ...state,
       isLoading: payload,
     }))
-    .addCase(fetchStravaActivities, (state, { payload }) => ({
-      ...state,
-      activitiesResponse: payload,
-    }))
-    .addCase(authenticateStrava, (state, { payload }) => ({
+    .addCase(authenticateStravaAction, (state, { payload }) => ({
       ...state,
       auth: payload,
     }))
-    .addCase(setDeleteModalOpenAction, (state, { payload }) => ({
+    .addCase(fetchStravaActivitiesAction, (state, { payload }) => ({
       ...state,
-      deleteModalOpen: payload,
+      activitiesResponse: payload,
     }))
-    .addCase(setSelectedProductsAction, (state, { payload }) => ({
+
+    .addCase(fetchStravaAthleteAction, (state, { payload }) => ({
+      ...state,
+      athleteResponse: payload,
+    }))
+    .addCase(fetchStravaAthleteStatsAction, (state, { payload }) => ({
       actionTriggerRefetching: undefined,
       ...state,
-      selectedProducts: payload,
-    }))
-    .addCase(fetchAllProductsDoneAction, (state, { payload }) => ({
-      ...state,
-      productListResponse: payload,
-    }))
-    .addCase(setSaveProductDoneAction, (state, { payload }) => ({
-      ...state,
-      productSaveResponse: payload,
-    }))
-    .addCase(setDeleteProductDoneAction, (state, { payload }) => ({
-      ...state,
-      deleteProductResponse: payload,
+      athleteStatsResponse: payload,
     })),
 );
