@@ -12,7 +12,7 @@ export interface IStravaSession {
 }
 
 export interface IAuthenticateStravaResponse {
-  products?: IStravaSession;
+  stravaSession?: IStravaSession | undefined;
   error?: AxiosError | Error;
   isSuccessful?: boolean;
 }

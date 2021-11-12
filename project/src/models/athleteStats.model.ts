@@ -1,4 +1,4 @@
-import { AxiosError } from "axios";
+import { AxiosError } from 'axios';
 
 /* eslint-disable camelcase */
 export interface IStatTotals {
@@ -24,7 +24,7 @@ export interface IAthleteStats {
   all_swim_totals: IStatTotals;
 }
 export interface IFetchStravaAthleteStatsResponse {
-  products?: IAthleteStats;
+  athleteStats?: IAthleteStats | undefined;
   error?: AxiosError | Error;
   isSuccessful?: boolean;
 }

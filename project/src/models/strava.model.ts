@@ -7,8 +7,8 @@ import {
 
 export interface IStravaState {
   isLoading: boolean;
-  activitiesResponse?: IFetchStravaActivitiesResponse[];
-  stravaAuthResponse?: IAuthenticateStravaResponse;
+  authResponse?: IAuthenticateStravaResponse;
+  activitiesResponse?: IFetchStravaActivitiesResponse;
   athleteResponse?: IFetchStravaAthleteResponse;
   athleteStatsResponse?: IFetchStravaAthleteStatsResponse;
 }

@@ -6,11 +6,12 @@ import { getAllProducts } from 'src/api';
 import {
   fetchAllProductsDoneAction,
   fetchAllProductsAction,
+  isLoadingAction,
 } from 'src/actions';
 
 export function* fetchAllProductsAsync(): SagaIterator {
   try {
-    // yield put(isLoadingAction(true));
+    yield put(isLoadingAction(true));
     const response: IFetchProductResponse = yield call(getAllProducts);
 
     yield put(fetchAllProductsDoneAction(response));
@@ -23,7 +24,7 @@ export function* fetchAllProductsAsync(): SagaIterator {
       }),
     );
   } finally {
-    // yield put(isLoadingAction(false));
+    yield put(isLoadingAction(false));
   }
 }
 

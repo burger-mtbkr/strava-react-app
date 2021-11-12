@@ -59,9 +59,15 @@ export interface IStravaActivity {
   has_kudoed: boolean;
   suffer_score: number;
 }
+export interface IFetchStravaActivitiesRequest {
+  fromUnix: number;
+  toUnix: number;
+  page: number;
+  itemCount: number;
+}
 
 export interface IFetchStravaActivitiesResponse {
-  products?: IStravaActivity[];
+  activities?: IStravaActivity[];
   error?: AxiosError | Error;
   isSuccessful?: boolean;
 }

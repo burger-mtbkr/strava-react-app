@@ -41,7 +41,7 @@ export interface IStravaAthlete {
 }
 
 export interface IFetchStravaAthleteResponse {
-  products?: IStravaAthlete;
+  athlete?: IStravaAthlete | undefined;
   error?: AxiosError | Error;
   isSuccessful?: boolean;
 }

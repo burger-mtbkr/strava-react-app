@@ -48,11 +48,9 @@ export const authenticateStrava = async (code?: string): Promise<boolean> => {
       },
     );
 
-    console.log('strava_auth_response', response);
     if (response.status === 200) {
       const data = response.data as IStravaSession;
 
-      console.log('strava_session_data', data);
       setItem('strava_session', JSON.stringify(data), true);
       if (data.athlete) {
         setItem('strava_athlete', JSON.stringify(data.athlete), true);

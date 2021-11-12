@@ -12,8 +12,7 @@ import {
   setDeleteModalOpenAction,
   setSelectedProductsAction,
 } from 'src/actions';
-import { getSelectedProducts } from 'src/selectors';
-import DeletePromptModal from './DeletePromptModal';
+import { getSelectedProducts } from 'src/sagas/selectors';
 
 const ProductTableToolbar = () => {
   const history = useHistory();
@@ -88,7 +87,6 @@ const ProductTableToolbar = () => {
           </Tooltip>
         )}
       </Toolbar>
-      <DeletePromptModal />
     </>
   );
 };
