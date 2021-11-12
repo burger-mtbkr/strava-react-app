@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBikeSharp';
 import { useQuery } from 'src/hooks';
 import { Button } from '@mui/material';
@@ -12,7 +12,6 @@ const stravaAuth = `https://www.strava.com/oauth/authorize?client_id=${process.e
 
 const StravaConnect = () => {
   const location = useLocation();
-  const history = useHistory();
 
   const query = useQuery(location);
   const [authorized, setAuthorized] = useState(false);
@@ -24,7 +23,6 @@ const StravaConnect = () => {
       const stravaConnected = await authenticateStrava(code || undefined);
       console.log('stravaConnected', stravaConnected);
       setAuthorized(!!stravaConnected);
-      history.replace('/userSettings');
     }
   };
 
@@ -37,7 +35,6 @@ const StravaConnect = () => {
   useEffect(() => {
     if (getString('t')) {
       (async function () {
-        console.log('userSettingsUrl', location);
         await connect();
       })();
     }

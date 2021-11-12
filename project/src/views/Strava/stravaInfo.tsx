@@ -4,9 +4,9 @@ import { Grid } from '@mui/material';
 import Container from '@mui/material/Container';
 import StravaAllTimeStats from 'src/components/Strava/stravaAllTimeStats';
 import StravaWeek from 'src/components/Strava/stravaWeekActivities';
-import StravaConnectPrompt from 'src/components/Strava/stravaConnectPrompt';
 import { authenticateStrava } from 'src/api/stravaApi';
 import StravaRecentStats from 'src/components/Strava/stravaRecentStats';
+import StravaConnect from 'src/components/Strava/stravaConnect';
 
 const widgets = (
   <Grid container>
@@ -38,7 +38,7 @@ const StravaInfo = (): JSX.Element => {
 
   return (
     <Container maxWidth="lg">
-      {authorized ? widgets : !loading && <StravaConnectPrompt />}
+      {authorized ? widgets : !loading && <StravaConnect />}
     </Container>
   );
 };
