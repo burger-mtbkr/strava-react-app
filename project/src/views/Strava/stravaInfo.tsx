@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import StravaAllTimeStats from 'src/components/Strava/stravaAllTimeStats';
 import StravaWeek from 'src/components/Strava/stravaWeekActivities';
 import { authenticateStrava } from 'src/api/stravaApi';
-import StravaRecentStats from 'src/components/Strava/stravaRecentStats';
 import StravaConnect from 'src/components/Strava/stravaConnect';
 
 const widgets = (
@@ -14,9 +13,6 @@ const widgets = (
       <StravaWeek />
     </Grid>
     <Grid item xs container direction="column">
-      <Grid item>
-        <StravaRecentStats />
-      </Grid>
       <Grid item>
         <StravaAllTimeStats />
       </Grid>

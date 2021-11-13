@@ -14,7 +14,10 @@ import {
 import { toHmsString, roundNumber } from 'src/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
-import { getStravaActivityResponse, getStravaIsLoading } from 'src/selectors';
+import {
+  getStravaActivitiesIsLoading,
+  getStravaActivityResponse,
+} from 'src/selectors';
 import StravaSkeleton from './stravaSkeleton';
 
 const from = moment().utc().subtract(30, 'days').unix();
@@ -27,7 +30,7 @@ const StravaActivities = (): JSX.Element => {
   >(undefined);
 
   const stravaActivityResponse = useSelector(getStravaActivityResponse);
-  const isLoading = useSelector(getStravaIsLoading);
+  const isLoading = useSelector(getStravaActivitiesIsLoading);
 
   useEffect(() => {
     if (

@@ -6,7 +6,7 @@ import {
   IStravaAthlete,
   IFetchStravaAthleteStatsResponse,
 } from 'src/models';
-import { getObject } from 'src/utils';
+import { getObject, isSuccessfulResponse } from 'src/utils';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -30,7 +30,8 @@ export const getAthleteStats =
           },
         },
       );
-      if (response.status === 200 || response.status === 204) {
+      debugger;
+      if (isSuccessfulResponse(response)) {
         if (response.data) {
           const data = response.data as IAthleteStats;
           return {

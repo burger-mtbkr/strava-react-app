@@ -4,14 +4,14 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   fetchStravaAthleteAction,
   fetchStravaAthleteDoneAction,
-  isLoadingAction,
+  isAthleteLoadingAction,
 } from 'src/actions';
 import { fetchStravaAthlete } from 'src/api';
 import { IFetchStravaAthleteResponse } from 'src/models';
 
 export function* fetchStravaAthleteAsync(): SagaIterator {
   try {
-    yield put(isLoadingAction(true));
+    yield put(isAthleteLoadingAction(true));
     const response: IFetchStravaAthleteResponse = yield call(
       fetchStravaAthlete,
     );
@@ -26,7 +26,7 @@ export function* fetchStravaAthleteAsync(): SagaIterator {
       }),
     );
   } finally {
-    yield put(isLoadingAction(false));
+    yield put(isAthleteLoadingAction(false));
   }
 }
 

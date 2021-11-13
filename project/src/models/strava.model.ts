@@ -6,7 +6,10 @@ import {
 } from 'src/models';
 
 export interface IStravaState {
-  isLoading: boolean;
+  isAuthLoading: boolean;
+  isActivitiesLoading: boolean;
+  isAthleteLoading: boolean;
+  isStatsLoading: boolean;
   authResponse?: IAuthenticateStravaResponse;
   activitiesResponse?: IFetchStravaActivitiesResponse;
   athleteResponse?: IFetchStravaAthleteResponse;

@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchStravaActivities } from 'src/api';
 import {
-  isLoadingAction,
+  isActivitiesLoadingAction,
   fetchStravaActivitiesAction,
   fetchStravaActivitiesDoneAction,
 } from 'src/actions';
@@ -15,7 +15,7 @@ export function* fetchStravaActivitiesAsync(action: {
   payload: IFetchStravaActivitiesRequest;
 }): SagaIterator {
   try {
-    yield put(isLoadingAction(true));
+    yield put(isActivitiesLoadingAction(true));
 
     const response: IFetchStravaActivitiesResponse = yield call(
       fetchStravaActivities,
@@ -32,7 +32,7 @@ export function* fetchStravaActivitiesAsync(action: {
       }),
     );
   } finally {
-    yield put(isLoadingAction(false));
+    yield put(isActivitiesLoadingAction(false));
   }
 }
 
