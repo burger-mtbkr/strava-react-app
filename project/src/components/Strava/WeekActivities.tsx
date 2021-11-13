@@ -13,7 +13,7 @@ import {
 } from 'src/selectors';
 import WeekTotals from './WeekTotals';
 import LoadingSkeleton from './Skeleton';
-import ActivityGridItem from './ActivityGridItem';
+import ActivityItem from './ActivityItem';
 
 const noActivities = (
   <Typography variant="subtitle1">No activities to show.</Typography>
@@ -70,7 +70,7 @@ const WeekActivities = (): JSX.Element => {
             <WeekTotals {...activities} />
             <List>
               {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <ActivityGridItem a={a} i={i} />
+                <ActivityItem a={a} i={i} />
               ))}
             </List>
           </>

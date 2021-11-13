@@ -10,7 +10,7 @@ import {
   getStravaActivityResponse,
 } from 'src/selectors';
 import LoadingSkeleton from './Skeleton';
-import ActivityGridItem from './ActivityGridItem';
+import ActivityItem from './ActivityItem';
 
 const from = moment().utc().subtract(30, 'days').unix();
 const to = moment.utc().unix();
@@ -64,7 +64,7 @@ const Activities = (): JSX.Element => {
           {!isLoading && activities && activities?.length > 0 && (
             <List>
               {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <ActivityGridItem a={a} i={i} />
+                <ActivityItem a={a} i={i} />
               ))}
             </List>
           )}
