@@ -35,19 +35,15 @@ const totalTime = (activities: Array<IStravaActivity>): string => {
 };
 
 const StravaWeekTotals = (activities: Array<IStravaActivity>): JSX.Element => (
-  <Grid container>
-    <Grid item xs={12}>
-      <Grid container spacing={3} justifyItems="center">
-        <Grid item>
-          <Typography variant="h6">{totalTime(activities)}</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h6">{totalDistance(activities)} km</Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="h6">{totalElevation(activities)} m</Typography>
-        </Grid>
-      </Grid>
+  <Grid container justifyItems="center" justifyContent="center" direction="row">
+    <Grid item margin={1}>
+      <Typography variant="h6">{totalTime(activities)}</Typography>
+    </Grid>
+    <Grid item margin={1}>
+      <Typography variant="h6">{totalDistance(activities)} km</Typography>
+    </Grid>
+    <Grid item margin={1}>
+      <Typography variant="h6">{totalElevation(activities)} m</Typography>
     </Grid>
   </Grid>
 );

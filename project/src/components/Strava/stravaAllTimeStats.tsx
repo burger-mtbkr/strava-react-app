@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { IAthleteStats } from 'src/models';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -9,8 +9,8 @@ import {
   getStravaAthleteStatsResponse,
 } from 'src/selectors';
 import { fetchStravaAthleteStatsAction } from 'src/actions';
-import StravaSkeleton from './stravaSkeleton';
-import StravaStats from './stravaStats';
+import StravaSkeleton from './StravaSkeleton';
+import StravaStats from './StravaStats';
 
 const StravaAllTimeStats = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -35,26 +35,24 @@ const StravaAllTimeStats = (): JSX.Element => {
     dispatch(fetchStravaAthleteStatsAction());
   }, [dispatch]);
   return (
-    <Grid item>
-      <Paper>
-        {isLoading ? (
-          <StravaSkeleton />
-        ) : (
-          athleteStats && (
-            <>
-              <Typography gutterBottom variant="subtitle1">
-                All-time Stats
-              </Typography>
-              <StravaStats {...athleteStats?.all_ride_totals} />
-              <Typography gutterBottom variant="subtitle1">
-                Recent Stats
-              </Typography>
-              <StravaStats {...athleteStats?.recent_ride_totals} />
-            </>
-          )
-        )}
-      </Paper>
-    </Grid>
+    <Paper>
+      {isLoading ? (
+        <StravaSkeleton />
+      ) : (
+        athleteStats && (
+          <>
+            <Typography gutterBottom variant="subtitle1">
+              Recent Stats
+            </Typography>
+            <StravaStats {...athleteStats?.recent_ride_totals} />
+            <Typography gutterBottom variant="subtitle1">
+              All-time Stats
+            </Typography>
+            <StravaStats {...athleteStats?.all_ride_totals} />
+          </>
+        )
+      )}
+    </Paper>
   );
 };
 

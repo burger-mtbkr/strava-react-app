@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import configureStore from 'redux-mock-store';
 import { rootInitialState, TStoreState } from 'src/reducers';
 import { Store } from '@reduxjs/toolkit';
+import { BrowserRouter } from 'react-router-dom';
 
 interface ExtendedRenderOptions extends RenderOptions {
   initialState: Partial<TStoreState>;
@@ -22,7 +23,9 @@ const TestWrapper =
   ({ children }: { children?: React.ReactNode }) =>
     (
       <Provider store={store}>
-        <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+        <BrowserRouter>
+          <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+        </BrowserRouter>
       </Provider>
     );
 
