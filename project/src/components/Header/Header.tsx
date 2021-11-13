@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { TestIds } from 'src/utils/testId.util';
 import { useSelector } from 'react-redux';
-import { getHeaderTitle } from 'src/sagas/selectors/app.selector';
+import { getHeaderTitle } from 'src/selectors/app.selector';
 
 const Header = () => {
   const title = useSelector(getHeaderTitle);
