@@ -12,9 +12,11 @@ import moment from 'moment';
 import { toHmsString, getFirstDayOfCurrentWeek, roundNumber } from 'src/utils';
 import { IStravaActivity } from 'src/models';
 import Moment from 'react-moment';
-import StravaSkeleton from './stravaSkeleton';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchStravaActivitiesAction } from 'src/actions';
+import { getStravaActivityResponse, getStravaIsLoading } from 'src/selectors';
 import StravaWeekTotals from './stravaWeekTotals';
-import { authenticateStrava, getActivities } from '../../api/stravaApi';
+import StravaSkeleton from './stravaSkeleton';
 
 const noActivities = (
   <Typography variant="subtitle1">No activities to show.</Typography>
@@ -65,38 +67,41 @@ const activityGridItem = (a: IStravaActivity, i: number) => (
     <Divider />
   </div>
 );
+const now = new Date();
+const firstDay: Date = getFirstDayOfCurrentWeek();
+const from = moment(firstDay).unix();
+const to = moment(now).unix();
 
 const StravaWeekActivities = (): JSX.Element => {
-  const [loading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
   const [activities, setActivities] = useState<
     Array<IStravaActivity> | undefined
   >(undefined);
 
-  const loadActivities = async () => {
-    const authorized = await authenticateStrava();
-    if (authorized) {
-      const now = new Date();
-      const firstDay: Date = getFirstDayOfCurrentWeek();
-      const from = moment(firstDay).unix();
-      const to = moment(now).unix();
-
-      const a = await getActivities(from, to, 1, 50);
-
-      if (a && a.length > 0) {
-        setActivities(a);
-      }
-
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-  };
+  const stravaActivityResponse = useSelector(getStravaActivityResponse);
+  const isLoading = useSelector(getStravaIsLoading);
 
   useEffect(() => {
-    (async function () {
-      await loadActivities();
-    })();
-  }, []);
+    if (
+      stravaActivityResponse?.isSuccessful &&
+      stravaActivityResponse.activities
+    ) {
+      setActivities(stravaActivityResponse.activities);
+    } else {
+      setActivities([]);
+    }
+  }, [stravaActivityResponse]);
+
+  useEffect(() => {
+    dispatch(
+      fetchStravaActivitiesAction({
+        fromUnix: from,
+        toUnix: to,
+        page: 1,
+        itemCount: 50,
+      }),
+    );
+  }, [dispatch]);
 
   return (
     <Grid item>
@@ -105,7 +110,7 @@ const StravaWeekActivities = (): JSX.Element => {
           Current Week Activities
         </Typography>
         <>
-          {loading ? (
+          {isLoading ? (
             <StravaSkeleton />
           ) : !activities || activities?.length < 1 ? (
             noActivities

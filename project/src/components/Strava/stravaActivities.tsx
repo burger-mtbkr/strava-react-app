@@ -12,36 +12,43 @@ import {
   Typography,
 } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
-import { authenticateStrava, getActivities } from 'src/api/stravaApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchStravaActivitiesAction } from 'src/actions';
+import { getStravaActivityResponse, getStravaIsLoading } from 'src/selectors';
 import StravaSkeleton from './stravaSkeleton';
 
+const from = moment().utc().subtract(30, 'days').unix();
+const to = moment.utc().unix();
+
 const StravaActivities = (): JSX.Element => {
-  const [loading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
   const [activities, setActivities] = useState<
     Array<IStravaActivity> | undefined
   >(undefined);
 
-  const loadActivities = async () => {
-    const authorized = await authenticateStrava();
-    if (authorized) {
-      const from = moment().utc().subtract(30, 'days').unix();
-      const to = moment.utc().unix();
-      const a = await getActivities(from, to, 1, 50);
-
-      if (a && a.length > 0) {
-        setActivities(a);
-      }
-
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-  };
+  const stravaActivityResponse = useSelector(getStravaActivityResponse);
+  const isLoading = useSelector(getStravaIsLoading);
 
   useEffect(() => {
-    (async function () {
-      await loadActivities();
-    })();
+    if (
+      stravaActivityResponse?.isSuccessful &&
+      stravaActivityResponse.activities
+    ) {
+      setActivities(stravaActivityResponse.activities);
+    } else {
+      setActivities([]);
+    }
+  }, [stravaActivityResponse]);
+
+  useEffect(() => {
+    dispatch(
+      fetchStravaActivitiesAction({
+        fromUnix: from,
+        toUnix: to,
+        page: 1,
+        itemCount: 50,
+      }),
+    );
   }, []);
 
   const activityGridItem = (a: IStravaActivity, i: number) => (
@@ -101,11 +108,11 @@ const StravaActivities = (): JSX.Element => {
           Latest Activities
         </Typography>
         <>
-          {loading && <StravaSkeleton />}
-          {!loading &&
+          {isLoading && <StravaSkeleton />}
+          {!isLoading &&
             (!activities || activities?.length < 1) &&
             noActivities()}
-          {!loading && activities && activities?.length > 0 && (
+          {!isLoading && activities && activities?.length > 0 && (
             <List>
               {activities
                 .slice(0, 7)

@@ -2,10 +2,11 @@
 import axios, { AxiosResponse } from 'axios';
 import {
   IFetchStravaActivitiesRequest,
+  IFetchStravaActivitiesResponse,
   IStravaActivity,
   IStravaSession,
 } from 'src/models';
-import { getObject } from 'src/utils';
+import { getObject, isSuccessfulResponse } from 'src/utils';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -14,9 +15,7 @@ export const fetchStravaActivities = async ({
   toUnix,
   page,
   itemCount,
-}: IFetchStravaActivitiesRequest): Promise<
-  Array<IStravaActivity> | undefined
-> => {
+}: IFetchStravaActivitiesRequest): Promise<IFetchStravaActivitiesResponse> => {
   try {
     const stravaSession = getObject<IStravaSession>('strava_session');
     const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/athlete/activities?after=${fromUnix}&before=${toUnix}&page=${page}&per_page=${itemCount}`;
@@ -29,16 +28,26 @@ export const fetchStravaActivities = async ({
       },
     );
 
-    if (response.status === 200 || response.status === 204) {
+    if (isSuccessfulResponse(response)) {
       if (response.data) {
         const data = response.data as Array<IStravaActivity>;
-        return data;
+        return {
+          activities: data,
+          isSuccessful: true,
+        };
       }
-      return undefined;
+      return {
+        error: new Error('An error has occured'),
+        isSuccessful: false,
+      };
     }
     throw new Error(response.statusText);
   } catch (error) {
-    console.log('getActivities', error);
-    return undefined;
+    return {
+      isSuccessful: false,
+      error: axios.isAxiosError(error)
+        ? error
+        : new Error('An error has occured'),
+    };
   }
 };
