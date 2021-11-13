@@ -10,6 +10,9 @@ export const getStravaAuthenticateResponse = (
   state: TStoreState,
 ): IAuthenticateStravaResponse | undefined => state.strava.authResponse;
 
+export const getStravaIsLoading = (state: TStoreState): boolean =>
+  state.strava.isLoading;
+
 export const getStravaActivityResponse = (
   state: TStoreState,
 ): IFetchStravaActivitiesResponse | undefined =>
