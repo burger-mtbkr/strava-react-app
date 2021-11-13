@@ -41,11 +41,11 @@ const StatsSummary = (): JSX.Element => {
       ) : (
         athleteStats && (
           <>
-            <Typography gutterBottom variant="subtitle1">
+            <Typography gutterBottom variant="h6">
               Recent Stats
             </Typography>
             <Stats {...athleteStats?.recent_ride_totals} />
-            <Typography gutterBottom variant="subtitle1">
+            <Typography gutterBottom variant="h6">
               All-time Stats
             </Typography>
             <Stats {...athleteStats?.all_ride_totals} />

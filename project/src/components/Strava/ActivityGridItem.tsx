@@ -27,7 +27,7 @@ const ActivityGridItem = (props: IStravaActivityGridItemProps) => {
     <div key={i}>
       <ListItem>
         <Grid item xs={12}>
-          <Typography variant="subtitle2">{name}</Typography>
+          <Typography variant="h6">{name}</Typography>
           <Typography gutterBottom variant="caption">
             <Moment format="DD-MMM-YYYY HH:mm" local>
               {start_date}
@@ -38,10 +38,10 @@ const ActivityGridItem = (props: IStravaActivityGridItemProps) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item>
-                <Typography variant="h6">
+                <Typography variant="body2">
                   {roundNumber(distance / 1000, 2)} km
                 </Typography>
-                <Typography gutterBottom variant="body1">
+                <Typography gutterBottom variant="body2">
                   {toHmsString(moving_time)}
                 </Typography>
               </Grid>

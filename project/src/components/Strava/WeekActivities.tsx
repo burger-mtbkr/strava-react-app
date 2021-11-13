@@ -57,7 +57,7 @@ const WeekActivities = (): JSX.Element => {
 
   return (
     <Paper>
-      <Typography gutterBottom variant="subtitle1">
+      <Typography gutterBottom variant="h5">
         Current Week Activities
       </Typography>
       <>

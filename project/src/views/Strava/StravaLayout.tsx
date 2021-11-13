@@ -13,11 +13,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authenticateWithStravaAction } from 'src/actions';
 
 const widgets = (
-  <Grid container direction="row" justifyItems="center">
-    <Grid item xs={8} margin={1}>
+  <Grid container direction="row" justifyItems="center" spacing={2}>
+    <Grid item xs={12} lg={9}>
       <StravaWeek />
     </Grid>
-    <Grid item xs={3} margin={1}>
+    <Grid item xs={12} lg={3}>
       <StatsSummary />
     </Grid>
   </Grid>

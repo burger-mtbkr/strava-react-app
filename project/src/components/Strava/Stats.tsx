@@ -14,37 +14,47 @@ const Stats = ({
   <List>
     <ListItem>
       <>
-        <Typography variant="body1">Total distance:</Typography>
-        <Typography variant="body1">
+        <Typography variant="caption" marginRight={1}>
+          Total distance:
+        </Typography>
+        <Typography variant="body2">
           {roundNumber(distance / 1000, 2)} km
         </Typography>
       </>
     </ListItem>
     <ListItem>
       <>
-        <Typography variant="body1">Moving time:</Typography>
-        <Typography variant="body1">{toHmsString(moving_time)}</Typography>
+        <Typography variant="caption" marginRight={1}>
+          Moving time:
+        </Typography>
+        <Typography variant="body2">{toHmsString(moving_time)}</Typography>
       </>
     </ListItem>
     <ListItem>
       <>
-        <Typography variant="body1">Elevation gain:</Typography>
-        <Typography variant="body1">
+        <Typography variant="caption" marginRight={1}>
+          Elevation gain:
+        </Typography>
+        <Typography variant="body2">
           {roundNumber(elevation_gain, 2)} m
         </Typography>
       </>
     </ListItem>
     <ListItem>
       <>
-        <Typography variant="body1">Activity count:</Typography>
-        <Typography variant="body1">{roundNumber(count, 2)}</Typography>
+        <Typography variant="caption" marginRight={1}>
+          Activity count:
+        </Typography>
+        <Typography variant="body2">{roundNumber(count, 2)}</Typography>
       </>
     </ListItem>
     {achievement_count ? (
       <ListItem>
         <>
-          <Typography variant="body1">Achievement count:</Typography>
-          <Typography variant="body1">{achievement_count}</Typography>
+          <Typography variant="caption" marginRight={1}>
+            Achievement count:
+          </Typography>
+          <Typography variant="body2">{achievement_count}</Typography>
         </>
       </ListItem>
     ) : null}
