@@ -14,10 +14,10 @@ import { authenticateWithStravaAction } from 'src/actions';
 
 const widgets = (
   <Grid container direction="row" justifyItems="center" spacing={2}>
-    <Grid item xs={12} md={8} lg={8}>
+    <Grid item xs={12} md={6} lg={6}>
       <StravaWeek />
     </Grid>
-    <Grid item xs={12} md={4} lg={3}>
+    <Grid item xs={12} md={3} lg={3}>
       <StatsSummary />
     </Grid>
   </Grid>
