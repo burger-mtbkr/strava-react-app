@@ -5,8 +5,7 @@ import { getObject, getUnix, isSuccessfulResponse, setItem } from 'src/utils';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
-export const isAuthorized = (): boolean => {
-  const stravaSession = getObject<IStravaSession>('strava_session');
+export const isAuthorized = (stravaSession?: IStravaSession): boolean => {
   if (!stravaSession) return false;
   const now: number = getUnix();
   return now < stravaSession.expires_at;
@@ -17,9 +16,9 @@ export const authenticateWithStrava = async (
 ): Promise<IAuthenticateStravaResponse> => {
   try {
     const session = getObject<IStravaSession>('strava_session');
-
+    debugger;
     if (!code) {
-      if (isAuthorized()) {
+      if (isAuthorized(session)) {
         return {
           isSuccessful: true,
           stravaSession: session,

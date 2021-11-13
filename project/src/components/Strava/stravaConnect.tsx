@@ -5,24 +5,26 @@ import { useLocation } from 'react-router-dom';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBikeSharp';
 import { useQuery } from 'src/hooks';
 import { Button } from '@mui/material';
-import { deleteItem, getString } from 'src/utils';
-import { authenticateStrava } from 'src/api';
+import { deleteItem } from 'src/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStravaAuthenticateResponse } from 'src/selectors';
+import { authenticateWithStravaAction } from 'src/actions';
 
 const stravaAuth = `https://www.strava.com/oauth/authorize?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_STRAVA_CALLBACK_URL}&approval_prompt=force&scope=activity:read_all`;
 
 const StravaConnect = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
-
   const query = useQuery(location);
   const [authorized, setAuthorized] = useState(false);
 
-  const connect = async () => {
+  const authResponse = useSelector(getStravaAuthenticateResponse);
+
+  const connect = () => {
     const error = query.get('error');
     if (!error) {
       const code = query.get('code');
-      const stravaConnected = await authenticateStrava(code || undefined);
-      console.log('stravaConnected', stravaConnected);
-      setAuthorized(!!stravaConnected);
+      dispatch(authenticateWithStravaAction(code || undefined));
     }
   };
 
@@ -33,11 +35,15 @@ const StravaConnect = () => {
   };
 
   useEffect(() => {
-    if (getString('t')) {
-      (async function () {
-        await connect();
-      })();
+    if (authResponse?.isSuccessful && authResponse.stravaSession) {
+      setAuthorized(true);
+    } else {
+      setAuthorized(false);
     }
+  }, [authResponse]);
+
+  useEffect(() => {
+    connect();
   }, []);
 
   return !authorized ? (

@@ -8,12 +8,14 @@ import {
   isLoadingAction,
 } from 'src/actions';
 
-export function* authenticateWithStravaAsync(code?: string): SagaIterator {
+export function* authenticateWithStravaAsync(action: {
+  payload: string | undefined;
+}): SagaIterator {
   try {
     yield put(isLoadingAction(true));
     const response: IAuthenticateStravaResponse = yield call(
       authenticateWithStrava,
-      code,
+      action.payload,
     );
 
     yield put(authenticateWithStravaDoneAction(response));
