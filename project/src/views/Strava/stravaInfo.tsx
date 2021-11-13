@@ -2,39 +2,48 @@
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import Container from '@mui/material/Container';
-import StravaAllTimeStats from 'src/components/Strava/stravaAllTimeStats';
-import StravaWeek from 'src/components/Strava/stravaWeekActivities';
-import { authenticateStrava } from 'src/api/stravaApi';
-import StravaConnect from 'src/components/Strava/stravaConnect';
+import StravaAllTimeStats from 'src/components/Strava/StravaAllTimeStats';
+import StravaWeek from 'src/components/Strava/StravaWeekActivities';
+import StravaConnect from 'src/components/Strava/StravaConnect';
+import {
+  getStravaAuthenticateResponse,
+  getStravaAuthIsLoading,
+} from 'src/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticateWithStravaAction } from 'src/actions';
 
 const widgets = (
-  <Grid container>
-    <Grid item xs container direction="column">
+  <Grid container direction="row" justifyItems="center">
+    <Grid item xs={8} margin={1}>
       <StravaWeek />
     </Grid>
-    <Grid item xs container direction="column">
-      <Grid item>
-        <StravaAllTimeStats />
-      </Grid>
+    <Grid item xs={3} margin={1}>
+      <StravaAllTimeStats />
     </Grid>
   </Grid>
 );
 
 const StravaInfo = (): JSX.Element => {
+  const dispatch = useDispatch();
   const [authorized, setAuthorized] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const isAuthLoading = useSelector(getStravaAuthIsLoading);
+  const authResponse = useSelector(getStravaAuthenticateResponse);
 
   useEffect(() => {
-    (async function () {
-      const a = await authenticateStrava();
-      setAuthorized(a);
-      setLoading(false);
-    })();
+    if (authResponse?.isSuccessful && authResponse.stravaSession) {
+      setAuthorized(true);
+    } else {
+      setAuthorized(false);
+    }
+  }, [authResponse]);
+
+  useEffect(() => {
+    dispatch(authenticateWithStravaAction());
   }, []);
 
   return (
-    <Container maxWidth="lg">
-      {authorized ? widgets : !loading && <StravaConnect />}
+    <Container maxWidth="xl">
+      {authorized ? widgets : !isAuthLoading && <StravaConnect />}
     </Container>
   );
 };
