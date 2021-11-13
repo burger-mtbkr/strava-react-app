@@ -14,7 +14,10 @@ import { IStravaActivity } from 'src/models';
 import Moment from 'react-moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
-import { getStravaActivityResponse, getStravaIsLoading } from 'src/selectors';
+import {
+  getStravaActivitiesIsLoading,
+  getStravaActivityResponse,
+} from 'src/selectors';
 import StravaWeekTotals from './stravaWeekTotals';
 import StravaSkeleton from './stravaSkeleton';
 
@@ -79,7 +82,7 @@ const StravaWeekActivities = (): JSX.Element => {
   >(undefined);
 
   const stravaActivityResponse = useSelector(getStravaActivityResponse);
-  const isLoading = useSelector(getStravaIsLoading);
+  const isLoading = useSelector(getStravaActivitiesIsLoading);
 
   useEffect(() => {
     if (

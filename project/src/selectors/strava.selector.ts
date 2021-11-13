@@ -10,8 +10,17 @@ export const getStravaAuthenticateResponse = (
   state: TStoreState,
 ): IAuthenticateStravaResponse | undefined => state.strava.authResponse;
 
-export const getStravaIsLoading = (state: TStoreState): boolean =>
-  state.strava.isLoading;
+export const getStravaAuthIsLoading = (state: TStoreState): boolean =>
+  state.strava.isAuthLoading;
+
+export const getStravaActivitiesIsLoading = (state: TStoreState): boolean =>
+  state.strava.isActivitiesLoading;
+
+export const getStravaAthleteIsLoading = (state: TStoreState): boolean =>
+  state.strava.isAthleteLoading;
+
+export const getStravaAthleteStatsIsLoading = (state: TStoreState): boolean =>
+  state.strava.isStatsLoading;
 
 export const getStravaActivityResponse = (
   state: TStoreState,

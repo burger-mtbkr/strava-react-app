@@ -9,8 +9,20 @@ import {
 
 const STRAVA_PREFIX = 'STRAVA';
 
-export const isLoadingAction = createAction<boolean>(
-  `${STRAVA_PREFIX}/API/IS_LOADING`,
+export const isAuthLoadingAction = createAction<boolean>(
+  `${STRAVA_PREFIX}/API/IS_LOADING_AUTH`,
+);
+
+export const isActivitiesLoadingAction = createAction<boolean>(
+  `${STRAVA_PREFIX}/API/IS_LOADING_ACTIVITIES`,
+);
+
+export const isAthleteLoadingAction = createAction<boolean>(
+  `${STRAVA_PREFIX}/API/IS_LOADING_ATHLETE`,
+);
+
+export const isStatsLoadingActions = createAction<boolean>(
+  `${STRAVA_PREFIX}/API/IS_LOADING_STATS`,
 );
 
 export const authenticateWithStravaAction = createAction<string | undefined>(
