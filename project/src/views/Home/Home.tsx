@@ -1,10 +1,10 @@
 import Container from '@mui/material/Container';
 import { TestIds } from 'src/utils';
-import StravaInfo from '../Strava/stravaInfo';
+import StravaLayout from '../Strava/StravaLayout';
 
 const Home = (): JSX.Element => (
   <Container maxWidth="lg" data-testid={TestIds.homeViewComponent}>
-    <StravaInfo />
+    <StravaLayout />
   </Container>
 );
 

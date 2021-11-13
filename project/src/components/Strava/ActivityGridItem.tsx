@@ -10,7 +10,7 @@ interface IStravaActivityGridItemProps {
   i: number;
 }
 
-const StravaActivityGridItem = (props: IStravaActivityGridItemProps) => {
+const ActivityGridItem = (props: IStravaActivityGridItemProps) => {
   const { a, i } = props;
   const {
     start_date,
@@ -70,4 +70,4 @@ const StravaActivityGridItem = (props: IStravaActivityGridItemProps) => {
   );
 };
 
-export default StravaActivityGridItem;
+export default ActivityGridItem;

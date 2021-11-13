@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { TestIds } from 'src/utils';
 import { renderWithRedux } from 'src/test/utils';
 import { rootInitialState } from 'src/reducers';
-import StravaInfo from 'src/views/Strava/stravaInfo';
+import StravaLayout from 'src/views/Strava/StravaLayout';
 import Home from './Home';
 
 describe(`${Home.name} tests`, () => {
@@ -15,8 +15,8 @@ describe(`${Home.name} tests`, () => {
       const linkElement = screen.getByTestId(TestIds.homeViewComponent);
       expect(linkElement).toBeInTheDocument();
     });
-    test(`renders the ${StravaInfo.name} view`, () => {
-      renderWithRedux(<StravaInfo />, {
+    test(`renders the ${StravaLayout.name} view`, () => {
+      renderWithRedux(<StravaLayout />, {
         initialState: rootInitialState,
       });
 
