@@ -12,7 +12,7 @@ import { authenticateWithStravaAction } from 'src/actions';
 
 const stravaAuth = `https://www.strava.com/oauth/authorize?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_STRAVA_CALLBACK_URL}&approval_prompt=force&scope=activity:read_all`;
 
-const StravaConnect = () => {
+const Connect = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const query = useQuery(location);
@@ -71,4 +71,4 @@ const StravaConnect = () => {
   );
 };
 
-export default StravaConnect;
+export default Connect;

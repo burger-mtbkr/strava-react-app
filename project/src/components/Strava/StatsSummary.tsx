@@ -9,10 +9,10 @@ import {
   getStravaAthleteStatsResponse,
 } from 'src/selectors';
 import { fetchStravaAthleteStatsAction } from 'src/actions';
-import StravaSkeleton from './StravaSkeleton';
-import StravaStats from './StravaStats';
+import LoadingSkeleton from './Skeleton';
+import Stats from './Stats';
 
-const StravaAllTimeStats = (): JSX.Element => {
+const StatsSummary = (): JSX.Element => {
   const dispatch = useDispatch();
   const stravaAthleteStatsResponse = useSelector(getStravaAthleteStatsResponse);
   const isLoading = useSelector(getStravaAthleteStatsIsLoading);
@@ -37,18 +37,18 @@ const StravaAllTimeStats = (): JSX.Element => {
   return (
     <Paper>
       {isLoading ? (
-        <StravaSkeleton />
+        <LoadingSkeleton />
       ) : (
         athleteStats && (
           <>
             <Typography gutterBottom variant="subtitle1">
               Recent Stats
             </Typography>
-            <StravaStats {...athleteStats?.recent_ride_totals} />
+            <Stats {...athleteStats?.recent_ride_totals} />
             <Typography gutterBottom variant="subtitle1">
               All-time Stats
             </Typography>
-            <StravaStats {...athleteStats?.all_ride_totals} />
+            <Stats {...athleteStats?.all_ride_totals} />
           </>
         )
       )}
@@ -56,4 +56,4 @@ const StravaAllTimeStats = (): JSX.Element => {
   );
 };
 
-export default StravaAllTimeStats;
+export default StatsSummary;

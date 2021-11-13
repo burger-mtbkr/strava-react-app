@@ -11,9 +11,9 @@ import {
   getStravaActivitiesIsLoading,
   getStravaActivityResponse,
 } from 'src/selectors';
-import StravaWeekTotals from './StravaWeekTotals';
-import StravaSkeleton from './StravaSkeleton';
-import StravaActivityGridItem from './StravaActivityGridItem';
+import WeekTotals from './WeekTotals';
+import LoadingSkeleton from './Skeleton';
+import ActivityGridItem from './ActivityGridItem';
 
 const noActivities = (
   <Typography variant="subtitle1">No activities to show.</Typography>
@@ -24,7 +24,7 @@ const firstDay: Date = getFirstDayOfCurrentWeek();
 const from = moment(firstDay).unix();
 const to = moment(now).unix();
 
-const StravaWeekActivities = (): JSX.Element => {
+const WeekActivities = (): JSX.Element => {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState<
     Array<IStravaActivity> | undefined
@@ -62,15 +62,15 @@ const StravaWeekActivities = (): JSX.Element => {
       </Typography>
       <>
         {isLoading ? (
-          <StravaSkeleton />
+          <LoadingSkeleton />
         ) : !activities || activities?.length < 1 ? (
           noActivities
         ) : (
           <>
-            <StravaWeekTotals {...activities} />
+            <WeekTotals {...activities} />
             <List>
               {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <StravaActivityGridItem a={a} i={i} />
+                <ActivityGridItem a={a} i={i} />
               ))}
             </List>
           </>
@@ -80,4 +80,4 @@ const StravaWeekActivities = (): JSX.Element => {
   );
 };
 
-export default StravaWeekActivities;
+export default WeekActivities;

@@ -4,7 +4,7 @@ import { Typography, List, ListItem } from '@mui/material';
 import { IStatTotals } from 'src/models';
 import { toHmsString, roundNumber } from 'src/utils';
 
-const StravaStats = ({
+const Stats = ({
   distance,
   moving_time,
   elevation_gain,
@@ -51,4 +51,4 @@ const StravaStats = ({
   </List>
 );
 
-export default StravaStats;
+export default Stats;

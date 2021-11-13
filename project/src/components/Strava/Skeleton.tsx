@@ -1,6 +1,6 @@
 import Skeleton from '@mui/material/Skeleton';
 
-const StravaSkeleton = () => (
+const LoadingSkeleton = () => (
   <>
     <Skeleton height="80px" width="100%" />
     <Skeleton height="10px" width="100%" />
@@ -10,4 +10,4 @@ const StravaSkeleton = () => (
   </>
 );
 
-export default StravaSkeleton;
+export default LoadingSkeleton;

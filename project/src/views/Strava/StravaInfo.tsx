@@ -2,9 +2,9 @@
 import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import Container from '@mui/material/Container';
-import StravaAllTimeStats from 'src/components/Strava/StravaAllTimeStats';
-import StravaWeek from 'src/components/Strava/StravaWeekActivities';
-import StravaConnect from 'src/components/Strava/StravaConnect';
+import StatsSummary from 'src/components/Strava/StatsSummary';
+import StravaWeek from 'src/components/Strava/WeekActivities';
+import Connect from 'src/components/Strava/Connect';
 import {
   getStravaAuthenticateResponse,
   getStravaAuthIsLoading,
@@ -18,7 +18,7 @@ const widgets = (
       <StravaWeek />
     </Grid>
     <Grid item xs={3} margin={1}>
-      <StravaAllTimeStats />
+      <StatsSummary />
     </Grid>
   </Grid>
 );
@@ -43,7 +43,7 @@ const StravaInfo = (): JSX.Element => {
 
   return (
     <Container maxWidth="xl">
-      {authorized ? widgets : !isAuthLoading && <StravaConnect />}
+      {authorized ? widgets : !isAuthLoading && <Connect />}
     </Container>
   );
 };
