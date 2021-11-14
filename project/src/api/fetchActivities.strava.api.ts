@@ -6,7 +6,7 @@ import {
   IStravaActivity,
   IStravaSession,
 } from 'src/models';
-import { getObject, isSuccessfulResponse } from 'src/utils';
+import { axiosApi, getObject, isSuccessfulResponse } from 'src/utils';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -19,7 +19,7 @@ export const fetchStravaActivities = async ({
   try {
     const stravaSession = getObject<IStravaSession>('strava_session');
     const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/athlete/activities?after=${fromUnix}&before=${toUnix}&page=${page}&per_page=${itemCount}`;
-    const response: AxiosResponse<unknown> = await axios.get(
+    const response: AxiosResponse<unknown> = await axiosApi.get(
       activitiesEndPoint,
       {
         headers: {
