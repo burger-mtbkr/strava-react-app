@@ -16,7 +16,6 @@ export const authenticateWithStrava = async (
 ): Promise<IAuthenticateStravaResponse> => {
   try {
     const session = getObject<IStravaSession>('strava_session');
-    debugger;
     if (!code) {
       if (isAuthorized(session)) {
         return {

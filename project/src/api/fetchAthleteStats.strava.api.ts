@@ -30,7 +30,6 @@ export const getAthleteStats =
           },
         },
       );
-      debugger;
       if (isSuccessfulResponse(response)) {
         if (response.data) {
           const data = response.data as IAthleteStats;

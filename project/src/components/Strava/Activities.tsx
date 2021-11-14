@@ -64,7 +64,7 @@ const Activities = (): JSX.Element => {
           {!isLoading && activities && activities?.length > 0 && (
             <List>
               {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <ActivityItem a={a} i={i} />
+                <ActivityItem activity={a} key={i} />
               ))}
             </List>
           )}

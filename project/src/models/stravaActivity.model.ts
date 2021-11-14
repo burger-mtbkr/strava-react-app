@@ -30,6 +30,8 @@ export interface IStravaActivity {
   location_city?: string;
   location_state?: string;
   location_country: string;
+  start_latitude: number;
+  start_longitude: number;
   achievement_count: number;
   kudos_count: number;
   comment_count: number;

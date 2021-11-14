@@ -1,17 +1,20 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable camelcase */
 import { ListItem, Typography, Grid, Divider } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
 import { IStravaActivity } from 'src/models';
 import Moment from 'react-moment';
+import StravaMap from './StravaMap';
+
+const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap&v=weekly`;
 
 interface IStravaActivityGridItemProps {
-  a: IStravaActivity;
-  i: number;
+  activity: IStravaActivity;
 }
 
 const ActivityItem = (props: IStravaActivityGridItemProps) => {
-  const { a, i } = props;
+  const { activity } = props;
   const {
     start_date,
     name,
@@ -21,12 +24,12 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
     average_heartrate,
     kilojoules,
     total_elevation_gain,
-  } = a;
+  } = activity;
 
   return (
-    <div key={i}>
+    <>
       <ListItem>
-        <Grid container>
+        <Grid container padding={1}>
           <Grid item xs={12} lg={12} marginBottom={1}>
             <Typography variant="body1">{name}</Typography>
             <Typography gutterBottom variant="caption">
@@ -35,7 +38,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               </Moment>
             </Typography>
           </Grid>
-          <Grid container item>
+          <Grid container item marginBottom={1}>
             <Grid item xs={6}>
               <Typography gutterBottom variant="body2">
                 {roundNumber(distance / 1000, 2)} km
@@ -57,10 +60,21 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               </Typography>
             </Grid>
           </Grid>
+
+          <StravaMap
+            googleMapURL={googleScript}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={
+              <div style={{ height: '250px', width: '100%' }} />
+            }
+            mapElement={<div style={{ height: `100%` }} />}
+            activity={activity}
+            zoom={11}
+          />
         </Grid>
       </ListItem>
       <Divider />
-    </div>
+    </>
   );
 };
 

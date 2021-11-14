@@ -70,7 +70,7 @@ const WeekActivities = (): JSX.Element => {
             <WeekTotals {...activities} />
             <List>
               {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <ActivityItem a={a} i={i} />
+                <ActivityItem key={i} activity={a} />
               ))}
             </List>
           </>
