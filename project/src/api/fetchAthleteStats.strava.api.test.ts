@@ -3,7 +3,11 @@ import MockAdapter from 'axios-mock-adapter';
 import { IFetchStravaAthleteStatsResponse } from 'src/models';
 import { getAthleteStats } from 'src/api';
 import { axiosApi, getObject } from 'src/utils';
-import { mockStravaSession } from 'src/test/utils';
+import {
+  mockStravaSession,
+  mockAthlete,
+  mockAthleteStats,
+} from 'src/test/utils';
 
 jest.mock('src/utils/storage.util', () => ({
   getObject: jest.fn(),
@@ -11,25 +15,14 @@ jest.mock('src/utils/storage.util', () => ({
 
 describe(`[api] ${getAthleteStats.name}`, () => {
   const mock: MockAdapter = new MockAdapter(axiosApi);
-  const mockAthleteId = {
-    id: 12345,
-    username: 'bike-rider',
-    firstname: 'Bike',
-    lastname: 'Rider',
-  };
 
-  const mockAthleteStats = {
-    biggest_ride_distance: 300,
-    biggest_climb_elevation_gain: 1285,
-  };
-
-  const activitiesEndPoint = `https://www.strava.com/api/v3/athletes/${mockAthleteId.id}/stats`;
+  const activitiesEndPoint = `https://www.strava.com/api/v3/athletes/${mockAthlete.id}/stats`;
 
   beforeEach(() => {
     const mockGetObject = getObject as jest.MockedFunction<typeof getObject>;
     mockGetObject.mockImplementation((key) => {
       if (key === 'strava_session') return mockStravaSession;
-      if (key === 'strava_athlete') return mockAthleteId;
+      if (key === 'strava_athlete') return mockAthlete;
       return undefined;
     });
   });

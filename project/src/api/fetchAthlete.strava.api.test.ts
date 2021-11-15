@@ -4,17 +4,10 @@ import { IFetchStravaAthleteResponse } from 'src/models';
 import { fetchStravaAthlete } from 'src/api';
 import { axiosApi } from 'src/utils';
 import * as storageUtils from 'src/utils/storage.util';
-import { mockStravaSession } from 'src/test/utils';
+import { mockAthlete, mockStravaSession } from 'src/test/utils';
 
 describe(`[api] ${fetchStravaAthlete.name}`, () => {
   const mock: MockAdapter = new MockAdapter(axiosApi);
-
-  const mockAthlete = {
-    id: 12344,
-    username: 'test-user',
-    firstname: 'test',
-    lastname: 'user',
-  };
 
   const activitiesEndPoint = `https://www.strava.com/api/v3/athlete`;
 
