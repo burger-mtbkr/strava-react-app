@@ -20,7 +20,7 @@ Basic React TypeScript app pulling data from Strava
 2. Once you have this setup, create a new folder called `environments` under the project folder folder.
 3. Add a new file to the `environments` folder called `.dev.env`  
 4. Add the following environmental variables to the file:
-5. Save ;-)
+5. Save :wink:
 ```
 REACT_APP_STRAVA_CLIENT_ID=your_client_id
 REACT_APP_STRAVA_CLIENT_SECRET=your_client_secret
