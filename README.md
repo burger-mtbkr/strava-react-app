@@ -17,9 +17,7 @@ Basic React TypeScript app pulling data from Strava
 **Instructions:**
 
 1. You will need to have a configured app in strava to get you OAuth Info.
-2. Once you have this setup, create a new folder called `environments` under the project folder folder.
-3. Add a new file to the `environments` folder called `.dev.env`  
-4. Add the following environmental variables to the file:
+2. Once you have this setup, update the `.env.development` file by adding the values for the environmental variables:
 5. Save :wink:
 ```
 REACT_APP_STRAVA_CLIENT_ID=your_client_id
