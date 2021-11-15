@@ -1,2 +1,3 @@
 export * from './rtl-wrapper';
-export * from './mockStravaSession';
+export * from './strava.mocks';
+export * from './store.mock';

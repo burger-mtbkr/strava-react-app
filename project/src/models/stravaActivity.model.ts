@@ -17,7 +17,7 @@ export interface IStravaActivity {
   elapsed_time: number;
   total_elevation_gain: number;
   type: string;
-  workout_type?: string;
+  workout_type?: number;
   id: number;
   external_id: string;
   upload_id: number;
@@ -45,21 +45,28 @@ export interface IStravaActivity {
   flagged: boolean;
   gear_id: string;
   from_accepted_tag: boolean;
+  average_temp?: number;
   average_speed: number;
   max_speed: number;
   average_cadence: number;
   average_watts: number;
-  weighted_average_watts: number;
+  weighted_average_watts?: number;
   kilojoules: number;
   device_watts: boolean;
   has_heartrate: boolean;
   average_heartrate: number;
   max_heartrate: number;
-  max_watts: number;
+  max_watts?: number;
   pr_count: number;
   total_photo_count: number;
   has_kudoed: boolean;
-  suffer_score: number;
+  suffer_score?: number;
+  visibility?: string;
+  upload_id_str?: string;
+  heartrate_opt_out: boolean;
+  display_hide_heartrate_option: boolean;
+  elev_high: number;
+  elev_low: number;
 }
 export interface IFetchStravaActivitiesRequest {
   fromUnix: number;
