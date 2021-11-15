@@ -31,7 +31,7 @@ describe(`${Home.name} tests`, () => {
         initialState: mockStoreState,
       });
 
-      const activitiesHeading = screen.getByText('Current Week Activities');
+      const activitiesHeading = screen.getByText('Latest Activities');
       expect(activitiesHeading).toBeInTheDocument();
     });
   });

@@ -41,7 +41,7 @@ const Activities = (): JSX.Element => {
         fromUnix: from,
         toUnix: to,
         page: 1,
-        itemCount: 50,
+        itemCount: 5,
       }),
     );
   }, []);
@@ -53,7 +53,7 @@ const Activities = (): JSX.Element => {
   return (
     <Grid item>
       <Paper>
-        <Typography gutterBottom variant="subtitle1">
+        <Typography gutterBottom variant="h5">
           Latest Activities
         </Typography>
         <>

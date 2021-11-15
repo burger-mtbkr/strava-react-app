@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import Container from '@mui/material/Container';
 import StatsSummary from 'src/components/Strava/StatsSummary';
-import StravaWeek from 'src/components/Strava/WeekActivities';
 import Connect from 'src/components/Strava/Connect';
 import {
   getStravaAuthenticateResponse,
@@ -11,11 +10,12 @@ import {
 } from 'src/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateWithStravaAction } from 'src/actions';
+import Activities from 'src/components/Strava/Activities';
 
 const widgets = (
   <Grid container direction="row" justifyItems="center" spacing={2}>
     <Grid item xs={12} md={6} lg={6}>
-      <StravaWeek />
+      <Activities />
     </Grid>
     <Grid item xs={12} md={3} lg={3}>
       <StatsSummary />

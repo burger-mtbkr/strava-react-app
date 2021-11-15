@@ -11,7 +11,7 @@ describe(`${StravaLayout.name} tests`, () => {
     });
 
     it(`should render the Current week Activities list`, () => {
-      const activitiesHeading = screen.getByText('Current Week Activities');
+      const activitiesHeading = screen.getByText('Latest Activities');
       expect(activitiesHeading).toBeInTheDocument();
     });
 
