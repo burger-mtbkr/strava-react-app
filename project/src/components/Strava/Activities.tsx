@@ -11,6 +11,7 @@ import {
 } from 'src/selectors';
 import LoadingSkeleton from './Skeleton';
 import ActivityItem from './ActivityItem';
+import ActivityListTotals from './ActivityListTotals';
 
 const from = moment().utc().subtract(30, 'days').unix();
 const to = moment.utc().unix();
@@ -41,32 +42,35 @@ const Activities = (): JSX.Element => {
         fromUnix: from,
         toUnix: to,
         page: 1,
-        itemCount: 50,
+        itemCount: 5,
       }),
     );
   }, []);
 
-  const noActivities = () => (
+  const noActivities = (
     <Typography variant="subtitle1">No activities to show.</Typography>
   );
 
   return (
     <Grid item>
       <Paper>
-        <Typography gutterBottom variant="subtitle1">
+        <Typography gutterBottom variant="h5">
           Latest Activities
         </Typography>
         <>
           {isLoading && <LoadingSkeleton />}
           {!isLoading &&
             (!activities || activities?.length < 1) &&
-            noActivities()}
+            noActivities}
           {!isLoading && activities && activities?.length > 0 && (
-            <List>
-              {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <ActivityItem activity={a} key={i} />
-              ))}
-            </List>
+            <>
+              <ActivityListTotals {...activities} />
+              <List>
+                {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
+                  <ActivityItem activity={a} key={i} />
+                ))}
+              </List>
+            </>
           )}
         </>
       </Paper>

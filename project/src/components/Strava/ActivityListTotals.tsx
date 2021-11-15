@@ -34,7 +34,9 @@ const totalTime = (activities: Array<IStravaActivity>): string => {
   return toHmString(time);
 };
 
-const WeekTotals = (activities: Array<IStravaActivity>): JSX.Element => (
+const ActivityListTotals = (
+  activities: Array<IStravaActivity>,
+): JSX.Element => (
   <Grid container justifyItems="center" justifyContent="center" direction="row">
     <Grid item margin={1}>
       <Typography variant="h6">{totalTime(activities)}</Typography>
@@ -48,4 +50,4 @@ const WeekTotals = (activities: Array<IStravaActivity>): JSX.Element => (
   </Grid>
 );
 
-export default WeekTotals;
+export default ActivityListTotals;

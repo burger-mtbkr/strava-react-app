@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { TestIds } from 'src/utils';
-import { renderWithRedux } from 'src/test/utils';
+import { mockStoreState, renderWithRedux } from 'src/test/utils';
 import { rootInitialState } from 'src/reducers';
 import StravaLayout from 'src/views/Strava/StravaLayout';
 import Home from './Home';
@@ -21,6 +21,17 @@ describe(`${Home.name} tests`, () => {
       });
 
       const activitiesHeading = screen.getByText('Connect to Strava');
+      expect(activitiesHeading).toBeInTheDocument();
+    });
+  });
+
+  describe('when strava is connected', () => {
+    test(`renders the ${StravaLayout.name} view`, () => {
+      renderWithRedux(<StravaLayout />, {
+        initialState: mockStoreState,
+      });
+
+      const activitiesHeading = screen.getByText('Latest Activities');
       expect(activitiesHeading).toBeInTheDocument();
     });
   });

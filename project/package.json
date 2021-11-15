@@ -13,7 +13,8 @@
   },
   "proxy": "http://localhost:5000",
   "scripts": {
-    "start:dev": "env-cmd -f ./environments/.dev.env react-scripts start",
+    "start:local": "env-cmd -f ./environments/.env.local react-scripts start",
+    "start:dev": "env-cmd -f ./environments/.env.development react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .ts,.tsx .",
@@ -44,10 +45,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 59,
-        "branches": 48,
-        "functions": 58,
-        "lines": 60
+        "statements": 70,
+        "branches": 65,
+        "functions": 80,
+        "lines": 70
       }
     },
     "moduleNameMapper": {

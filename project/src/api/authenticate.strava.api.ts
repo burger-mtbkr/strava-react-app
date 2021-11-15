@@ -1,7 +1,12 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import axios, { AxiosResponse } from 'axios';
 import { IAuthenticateStravaResponse, IStravaSession } from 'src/models';
-import { getObject, getUnix, isSuccessfulResponse, setItem } from 'src/utils';
+import {
+  axiosApi,
+  getObject,
+  getUnix,
+  isSuccessfulResponse,
+  setItem,
+} from 'src/utils';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -25,8 +30,11 @@ export const authenticateWithStrava = async (
       }
     }
 
+    const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID ?? '';
+    const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET ?? '';
     const grantType = code ? 'authorization_code' : 'refresh_token';
-    let stravaEndPoint = `${apiBaseEndpoint}/oauth/token?client_id=${process.env.REACT_APP_STRAVA_CLIENT_ID}&client_secret=${process.env.REACT_APP_STRAVA_CLIENT_SECRET}&grant_type=${grantType}`;
+
+    let stravaEndPoint = `${apiBaseEndpoint}/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`;
 
     if (grantType === 'authorization_code' && code) {
       stravaEndPoint = `${stravaEndPoint}&code=${code}`;
@@ -39,7 +47,7 @@ export const authenticateWithStrava = async (
       };
     }
 
-    const response: AxiosResponse<unknown> = await axios.post(
+    const response: AxiosResponse<unknown> = await axiosApi.post(
       stravaEndPoint,
       null,
       {
@@ -60,7 +68,7 @@ export const authenticateWithStrava = async (
 
       return {
         isSuccessful: true,
-        stravaSession: session,
+        stravaSession: data,
       };
     }
 
