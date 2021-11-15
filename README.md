@@ -32,7 +32,11 @@ REACT_APP_GOOGLE_API_KEY=your_google_api_key
 1. Run `yarn install`
 2. Run `yarn start:dev`
 
-
+**Testing the app:**
+1. `Run yarn test` or
+2. `Run yarn watch` or
+3. `Run test:coverage` or
+4. `Run test:premerge`
 
 **Preview:**
 
