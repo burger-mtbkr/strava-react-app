@@ -7,6 +7,7 @@
   },
   "version": "0.1.0",
   "private": false,
+  "license": "https://github.com/loanburger/strava-react-app/blob/main/LICENSE",
   "author": {
     "name": "Lóan Burger",
     "url": "https://github.com/loanburger"

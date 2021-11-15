@@ -2,9 +2,13 @@ import MockAdapter from 'axios-mock-adapter';
 import moment from 'moment';
 import { IFetchStravaActivitiesResponse } from 'src/models';
 import { fetchStravaActivities } from 'src/api';
-import { axiosApi } from 'src/utils';
-import * as storageUtils from 'src/utils/storage.util';
+import { axiosApi, getObject } from 'src/utils';
 import { mockStravaSession } from 'src/test/utils';
+
+jest.mock('src/utils/storage.util', () => ({
+  getObject: jest.fn(),
+  setItem: jest.fn(),
+}));
 
 describe(`[api] ${fetchStravaActivities.name}`, () => {
   const mock: MockAdapter = new MockAdapter(axiosApi);
@@ -24,7 +28,11 @@ describe(`[api] ${fetchStravaActivities.name}`, () => {
   const activitiesEndPoint = `https://www.strava.com/api/v3/athlete/activities?after=${request.fromUnix}&before=${request.toUnix}&page=${request.page}&per_page=${request.itemCount}`;
 
   beforeEach(() => {
-    jest.spyOn(storageUtils, 'getObject').mockReturnValue(mockStravaSession);
+    const mockGetObject = getObject as jest.MockedFunction<typeof getObject>;
+    mockGetObject.mockImplementation((key) => {
+      if (key === 'strava_session') return mockStravaSession;
+      return undefined;
+    });
   });
 
   afterEach(() => {

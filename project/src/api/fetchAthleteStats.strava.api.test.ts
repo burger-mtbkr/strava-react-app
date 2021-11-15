@@ -11,6 +11,7 @@ import {
 
 jest.mock('src/utils/storage.util', () => ({
   getObject: jest.fn(),
+  setItem: jest.fn(),
 }));
 
 describe(`[api] ${getAthleteStats.name}`, () => {
