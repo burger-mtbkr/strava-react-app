@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { mockStravaActivities } from 'src/test/utils';
-import WeekTotals from './WeekTotals';
+import ActivityListTotals from './ActivityListTotals';
 
-describe(`${WeekTotals.name} tests`, () => {
+describe(`${ActivityListTotals.name} tests`, () => {
   describe('when strava is connected', () => {
     beforeEach(() => {
-      render(<WeekTotals {...mockStravaActivities} />);
+      render(<ActivityListTotals {...mockStravaActivities} />);
     });
 
     it(`should render the total time`, () => {
