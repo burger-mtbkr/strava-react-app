@@ -1,7 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable @typescript-eslint/no-for-in-array */
 import {
   GoogleMap,
   withGoogleMap,
@@ -12,6 +8,7 @@ import {
 
 import { IStravaActivity } from 'src/models';
 import polyline from '@mapbox/polyline';
+import { createPath } from 'src/utils';
 
 interface StravaMapProps {
   zoom: number;
@@ -35,38 +32,15 @@ const mapOptions = {
   fullscreenControl: true,
 };
 
-interface IPoint {
-  lat: number;
-  lng: number;
-}
-
-const createPath = (decoded: [number, number][]): IPoint[] => {
-  if (decoded?.length < 1) return [];
-
-  const path: IPoint[] = [];
-  for (const p in decoded) {
-    const elem = decoded[p];
-    path.push({
-      lat: elem[0],
-      lng: elem[1],
-    });
-  }
-
-  return path;
-};
-
 const StravaMap = withScriptjs(
   withGoogleMap(({ zoom, activity }: StravaMapProps) => {
     const center = {
       lat: activity.start_latitude,
       lng: activity.start_longitude,
     };
-
-    const decodedPath = activity.map.summary_polyline
-      ? polyline.decode(activity.map.summary_polyline)
+    const path = activity.map.summary_polyline
+      ? createPath(polyline.decode(activity.map.summary_polyline))
       : [];
-
-    const path = createPath(decodedPath);
 
     return (
       <GoogleMap

@@ -1,3 +1,8 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable @typescript-eslint/no-for-in-array */
+import { IPoint } from 'src/models';
+
 /* eslint-disable no-bitwise */
 export const decode = (encoded: string) => {
   // array that holds the points
@@ -34,4 +39,18 @@ export const decode = (encoded: string) => {
 
   debugger;
   return points;
+};
+
+export const createPath = (decoded: [number, number][]): IPoint[] => {
+  if (decoded?.length < 1) return [];
+
+  const path: IPoint[] = [];
+  for (const p in decoded) {
+    const elem = decoded[p];
+    path.push({
+      lat: elem[0],
+      lng: elem[1],
+    });
+  }
+  return path;
 };
