@@ -8,7 +8,7 @@ import {
 
 import { IStravaActivity } from 'src/models';
 import polyline from '@mapbox/polyline';
-import { createPath } from 'src/utils';
+import { createBounds, createPath } from 'src/utils';
 
 interface StravaMapProps {
   zoom: number;
@@ -38,15 +38,19 @@ const StravaMap = withScriptjs(
       lat: activity.start_latitude,
       lng: activity.start_longitude,
     };
+
     const path = activity.map.summary_polyline
       ? createPath(polyline.decode(activity.map.summary_polyline))
       : [];
+
+    const bounds = createBounds(path);
 
     return (
       <GoogleMap
         defaultZoom={zoom}
         defaultCenter={center}
         defaultOptions={mapOptions}
+        ref={(map) => map && map.fitBounds(bounds)}
       >
         <Marker position={center} />
         {path.length > 0 && (

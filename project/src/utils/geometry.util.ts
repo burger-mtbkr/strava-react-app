@@ -1,5 +1,5 @@
-/* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 /* eslint-disable @typescript-eslint/no-for-in-array */
 import { IPoint } from 'src/models';
 
@@ -53,4 +53,11 @@ export const createPath = (decoded: [number, number][]): IPoint[] => {
     });
   }
   return path;
+};
+
+// eslint-disable-next-line no-undef
+export const createBounds = (path: IPoint[]): google.maps.LatLngBounds => {
+  const bounds = new window.google.maps.LatLngBounds();
+  path.map((p: IPoint) => bounds.extend(p));
+  return bounds;
 };
