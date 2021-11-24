@@ -15,7 +15,13 @@ import Activities from 'src/components/Strava/Activities';
 import { useQuery } from 'src/hooks';
 
 const widgets = (
-  <Grid container direction="row" justifyItems="center" spacing={2}>
+  <Grid
+    container
+    direction="row"
+    justifyItems="center"
+    spacing={2}
+    marginTop={10}
+  >
     <Grid item xs={12} md={6} lg={6}>
       <Activities />
     </Grid>

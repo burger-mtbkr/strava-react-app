@@ -31,16 +31,18 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
     <>
       <ListItem>
         <Grid container padding={1}>
-          <Grid item xs={12} lg={12} marginBottom={1}>
-            <Typography variant="body1">{name}</Typography>
-            <Typography gutterBottom variant="caption">
-              <Moment format="DD-MMM-YYYY HH:mm" local>
-                {start_date}
-              </Moment>
-            </Typography>
-            <Typography gutterBottom variant="caption">
-              {athlete?.profile_medium}
-            </Typography>
+          <Grid container item marginBottom={1}>
+            <Grid item xs={3} lg={2}>
+              <img src={athlete?.profile_medium} alt="profile" />
+            </Grid>
+            <Grid item xs={9} lg={10}>
+              <Typography variant="h6">{name}</Typography>
+              <Typography gutterBottom variant="caption">
+                <Moment format="DD-MMM-YYYY HH:mm" local>
+                  {start_date}
+                </Moment>
+              </Typography>
+            </Grid>
           </Grid>
           <Grid container item marginBottom={1}>
             <Grid item xs={6}>
