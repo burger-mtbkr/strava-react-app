@@ -23,7 +23,7 @@ describe(`${ActivityItem.name} tests`, () => {
   });
 
   it(`should display the Activity distance`, () => {
-    const activityDistance = screen.getByText('20.12 km');
+    const activityDistance = screen.getByText('Distance: 20.12 km');
     expect(activityDistance).toBeInTheDocument();
   });
 
@@ -33,7 +33,7 @@ describe(`${ActivityItem.name} tests`, () => {
   });
 
   it(`should display the Activity duration`, () => {
-    const activityDuration = screen.getByText('47m 7s');
+    const activityDuration = screen.getByText('Moving Time: 47m 7s');
     expect(activityDuration).toBeInTheDocument();
   });
 

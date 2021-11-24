@@ -10,6 +10,7 @@ import { IStravaActivity } from 'src/models';
 import polyline from '@mapbox/polyline';
 import { createBounds, createPath } from 'src/utils';
 import { createRef, useCallback, useEffect, useMemo } from 'react';
+import startIcon from '../../assets/strava/start.png';
 
 interface StravaMapProps {
   activity: IStravaActivity;
@@ -47,6 +48,10 @@ const StravaMap = withScriptjs(
           : [],
       [activity],
     );
+    const defaultStartIcon = {
+      url: startIcon,
+      scaledSize: new window.google.maps.Size(20, 34), // size
+    };
 
     const onMapMounted = useCallback(
       (map: GoogleMap) => {
@@ -68,7 +73,7 @@ const StravaMap = withScriptjs(
         defaultOptions={mapOptions}
         ref={mapRef}
       >
-        <Marker position={center} />
+        <Marker position={center} defaultIcon={defaultStartIcon} />
         {path.length > 0 && (
           <Polyline options={polyLineOptions} path={path} visible />
         )}

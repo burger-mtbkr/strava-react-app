@@ -48,10 +48,10 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
           <Grid container item marginBottom={1}>
             <Grid item xs={6}>
               <Typography gutterBottom variant="body2">
-                {roundNumber(distance / 1000, 2)} km
+                Distance: {roundNumber(distance / 1000, 2)} km
               </Typography>
               <Typography gutterBottom variant="body2">
-                {toHmsString(moving_time)}
+                Moving Time: {toHmsString(moving_time)}
               </Typography>
               <Typography variant="body2">Calories: {kilojoules}</Typography>
             </Grid>

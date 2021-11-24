@@ -22,10 +22,10 @@ describe(`${WeekActivities.name} tests`, () => {
       // const activityDate = screen.getByText('14-Nov-2021 16:23');
       // expect(activityDate).toBeInTheDocument();
 
-      const activityDistance = screen.getByText('20.12 km');
+      const activityDistance = screen.getByText('Distance: 20.12 km');
       expect(activityDistance).toBeInTheDocument();
 
-      const activityTime = screen.getByText('47m 7s');
+      const activityTime = screen.getByText('Moving Time: 47m 7s');
       expect(activityTime).toBeInTheDocument();
 
       const activityCalories = screen.getByText('Calories: 378.2');
@@ -47,10 +47,10 @@ describe(`${WeekActivities.name} tests`, () => {
       // const activityDate = screen.getByText('13-Nov-2021 11:30');
       // expect(activityDate).toBeInTheDocument();
 
-      const activityDistance = screen.getByText('100.45 km');
+      const activityDistance = screen.getByText('Distance: 100.45 km');
       expect(activityDistance).toBeInTheDocument();
 
-      const activityTime = screen.getByText('2h 28m 49s');
+      const activityTime = screen.getByText('Moving Time: 2h 28m 49s');
       expect(activityTime).toBeInTheDocument();
 
       const activityCalories = screen.getByText('Calories: 1835.3');
@@ -73,10 +73,10 @@ describe(`${WeekActivities.name} tests`, () => {
       // const activityDate = screen.getByText('10-Nov-2021 15:19');
       // expect(activityDate).toBeInTheDocument();
 
-      const activityDistance = screen.getByText('25.66 km');
+      const activityDistance = screen.getByText('Distance: 25.66 km');
       expect(activityDistance).toBeInTheDocument();
 
-      const activityTime = screen.getByText('1h 0m 41s');
+      const activityTime = screen.getByText('Moving Time: 1h 0m 41s');
       expect(activityTime).toBeInTheDocument();
 
       const activityCalories = screen.getByText('Calories: 463.6');
