@@ -43,13 +43,14 @@ const StravaMap = withScriptjs(
       ? createPath(polyline.decode(activity.map.summary_polyline))
       : [];
 
-    //  const bounds = createBounds(path);
+    const bounds = createBounds(path);
 
     return (
       <GoogleMap
         defaultZoom={zoom}
         defaultCenter={center}
         defaultOptions={mapOptions}
+        ref={(map) => map && map.fitBounds(bounds)}
       >
         <Marker position={center} />
         {path.length > 0 && (
