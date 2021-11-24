@@ -1,10 +1,10 @@
 import { rootInitialState, TStoreState } from 'src/reducers';
 import {
   mockStravaSession,
+  mockStravaActivities,
   mockAthlete,
   mockAthleteStats,
-  mockStravaActivities,
-} from 'src/test/utils';
+} from './strava.mocks';
 
 export const mockStoreState: TStoreState = {
   ...rootInitialState,

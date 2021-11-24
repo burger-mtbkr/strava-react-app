@@ -3,7 +3,7 @@ import { IStravaActivity } from 'src/models';
 export const mockAthlete = {
   id: 12345,
   resource_state: 1,
-  username: 'bon.bikes',
+  username: 'bob.bikes',
   firstname: 'bob',
   lastname: 'biker',
   city: '',
