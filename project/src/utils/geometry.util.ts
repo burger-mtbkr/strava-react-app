@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable @typescript-eslint/no-for-in-array */
@@ -53,4 +54,10 @@ export const createPath = (decoded: [number, number][]): IPoint[] => {
     });
   }
   return path;
+};
+
+export const createBounds = (path: IPoint[]): google.maps.LatLngBounds => {
+  const bounds = new window.google.maps.LatLngBounds();
+  path.map((p: IPoint) => bounds.extend(p));
+  return bounds;
 };
