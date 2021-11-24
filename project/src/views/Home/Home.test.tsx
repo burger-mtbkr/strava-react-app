@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react';
-import { TestIds } from 'src/utils';
-import { mockStoreState, renderWithRedux } from 'src/test/utils';
+import { mockStoreState, renderWithRedux, TestIds } from 'src/test/utils';
 import { rootInitialState } from 'src/reducers';
 import StravaLayout from 'src/views/Strava/StravaLayout';
 import Home from './Home';

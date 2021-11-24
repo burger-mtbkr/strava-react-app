@@ -46,10 +46,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 70,
-        "branches": 65,
-        "functions": 80,
-        "lines": 70
+        "statements": 72,
+        "branches": 67,
+        "functions": 77,
+        "lines": 72
       }
     },
     "moduleNameMapper": {

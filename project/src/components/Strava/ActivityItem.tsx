@@ -5,6 +5,7 @@ import { ListItem, Typography, Grid, Divider } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
 import { IStravaActivity, IStravaAthlete } from 'src/models';
 import Moment from 'react-moment';
+import { TestIds } from 'src/test/utils';
 import StravaMap from './StravaMap';
 
 const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap&v=weekly`;
@@ -29,7 +30,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
 
   return (
     <>
-      <ListItem>
+      <ListItem data-testId={TestIds.activityItemComponent(activity.id)}>
         <Grid container padding={1}>
           <Grid container item marginBottom={1}>
             <Grid item xs={3} lg={2}>
@@ -52,7 +53,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               <Typography gutterBottom variant="body2">
                 {toHmsString(moving_time)}
               </Typography>
-              <Typography variant="body2">Calories {kilojoules}</Typography>
+              <Typography variant="body2">Calories: {kilojoules}</Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography gutterBottom variant="body2">
@@ -75,7 +76,6 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
             }
             mapElement={<div style={{ height: `100%` }} />}
             activity={activity}
-            zoom={11}
           />
         </Grid>
       </ListItem>

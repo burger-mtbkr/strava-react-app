@@ -9,9 +9,9 @@ import {
 import { IStravaActivity } from 'src/models';
 import polyline from '@mapbox/polyline';
 import { createBounds, createPath } from 'src/utils';
+import { createRef, useCallback, useEffect, useMemo } from 'react';
 
 interface StravaMapProps {
-  zoom: number;
   activity: IStravaActivity;
 }
 
@@ -33,24 +33,40 @@ const mapOptions = {
 };
 
 const StravaMap = withScriptjs(
-  withGoogleMap(({ zoom, activity }: StravaMapProps) => {
+  withGoogleMap(({ activity }: StravaMapProps) => {
+    const mapRef = createRef<GoogleMap>();
     const center = {
       lat: activity.start_latitude,
       lng: activity.start_longitude,
     };
 
-    const path = activity.map.summary_polyline
-      ? createPath(polyline.decode(activity.map.summary_polyline))
-      : [];
+    const path = useMemo(
+      () =>
+        activity.map.summary_polyline
+          ? createPath(polyline.decode(activity.map.summary_polyline))
+          : [],
+      [activity],
+    );
 
-    const bounds = createBounds(path);
+    const onMapMounted = useCallback(
+      (map: GoogleMap) => {
+        map.fitBounds(createBounds(path));
+      },
+      [path],
+    );
+
+    useEffect(() => {
+      if (mapRef?.current) {
+        onMapMounted(mapRef.current);
+      }
+    }, [mapRef, onMapMounted]);
 
     return (
       <GoogleMap
-        defaultZoom={zoom}
+        defaultZoom={12}
         defaultCenter={center}
         defaultOptions={mapOptions}
-        ref={(map) => map && map.fitBounds(bounds)}
+        ref={mapRef}
       >
         <Marker position={center} />
         {path.length > 0 && (

@@ -28,7 +28,7 @@ describe(`${Activities.name} tests`, () => {
       const activityTime = screen.getByText('47m 7s');
       expect(activityTime).toBeInTheDocument();
 
-      const activityCalories = screen.getByText('Calories 378.2');
+      const activityCalories = screen.getByText('Calories: 378.2');
       expect(activityCalories).toBeInTheDocument();
 
       const activityAveHr = screen.getByText('Ave HR: 110.5 bpm');
@@ -53,7 +53,7 @@ describe(`${Activities.name} tests`, () => {
       const activityTime = screen.getByText('2h 28m 49s');
       expect(activityTime).toBeInTheDocument();
 
-      const activityCalories = screen.getByText('Calories 1835.3');
+      const activityCalories = screen.getByText('Calories: 1835.3');
       expect(activityCalories).toBeInTheDocument();
 
       const activityAveHr = screen.getByText('Ave HR: 157.6 bpm');
@@ -79,7 +79,7 @@ describe(`${Activities.name} tests`, () => {
       const activityTime = screen.getByText('1h 0m 41s');
       expect(activityTime).toBeInTheDocument();
 
-      const activityCalories = screen.getByText('Calories 463.6');
+      const activityCalories = screen.getByText('Calories: 463.6');
       expect(activityCalories).toBeInTheDocument();
 
       const activityAveHr = screen.getByText('Ave HR: 124 bpm');

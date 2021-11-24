@@ -3,8 +3,8 @@ import Home from 'src/views/Home/Home';
 import { rootInitialState } from 'src/reducers';
 import Header from 'src/components/Header/Header';
 import App from 'src/App';
-import { TestIds } from 'src/utils';
-import { renderWithRedux } from 'src/test/utils';
+
+import { renderWithRedux, TestIds } from 'src/test/utils';
 
 describe(`${Header.name} tests`, () => {
   test('renders App Header', () => {

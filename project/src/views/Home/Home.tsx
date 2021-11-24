@@ -1,5 +1,5 @@
 import Container from '@mui/material/Container';
-import { TestIds } from 'src/utils';
+import { TestIds } from 'src/test/utils';
 import StravaLayout from '../Strava/StravaLayout';
 
 const Home = (): JSX.Element => (
