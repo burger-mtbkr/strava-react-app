@@ -15,7 +15,7 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }} marginBottom={5}>
       <AppBar
         className="header-bar"
-        position="static"
+        position="fixed"
         data-testid={TestIds.headerAppBarTestId}
       >
         <Toolbar>

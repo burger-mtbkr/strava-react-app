@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import moment from 'moment';
-import { IStravaActivity } from 'src/models';
+import { IStravaActivity, IStravaAthlete } from 'src/models';
 import { Grid, List, Paper, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchStravaActivitiesAction } from 'src/actions';
+import {
+  fetchStravaActivitiesAction,
+  fetchStravaAthleteAction,
+} from 'src/actions';
 import {
   getStravaActivitiesIsLoading,
   getStravaActivityResponse,
+  getStravaAthleteResponse,
 } from 'src/selectors';
 import LoadingSkeleton from './Skeleton';
 import ActivityItem from './ActivityItem';
@@ -22,6 +26,8 @@ const Activities = (): JSX.Element => {
     Array<IStravaActivity> | undefined
   >(undefined);
 
+  const [athlete, setAthlete] = useState<IStravaAthlete | undefined>(undefined);
+  const athleteResponse = useSelector(getStravaAthleteResponse);
   const stravaActivityResponse = useSelector(getStravaActivityResponse);
   const isLoading = useSelector(getStravaActivitiesIsLoading);
 
@@ -37,6 +43,14 @@ const Activities = (): JSX.Element => {
   }, [stravaActivityResponse]);
 
   useEffect(() => {
+    if (athleteResponse?.isSuccessful && athleteResponse.athlete) {
+      setAthlete(athleteResponse.athlete);
+    } else {
+      setAthlete(undefined);
+    }
+  }, [athleteResponse]);
+
+  useEffect(() => {
     dispatch(
       fetchStravaActivitiesAction({
         fromUnix: from,
@@ -45,6 +59,7 @@ const Activities = (): JSX.Element => {
         itemCount: 5,
       }),
     );
+    dispatch(fetchStravaAthleteAction());
   }, []);
 
   const noActivities = (
@@ -67,7 +82,7 @@ const Activities = (): JSX.Element => {
               <ActivityListTotals {...activities} />
               <List>
                 {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                  <ActivityItem activity={a} key={i} />
+                  <ActivityItem activity={a} athlete={athlete} key={i} />
                 ))}
               </List>
             </>

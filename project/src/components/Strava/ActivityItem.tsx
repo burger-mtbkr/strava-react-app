@@ -3,7 +3,7 @@
 /* eslint-disable camelcase */
 import { ListItem, Typography, Grid, Divider } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
-import { IStravaActivity } from 'src/models';
+import { IStravaActivity, IStravaAthlete } from 'src/models';
 import Moment from 'react-moment';
 import StravaMap from './StravaMap';
 
@@ -11,10 +11,11 @@ const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.
 
 interface IStravaActivityGridItemProps {
   activity: IStravaActivity;
+  athlete: IStravaAthlete | undefined;
 }
 
 const ActivityItem = (props: IStravaActivityGridItemProps) => {
-  const { activity } = props;
+  const { activity, athlete } = props;
   const {
     start_date,
     name,
@@ -30,13 +31,18 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
     <>
       <ListItem>
         <Grid container padding={1}>
-          <Grid item xs={12} lg={12} marginBottom={1}>
-            <Typography variant="body1">{name}</Typography>
-            <Typography gutterBottom variant="caption">
-              <Moment format="DD-MMM-YYYY HH:mm" local>
-                {start_date}
-              </Moment>
-            </Typography>
+          <Grid container item marginBottom={1}>
+            <Grid item xs={3} lg={2}>
+              <img src={athlete?.profile_medium} alt="profile" />
+            </Grid>
+            <Grid item xs={9} lg={10}>
+              <Typography variant="h6">{name}</Typography>
+              <Typography gutterBottom variant="caption">
+                <Moment format="DD-MMM-YYYY HH:mm" local>
+                  {start_date}
+                </Moment>
+              </Typography>
+            </Grid>
           </Grid>
           <Grid container item marginBottom={1}>
             <Grid item xs={6}>

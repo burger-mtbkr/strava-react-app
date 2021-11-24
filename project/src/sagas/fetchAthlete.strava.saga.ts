@@ -15,7 +15,6 @@ export function* fetchStravaAthleteAsync(): SagaIterator {
     const response: IFetchStravaAthleteResponse = yield call(
       fetchStravaAthlete,
     );
-
     yield put(fetchStravaAthleteDoneAction(response));
   } catch (error) {
     yield put(
