@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react';
 import { List, Typography, Paper } from '@mui/material';
 import moment from 'moment';
 import { getFirstDayOfCurrentWeek } from 'src/utils';
-import { IStravaActivity } from 'src/models';
+import { IStravaActivity, IStravaAthlete } from 'src/models';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchStravaActivitiesAction } from 'src/actions';
+import {
+  fetchStravaActivitiesAction,
+  fetchStravaAthleteAction,
+} from 'src/actions';
 import {
   getStravaActivitiesIsLoading,
   getStravaActivityResponse,
+  getStravaAthleteResponse,
 } from 'src/selectors';
 import ActivityListTotals from './ActivityListTotals';
 import LoadingSkeleton from './Skeleton';
@@ -28,9 +32,10 @@ const WeekActivities = (): JSX.Element => {
   const [activities, setActivities] = useState<
     Array<IStravaActivity> | undefined
   >(undefined);
-
+  const [athlete, setAthlete] = useState<IStravaAthlete | undefined>(undefined);
   const stravaActivityResponse = useSelector(getStravaActivityResponse);
   const isLoading = useSelector(getStravaActivitiesIsLoading);
+  const athleteResponse = useSelector(getStravaAthleteResponse);
 
   useEffect(() => {
     if (
@@ -44,6 +49,14 @@ const WeekActivities = (): JSX.Element => {
   }, [stravaActivityResponse]);
 
   useEffect(() => {
+    if (athleteResponse?.isSuccessful && athleteResponse.athlete) {
+      setAthlete(athleteResponse.athlete);
+    } else {
+      setAthlete(undefined);
+    }
+  }, [athleteResponse]);
+
+  useEffect(() => {
     dispatch(
       fetchStravaActivitiesAction({
         fromUnix: from,
@@ -52,6 +65,7 @@ const WeekActivities = (): JSX.Element => {
         itemCount: 50,
       }),
     );
+    dispatch(fetchStravaAthleteAction());
   }, [dispatch]);
 
   return (
@@ -67,7 +81,7 @@ const WeekActivities = (): JSX.Element => {
             <ActivityListTotals {...activities} />
             <List>
               {activities.slice(0, 7).map((a: IStravaActivity, i: number) => (
-                <ActivityItem activity={a} key={i} />
+                <ActivityItem activity={a} athlete={athlete} key={i} />
               ))}
             </List>
           </>

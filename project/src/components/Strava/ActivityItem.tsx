@@ -3,7 +3,7 @@
 /* eslint-disable camelcase */
 import { ListItem, Typography, Grid, Divider } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
-import { IStravaActivity } from 'src/models';
+import { IStravaActivity, IStravaAthlete } from 'src/models';
 import Moment from 'react-moment';
 import StravaMap from './StravaMap';
 
@@ -11,10 +11,11 @@ const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.
 
 interface IStravaActivityGridItemProps {
   activity: IStravaActivity;
+  athlete: IStravaAthlete | undefined;
 }
 
 const ActivityItem = (props: IStravaActivityGridItemProps) => {
-  const { activity } = props;
+  const { activity, athlete } = props;
   const {
     start_date,
     name,
@@ -36,6 +37,9 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               <Moment format="DD-MMM-YYYY HH:mm" local>
                 {start_date}
               </Moment>
+            </Typography>
+            <Typography gutterBottom variant="caption">
+              {athlete?.profile_medium}
             </Typography>
           </Grid>
           <Grid container item marginBottom={1}>

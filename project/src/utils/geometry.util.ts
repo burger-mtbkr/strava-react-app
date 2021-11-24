@@ -5,7 +5,6 @@ import { IPoint } from 'src/models';
 
 /* eslint-disable no-bitwise */
 export const decode = (encoded: string) => {
-  // array that holds the points
   const points = [];
   let index = 0;
   const len = encoded.length;
@@ -36,8 +35,6 @@ export const decode = (encoded: string) => {
 
     points.push({ latitude: lat / 1e5, longitude: lng / 1e5 });
   }
-
-  debugger;
   return points;
 };
 
