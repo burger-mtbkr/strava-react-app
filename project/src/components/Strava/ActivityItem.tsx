@@ -6,7 +6,7 @@ import { toHmsString, roundNumber } from 'src/utils';
 import { IStravaActivity, IStravaAthlete } from 'src/models';
 import Moment from 'react-moment';
 import { TestIds } from 'src/test/utils';
-import StravaMap from './StravaMap';
+import StravaMap from '../Map/StravaMap';
 
 const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap&v=weekly`;
 

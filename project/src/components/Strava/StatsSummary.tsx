@@ -9,7 +9,7 @@ import {
   getStravaAthleteStatsResponse,
 } from 'src/selectors';
 import { fetchStravaAthleteStatsAction } from 'src/actions';
-import LoadingSkeleton from './Skeleton';
+import LoadingSkeleton from '../Common/Skeleton';
 import Stats from './Stats';
 
 const StatsSummary = (): JSX.Element => {

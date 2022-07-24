@@ -6,3 +6,4 @@ export * from './stravaActivity.model';
 export * from './stravaAthlete.model';
 export * from './athleteStats.model';
 export * from './point.model';
+export * from './geometry.model';

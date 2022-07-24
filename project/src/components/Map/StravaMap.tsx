@@ -6,24 +6,20 @@ import {
   Polyline,
 } from 'react-google-maps';
 
-import { IStravaActivity } from 'src/models';
 import polyline from '@mapbox/polyline';
+import { IStravaActivity, PolyLineOptions, MapOptions } from 'src/models';
 import { createBounds, createPath } from 'src/utils';
 import { createRef, useCallback, useEffect, useMemo } from 'react';
 import startIcon from '../../assets/strava/start.png';
 
-interface StravaMapProps {
-  activity: IStravaActivity;
-}
-
-const polyLineOptions = {
+const polyLineOptions: PolyLineOptions = {
   geodesic: true,
   strokeColor: '#da440b',
   strokeOpacity: 1.0,
   strokeWeight: 3,
 };
 
-const mapOptions = {
+const mapOptions: MapOptions = {
   disableDefaultUI: true,
   zoomControl: true,
   mapTypeControl: true,
@@ -34,7 +30,7 @@ const mapOptions = {
 };
 
 const StravaMap = withScriptjs(
-  withGoogleMap(({ activity }: StravaMapProps) => {
+  withGoogleMap((activity: IStravaActivity) => {
     const mapRef = createRef<GoogleMap>();
     const center = {
       lat: activity.start_latitude,

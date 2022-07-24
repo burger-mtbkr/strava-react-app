@@ -15,7 +15,7 @@ import {
   getStravaAthleteResponse,
 } from 'src/selectors';
 import ActivityListTotals from './ActivityListTotals';
-import LoadingSkeleton from './Skeleton';
+import LoadingSkeleton from '../Common/Skeleton';
 import ActivityItem from './ActivityItem';
 
 const noActivities = (
