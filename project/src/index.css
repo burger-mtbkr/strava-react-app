@@ -17,6 +17,10 @@ body {
   background-color: #fc5200 !important;
 }
 
+.connect-button {
+  margin-top: 5% !important;
+}
+
 /*Hide spinners from number inputs*/
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {

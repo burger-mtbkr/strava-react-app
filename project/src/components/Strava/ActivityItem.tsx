@@ -6,7 +6,7 @@ import { toHmsString, roundNumber } from 'src/utils';
 import { IStravaActivity, IStravaAthlete } from 'src/models';
 import Moment from 'react-moment';
 import { TestIds } from 'src/test/utils';
-import StravaMap from '../Map/StravaMap';
+import GoogleMapControl from '../Map/GoogleMapControl';
 
 const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap&v=weekly`;
 
@@ -68,7 +68,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
             </Grid>
           </Grid>
 
-          <StravaMap
+          <GoogleMapControl
             googleMapURL={googleScript}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import Container from '@mui/material/Container';
+
 import StatsSummary from 'src/components/Strava/StatsSummary';
 import Connect from 'src/components/Strava/Connect';
 import {
@@ -63,11 +63,7 @@ const StravaLayout = (): JSX.Element => {
     dispatch(authenticateWithStravaAction(code || undefined));
   }, []);
 
-  return (
-    <Container maxWidth="xl">
-      {authorized ? widgets : !isAuthLoading && <Connect />}
-    </Container>
-  );
+  return <>{authorized ? widgets : !isAuthLoading && <Connect />}</>;
 };
 
 export default StravaLayout;

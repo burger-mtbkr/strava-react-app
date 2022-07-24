@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 
 import { IFetchStravaAthleteResponse } from 'src/models';
 import { fetchStravaAthlete } from 'src/api';
-import { axiosApi, getObject } from 'src/utils';
+import { stravaApi, getObject } from 'src/utils';
 import { mockAthlete, mockStravaSession } from 'src/test/utils';
 
 jest.mock('src/utils/storage.util', () => ({
@@ -11,7 +11,7 @@ jest.mock('src/utils/storage.util', () => ({
 }));
 
 describe(`[api] ${fetchStravaAthlete.name}`, () => {
-  const mock: MockAdapter = new MockAdapter(axiosApi);
+  const mock: MockAdapter = new MockAdapter(stravaApi);
 
   const activitiesEndPoint = `https://www.strava.com/api/v3/athlete`;
 

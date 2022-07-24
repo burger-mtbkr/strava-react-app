@@ -29,7 +29,7 @@ const mapOptions: MapOptions = {
   fullscreenControl: true,
 };
 
-const StravaMap = withScriptjs(
+const GoogleMapControl = withScriptjs(
   withGoogleMap((activity: IStravaActivity) => {
     const mapRef = createRef<GoogleMap>();
     const center = {
@@ -44,6 +44,7 @@ const StravaMap = withScriptjs(
           : [],
       [activity],
     );
+
     const defaultStartIcon = {
       url: startIcon,
       scaledSize: new window.google.maps.Size(20, 34), // size
@@ -78,4 +79,4 @@ const StravaMap = withScriptjs(
   }),
 );
 
-export default StravaMap;
+export default GoogleMapControl;

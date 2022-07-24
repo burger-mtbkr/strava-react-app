@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { IAuthenticateStravaResponse, IStravaSession } from 'src/models';
 import {
-  axiosApi,
+  stravaApi,
   getObject,
   getUnix,
   isSuccessfulResponse,
@@ -47,7 +47,7 @@ export const authenticateWithStrava = async (
       };
     }
 
-    const response: AxiosResponse<unknown> = await axiosApi.post(
+    const response: AxiosResponse<unknown> = await stravaApi.post(
       stravaEndPoint,
       null,
       {
