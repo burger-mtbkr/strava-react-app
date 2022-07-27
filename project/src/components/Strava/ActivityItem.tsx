@@ -75,7 +75,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               <div style={{ height: '250px', width: '100%' }} />
             }
             mapElement={<div style={{ height: `100%` }} />}
-            activity={activity}
+            {...activity}
           />
         </Grid>
       </ListItem>
