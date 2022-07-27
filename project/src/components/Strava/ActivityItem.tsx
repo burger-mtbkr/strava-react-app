@@ -6,9 +6,8 @@ import { toHmsString, roundNumber } from 'src/utils';
 import { IStravaActivity, IStravaAthlete } from 'src/models';
 import Moment from 'react-moment';
 import { TestIds } from 'src/test/utils';
-import GoogleMapControl from '../Map/GoogleMapControl';
 
-const googleScript = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&callback=initMap&v=weekly`;
+import MapControl from '../LeafletMap/LeafletMapControl';
 
 interface IStravaActivityGridItemProps {
   activity: IStravaActivity;
@@ -67,8 +66,10 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               </Typography>
             </Grid>
           </Grid>
-
-          <GoogleMapControl
+          <div style={{ height: '250px', width: '100%' }}>
+            <MapControl {...activity} />
+          </div>
+          {/* <GoogleMapControl
             googleMapURL={googleScript}
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={
@@ -76,7 +77,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
             }
             mapElement={<div style={{ height: `100%` }} />}
             {...activity}
-          />
+          /> */}
         </Grid>
       </ListItem>
       <Divider />

@@ -29,7 +29,7 @@ const mapOptions: MapOptions = {
   fullscreenControl: true,
 };
 
-const GoogleMapControl = withScriptjs(
+const GoogleMapContainer = withScriptjs(
   withGoogleMap((activity: IStravaActivity) => {
     const mapRef = createRef<GoogleMap>();
     const center = {
@@ -79,4 +79,4 @@ const GoogleMapControl = withScriptjs(
   }),
 );
 
-export default GoogleMapControl;
+export default GoogleMapContainer;

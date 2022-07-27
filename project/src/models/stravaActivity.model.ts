@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { AxiosError } from 'axios';
-import { IStravaAthlete } from 'src/models';
+import { IStravaAthlete } from './stravaAthlete.model';
 
 export interface IActivityMap {
   id: string;
