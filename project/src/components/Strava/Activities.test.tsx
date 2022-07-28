@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { mockStoreState, renderWithRedux } from 'src/test/utils';
-import Activities from './Activities';
+import Activities from './RecentActivities';
 
 describe(`${Activities.name} tests`, () => {
   describe('when strava is connected', () => {

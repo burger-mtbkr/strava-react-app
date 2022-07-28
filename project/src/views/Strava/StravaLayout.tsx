@@ -11,7 +11,7 @@ import {
 } from 'src/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateWithStravaAction } from 'src/actions';
-import Activities from 'src/components/Strava/Activities';
+import RecentActivities from 'src/components/Strava/RecentActivities';
 import { useQuery } from 'src/hooks';
 
 const widgets = (
@@ -23,7 +23,7 @@ const widgets = (
     marginTop={10}
   >
     <Grid item xs={12} md={6} lg={6}>
-      <Activities />
+      <RecentActivities />
     </Grid>
     <Grid item xs={12} md={3} lg={3}>
       <StatsSummary />

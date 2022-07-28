@@ -1,19 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { Typography, Paper } from '@mui/material';
 import moment from 'moment';
-import { getFirstDayOfCurrentWeek } from 'src/utils';
 import { IStravaActivity } from 'src/models';
-
+import { Grid, Paper, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
 import { getStravaActivityResponse } from 'src/selectors';
 
 import ActivityList from './ActivityList';
 
-const from = moment(getFirstDayOfCurrentWeek()).unix();
-const to = moment(new Date()).unix();
+const from = moment().utc().subtract(30, 'days').unix();
+const to = moment.utc().unix();
 
-const WeekActivities = (): JSX.Element => {
+const RecentActivities = (): JSX.Element => {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState<
     Array<IStravaActivity> | undefined
@@ -38,19 +37,21 @@ const WeekActivities = (): JSX.Element => {
         fromUnix: from,
         toUnix: to,
         page: 1,
-        itemCount: 50,
+        itemCount: 7,
       }),
     );
   }, [dispatch]);
 
   return (
-    <Paper>
-      <Typography gutterBottom variant="h5">
-        Current Week Activities
-      </Typography>
-      <ActivityList activities={activities} />
-    </Paper>
+    <Grid item>
+      <Paper>
+        <Typography gutterBottom variant="h5">
+          Recent Activities
+        </Typography>
+        <ActivityList activities={activities} />
+      </Paper>
+    </Grid>
   );
 };
 
-export default WeekActivities;
+export default RecentActivities;

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import polyline from '@mapbox/polyline';
-import { LatLng, Polyline } from 'leaflet';
+import { LatLng, LatLngBounds, LatLngExpression, Polyline } from 'leaflet';
 import { IPoint } from 'src/models';
 
 export const decodePolyline = (encodedString: string | undefined): IPoint[] => {
@@ -18,25 +18,22 @@ export const decodePolyline = (encodedString: string | undefined): IPoint[] => {
   return path;
 };
 
-export const getEncodedPolylineCenter = (
-  encodedString: string | undefined,
-): LatLng => {
-  if (!encodedString) return new LatLng(0, 0);
-  const points = decodePolyline(encodedString);
-  const poly = new Polyline(points);
-  return poly.getCenter();
-};
-
-export const getPointArrayBounds = (points: IPoint[]) => {
+export const getPointArrayBounds = (points: IPoint[]): LatLngBounds => {
   const poly = new Polyline(points);
   return poly.getBounds();
 };
 
-export const getEncodedPolylineBounds = (encodedString: string | undefined) => {
+export const getEncodedPolylineBounds = (
+  encodedString: string | undefined,
+): LatLngBounds => {
   const points = decodePolyline(encodedString);
-  const bounds = getPointArrayBounds(points);
-  return bounds.getCenter();
+  return getPointArrayBounds(points);
 };
+
+export const getEncodedPolylineCenter = (
+  encodedString: string | undefined,
+): LatLngExpression =>
+  getEncodedPolylineBounds(encodedString).getCenter() as LatLngExpression;
 
 export const createGoogleBounds = (
   path: IPoint[],
