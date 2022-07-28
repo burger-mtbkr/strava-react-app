@@ -7,7 +7,7 @@ import {
 } from 'react-google-maps';
 
 import { IStravaActivity, PolyLineOptions, MapOptions } from 'src/models';
-import { createBounds, decodePolyline } from 'src/utils';
+import { createGoogleBounds, decodePolyline } from 'src/utils';
 import { createRef, useCallback, useEffect, useMemo } from 'react';
 import startIcon from '../../assets/strava/start.png';
 
@@ -51,7 +51,7 @@ const GoogleMapContainer = withScriptjs(
 
     const onMapMounted = useCallback(
       (map: GoogleMap) => {
-        map.fitBounds(createBounds(path));
+        map.fitBounds(createGoogleBounds(path));
       },
       [path],
     );

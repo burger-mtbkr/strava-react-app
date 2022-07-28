@@ -1,25 +1,46 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable @typescript-eslint/no-for-in-array */
+/* eslint-disable no-undef */
 import polyline from '@mapbox/polyline';
+import { LatLng, Polyline } from 'leaflet';
 import { IPoint } from 'src/models';
 
-export const decodePolyline = (encodedString: string): IPoint[] => {
+export const decodePolyline = (encodedString: string | undefined): IPoint[] => {
+  if (!encodedString) return [];
   const decoded = polyline.decode(encodedString);
   if (decoded?.length < 1) return [];
   const path: IPoint[] = [];
-  for (const p in decoded) {
-    const elem = decoded[p];
+  decoded.forEach((p) =>
     path.push({
-      lat: elem[0],
-      lng: elem[1],
-    });
-  }
+      lat: p[0],
+      lng: p[1],
+    }),
+  );
+
   return path;
 };
 
-// eslint-disable-next-line no-undef
-export const createBounds = (path: IPoint[]): google.maps.LatLngBounds => {
+export const getEncodedPolylineCenter = (
+  encodedString: string | undefined,
+): LatLng => {
+  if (!encodedString) return new LatLng(0, 0);
+  const points = decodePolyline(encodedString);
+  const poly = new Polyline(points);
+  return poly.getCenter();
+};
+
+export const getPointArrayBounds = (points: IPoint[]) => {
+  const poly = new Polyline(points);
+  return poly.getBounds();
+};
+
+export const getEncodedPolylineBounds = (encodedString: string | undefined) => {
+  const points = decodePolyline(encodedString);
+  const bounds = getPointArrayBounds(points);
+  return bounds.getCenter();
+};
+
+export const createGoogleBounds = (
+  path: IPoint[],
+): google.maps.LatLngBounds => {
   const bounds = new window.google.maps.LatLngBounds();
   path.map((p: IPoint) => bounds.extend(p));
   return bounds;

@@ -1,6 +1,5 @@
 import { LayersControl, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useMemo } from 'react';
 
 import { IStravaActivity, PolyLineOptions } from 'src/models';
 import { decodePolyline } from 'src/utils';
@@ -13,15 +12,11 @@ const polyLineOptions: PolyLineOptions = {
 };
 
 const ActivityLayer = (activity: IStravaActivity) => {
-  const { id, map } = activity;
-
-  const path = useMemo(
-    () => (map.summary_polyline ? decodePolyline(map.summary_polyline) : []),
-    [map.summary_polyline],
-  );
+  const { id, map, name } = activity;
+  const path = decodePolyline(map.summary_polyline);
 
   return (
-    <LayersControl.Overlay checked name="Your location">
+    <LayersControl.Overlay checked name={name}>
       <Polyline key={id} color={polyLineOptions.strokeColor} positions={path} />
     </LayersControl.Overlay>
   );
