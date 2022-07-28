@@ -3,8 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import { useMemo } from 'react';
 
 import { IStravaActivity, PolyLineOptions } from 'src/models';
-import { createPath } from 'src/utils';
-import polyline from '@mapbox/polyline';
+import { decodePolyline } from 'src/utils';
 
 const polyLineOptions: PolyLineOptions = {
   geodesic: true,
@@ -17,10 +16,7 @@ const ActivityLayer = (activity: IStravaActivity) => {
   const { id, map } = activity;
 
   const path = useMemo(
-    () =>
-      map.summary_polyline
-        ? createPath(polyline.decode(map.summary_polyline))
-        : [],
+    () => (map.summary_polyline ? decodePolyline(map.summary_polyline) : []),
     [map.summary_polyline],
   );
 

@@ -6,9 +6,8 @@ import {
   Polyline,
 } from 'react-google-maps';
 
-import polyline from '@mapbox/polyline';
 import { IStravaActivity, PolyLineOptions, MapOptions } from 'src/models';
-import { createBounds, createPath } from 'src/utils';
+import { createBounds, decodePolyline } from 'src/utils';
 import { createRef, useCallback, useEffect, useMemo } from 'react';
 import startIcon from '../../assets/strava/start.png';
 
@@ -40,7 +39,7 @@ const GoogleMapContainer = withScriptjs(
     const path = useMemo(
       () =>
         activity.map.summary_polyline
-          ? createPath(polyline.decode(activity.map.summary_polyline))
+          ? decodePolyline(activity.map.summary_polyline)
           : [],
       [activity],
     );
