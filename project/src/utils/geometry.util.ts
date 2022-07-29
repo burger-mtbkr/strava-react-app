@@ -34,18 +34,3 @@ export const getEncodedPolylineCenter = (
   encodedString: string | undefined,
 ): LatLngExpression =>
   getEncodedPolylineBounds(encodedString).getCenter() as LatLngExpression;
-
-export const createGoogleBounds = (
-  path: IPoint[],
-): google.maps.LatLngBounds => {
-  const bounds = new window.google.maps.LatLngBounds();
-  path.map((p: IPoint) => bounds.extend(p));
-  return bounds;
-};
-
-export const getEncodedPolylineCenterForGoogle = (
-  encodedString: string | undefined,
-): google.maps.LatLngLiteral =>
-  getEncodedPolylineBounds(
-    encodedString,
-  ).getCenter() as google.maps.LatLngLiteral;
