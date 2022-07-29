@@ -7,7 +7,11 @@ import {
 } from 'react-google-maps';
 
 import { IStravaActivity, PolyLineOptions, MapOptions } from 'src/models';
-import { createGoogleBounds, decodePolyline } from 'src/utils';
+import {
+  createGoogleBounds,
+  decodePolyline,
+  getEncodedPolylineCenterForGoogle,
+} from 'src/utils';
 import { createRef, useCallback, useEffect, useMemo } from 'react';
 import startIcon from '../../assets/strava/start.png';
 
@@ -31,10 +35,9 @@ const mapOptions: MapOptions = {
 const GoogleMapContainer = withScriptjs(
   withGoogleMap((activity: IStravaActivity) => {
     const mapRef = createRef<GoogleMap>();
-    const center = {
-      lat: activity.start_latitude,
-      lng: activity.start_longitude,
-    };
+    const center = getEncodedPolylineCenterForGoogle(
+      activity.map.summary_polyline,
+    );
 
     const path = useMemo(
       () =>

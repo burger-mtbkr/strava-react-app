@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import polyline from '@mapbox/polyline';
-import { LatLng, LatLngBounds, LatLngExpression, Polyline } from 'leaflet';
+import { LatLngBounds, LatLngExpression, Polyline } from 'leaflet';
 import { IPoint } from 'src/models';
 
 export const decodePolyline = (encodedString: string | undefined): IPoint[] => {
@@ -42,3 +42,10 @@ export const createGoogleBounds = (
   path.map((p: IPoint) => bounds.extend(p));
   return bounds;
 };
+
+export const getEncodedPolylineCenterForGoogle = (
+  encodedString: string | undefined,
+): google.maps.LatLngLiteral =>
+  getEncodedPolylineBounds(
+    encodedString,
+  ).getCenter() as google.maps.LatLngLiteral;
