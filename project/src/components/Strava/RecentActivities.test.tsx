@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import { mockStoreState, renderWithRedux } from 'src/test/utils';
-import Activities from './Activities';
+import RecentActivities from './RecentActivities';
 
-describe(`${Activities.name} tests`, () => {
+describe(`${RecentActivities.name} tests`, () => {
   describe('when strava is connected', () => {
     beforeEach(() => {
-      renderWithRedux(<Activities />, {
+      renderWithRedux(<RecentActivities />, {
         initialState: mockStoreState,
       });
     });

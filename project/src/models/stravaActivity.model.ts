@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { AxiosError } from 'axios';
-import { IStravaAthlete } from 'src/models';
+import { IStravaAthlete } from './stravaAthlete.model';
 
 export interface IActivityMap {
   id: string;
@@ -30,8 +30,6 @@ export interface IStravaActivity {
   location_city?: string;
   location_state?: string;
   location_country: string;
-  start_latitude: number;
-  start_longitude: number;
   achievement_count: number;
   kudos_count: number;
   comment_count: number;

@@ -14,3 +14,10 @@ export type MapOptions = {
   rotateControl: boolean;
   fullscreenControl: boolean;
 };
+
+export enum FeatureType {
+  Polygon,
+  Circle,
+  Point,
+  Polyline,
+}

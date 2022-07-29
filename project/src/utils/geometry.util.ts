@@ -1,60 +1,36 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable @typescript-eslint/no-for-in-array */
+/* eslint-disable no-undef */
+import polyline from '@mapbox/polyline';
+import { LatLngBounds, LatLngExpression, Polyline } from 'leaflet';
 import { IPoint } from 'src/models';
 
-/* eslint-disable no-bitwise */
-export const decode = (encoded: string) => {
-  const points = [];
-  let index = 0;
-  const len = encoded.length;
-  let lat = 0;
-  let lng = 0;
-
-  while (index < len) {
-    let b;
-    let shift = 0;
-    let result = 0;
-    do {
-      b = encoded.charAt(index++).charCodeAt(0) - 63; // finds ascii                                                                                    //and substract it by 63
-      result |= (b & 0x1f) << shift;
-      shift += 5;
-    } while (b >= 0x20);
-
-    const dLat = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
-    lat += dLat;
-    shift = 0;
-    result = 0;
-    do {
-      b = encoded.charAt(index++).charCodeAt(0) - 63;
-      result |= (b & 0x1f) << shift;
-      shift += 5;
-    } while (b >= 0x20);
-    const dLng = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
-    lng += dLng;
-
-    points.push({ latitude: lat / 1e5, longitude: lng / 1e5 });
-  }
-  return points;
-};
-
-export const createPath = (decoded: [number, number][]): IPoint[] => {
+export const decodePolyline = (encodedString: string | undefined): IPoint[] => {
+  if (!encodedString) return [];
+  const decoded = polyline.decode(encodedString);
   if (decoded?.length < 1) return [];
-
   const path: IPoint[] = [];
-  for (const p in decoded) {
-    const elem = decoded[p];
+  decoded.forEach((p) =>
     path.push({
-      lat: elem[0],
-      lng: elem[1],
-    });
-  }
+      lat: p[0],
+      lng: p[1],
+    }),
+  );
+
   return path;
 };
 
-// eslint-disable-next-line no-undef
-export const createBounds = (path: IPoint[]): google.maps.LatLngBounds => {
-  const bounds = new window.google.maps.LatLngBounds();
-  path.map((p: IPoint) => bounds.extend(p));
-  return bounds;
+export const getPointArrayBounds = (points: IPoint[]): LatLngBounds => {
+  const poly = new Polyline(points);
+  return poly.getBounds();
 };
+
+export const getEncodedPolylineBounds = (
+  encodedString: string | undefined,
+): LatLngBounds => {
+  const points = decodePolyline(encodedString);
+  return getPointArrayBounds(points);
+};
+
+export const getEncodedPolylineCenter = (
+  encodedString: string | undefined,
+): LatLngExpression =>
+  getEncodedPolylineBounds(encodedString).getCenter() as LatLngExpression;

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import Container from '@mui/material/Container';
+
 import StatsSummary from 'src/components/Strava/StatsSummary';
 import Connect from 'src/components/Strava/Connect';
 import {
@@ -11,7 +11,7 @@ import {
 } from 'src/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateWithStravaAction } from 'src/actions';
-import Activities from 'src/components/Strava/Activities';
+import RecentActivities from 'src/components/Strava/RecentActivities';
 import { useQuery } from 'src/hooks';
 
 const widgets = (
@@ -23,7 +23,7 @@ const widgets = (
     marginTop={10}
   >
     <Grid item xs={12} md={6} lg={6}>
-      <Activities />
+      <RecentActivities />
     </Grid>
     <Grid item xs={12} md={3} lg={3}>
       <StatsSummary />
@@ -63,11 +63,7 @@ const StravaLayout = (): JSX.Element => {
     dispatch(authenticateWithStravaAction(code || undefined));
   }, []);
 
-  return (
-    <Container maxWidth="xl">
-      {authorized ? widgets : !isAuthLoading && <Connect />}
-    </Container>
-  );
+  return <>{authorized ? widgets : !isAuthLoading && <Connect />}</>;
 };
 
 export default StravaLayout;

@@ -7,6 +7,7 @@ const stravaAuth = `https://www.strava.com/oauth/authorize?client_id=${process.e
 
 const Connect = () => (
   <Button
+    className="connect-button"
     startIcon={<DirectionsBikeIcon />}
     type="button"
     variant="contained"

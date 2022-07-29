@@ -1,7 +1,7 @@
 import { IAuthenticateStravaResponse } from 'src/models';
 import MockAdapter from 'axios-mock-adapter';
 import { authenticateWithStrava } from 'src/api';
-import { axiosApi, getObject } from 'src/utils';
+import { stravaApi, getObject } from 'src/utils';
 import { mockStravaSession } from 'src/test/utils';
 
 jest.mock('src/utils/storage.util', () => ({
@@ -10,7 +10,7 @@ jest.mock('src/utils/storage.util', () => ({
 }));
 
 describe(`[api] ${authenticateWithStrava.name}`, () => {
-  const mock: MockAdapter = new MockAdapter(axiosApi);
+  const mock: MockAdapter = new MockAdapter(stravaApi);
 
   describe('When the grant type is authorization_code', () => {
     const mockCode = 'abcdef';

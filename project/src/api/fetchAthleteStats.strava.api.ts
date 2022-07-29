@@ -6,7 +6,7 @@ import {
   IStravaAthlete,
   IFetchStravaAthleteStatsResponse,
 } from 'src/models';
-import { axiosApi, getObject, isSuccessfulResponse } from 'src/utils';
+import { stravaApi, getObject, isSuccessfulResponse } from 'src/utils';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -22,7 +22,7 @@ export const getAthleteStats =
           error: new Error('Athlete is not set'),
         };
       const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/athletes/${athlete?.id}/stats`;
-      const response: AxiosResponse<unknown> = await axiosApi.get(
+      const response: AxiosResponse<unknown> = await stravaApi.get(
         activitiesEndPoint,
         {
           headers: {

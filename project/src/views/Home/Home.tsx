@@ -3,7 +3,7 @@ import { TestIds } from 'src/test/utils';
 import StravaLayout from '../Strava/StravaLayout';
 
 const Home = (): JSX.Element => (
-  <Container maxWidth="lg" data-testid={TestIds.homeViewComponent}>
+  <Container maxWidth="xl" data-testid={TestIds.homeViewComponent}>
     <StravaLayout />
   </Container>
 );
