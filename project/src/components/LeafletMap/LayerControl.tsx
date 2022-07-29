@@ -1,12 +1,12 @@
 import { LayersControl } from 'react-leaflet';
 
 import { IStravaActivity } from 'src/models';
-import BaseLayer from './Layers/BaseLayer';
 import ActivityLayer from './Layers/ActivityLayer';
+import BaseLayers from './Layers/BaseLayers';
 
 const LayerControl = (activity: IStravaActivity) => (
   <LayersControl position="topright">
-    <BaseLayer />
+    <BaseLayers />
     <ActivityLayer {...activity} />
   </LayersControl>
 );
