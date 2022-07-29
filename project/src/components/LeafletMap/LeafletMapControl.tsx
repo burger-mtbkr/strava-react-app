@@ -7,6 +7,7 @@ import { IStravaActivity } from 'src/models';
 
 import { getEncodedPolylineCenter } from 'src/utils';
 import LayerControl from './LayerControl';
+import LoadingSkeleton from '../Common/Skeleton';
 
 const LeafletMapControl = (activity: IStravaActivity) => {
   const zoom = 12;
@@ -20,10 +21,12 @@ const LeafletMapControl = (activity: IStravaActivity) => {
   return (
     <MapContainer
       center={center}
-      zoom={zoom}
+      id="ActivityMap"
+      placeholder={<LoadingSkeleton />}
       style={{
         height: '250px',
       }}
+      zoom={zoom}
       scrollWheelZoom
       trackResize
     >

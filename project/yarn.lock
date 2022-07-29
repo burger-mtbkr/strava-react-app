@@ -1937,9 +1937,9 @@
     picomatch "^2.2.2"
 
 "@sinclair/typebox@^0.24.1":
-  version "0.24.21"
-  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@sinclair/typebox/-/typebox-0.24.21.tgz#f2e435ac4c1919ae89c2b693a0d4213d09899290"
-  integrity sha512-II2SIjvxBVJmrGkkZYza/BqNjwx3PWROIA8CZ0/Hn7LV0Mv0CVpZxoyHGBVsQqfFLMv9DmArIeRHTwo76bE6oA==
+  version "0.24.22"
+  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@sinclair/typebox/-/typebox-0.24.22.tgz#0da18e6e75701d6609c7c68fe18002bb1f47345f"
+  integrity sha512-JsBe3cOFpNZ6yjBYnXKhcENWy5qZE3PQZwExQ5ksA/h8qp4bwwxFmy07A6bC2R6qv6+RF3SfrbQTskTwYNTXUQ==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"
@@ -2073,7 +2073,7 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-"@testing-library/dom@^8.0.0", "@testing-library/dom@^8.11.1":
+"@testing-library/dom@^8.11.1", "@testing-library/dom@^8.5.0":
   version "8.16.0"
   resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@testing-library/dom/-/dom-8.16.0.tgz#d6fc50250aed17b1035ca1bd64655e342db3936a"
   integrity sha512-uxF4zmnLHHDlmW4l+0WDjcgLVwCvH+OVLpD8Dfp+Bjfz85prwxWGbwXgJdLtkgjD0qfOzkJF9SmA6YZPsMYX4w==
@@ -2087,7 +2087,7 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/jest-dom@^5.14.1":
+"@testing-library/jest-dom@^5.16.4":
   version "5.16.4"
   resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@testing-library/jest-dom/-/jest-dom-5.16.4.tgz#938302d7b8b483963a3ae821f1c0808f872245cd"
   integrity sha512-Gy+IoFutbMQcky0k+bqqumXZ1cTGswLsFqmNLzNdSKkU9KGV2u9oXhukCbbJ9/LRPKiqwxEE8VpV/+YZlfkPUA==
@@ -2102,21 +2102,19 @@
     lodash "^4.17.15"
     redent "^3.0.0"
 
-"@testing-library/react@^12.1.2":
-  version "12.1.5"
-  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@testing-library/react/-/react-12.1.5.tgz#bb248f72f02a5ac9d949dea07279095fa577963b"
-  integrity sha512-OfTXCJUFgjd/digLUuPxa0+/3ZxsQmE7ub9kcbW/wi96Bh3o/p5vrETcBGfP17NWPGqeYYl5LTRpwyGoMC4ysg==
+"@testing-library/react@^13.3.0":
+  version "13.3.0"
+  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@testing-library/react/-/react-13.3.0.tgz#bf298bfbc5589326bbcc8052b211f3bb097a97c5"
+  integrity sha512-DB79aA426+deFgGSjnf5grczDPiL4taK3hFaa+M5q7q20Kcve9eQottOG5kZ74KEr55v0tU2CQormSSDK87zYQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@testing-library/dom" "^8.0.0"
-    "@types/react-dom" "<18.0.0"
+    "@testing-library/dom" "^8.5.0"
+    "@types/react-dom" "^18.0.0"
 
-"@testing-library/user-event@^12.1.10":
-  version "12.8.3"
-  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-12.8.3.tgz#1aa3ed4b9f79340a1e1836bc7f57c501e838704a"
-  integrity sha512-IR0iWbFkgd56Bu5ZI/ej8yQwrkCv8Qydx6RzwbKz9faXazR/+5tvYKsZQgyXJiwgpcva127YO6JcWy7YlCfofQ==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
+"@testing-library/user-event@^14.3.0":
+  version "14.3.0"
+  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.3.0.tgz#0a6750b94b40e4739706d41e8efc2ccf64d2aad9"
+  integrity sha512-P02xtBBa8yMaLhK8CzJCIns8rqwnF6FxhR9zs810flHOBXUYCFjLd8Io1rQrAkQRWEmW2PGdZIEdMxf/KLsqFA==
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -2350,14 +2348,7 @@
   resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@types/q/-/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==
 
-"@types/react-dom@<18.0.0":
-  version "17.0.17"
-  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@types/react-dom/-/react-dom-17.0.17.tgz#2e3743277a793a96a99f1bf87614598289da68a1"
-  integrity sha512-VjnqEmqGnasQKV0CWLevqMTXBYG9GbwuE6x3VetERLh0cq2LTptFE73MrQi2S7GkKXCf2GgwItB/melLnxfnsg==
-  dependencies:
-    "@types/react" "^17"
-
-"@types/react-dom@^18.0.6":
+"@types/react-dom@^18.0.0", "@types/react-dom@^18.0.6":
   version "18.0.6"
   resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@types/react-dom/-/react-dom-18.0.6.tgz#36652900024842b74607a17786b6662dd1e103a1"
   integrity sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==
@@ -2409,15 +2400,6 @@
   version "18.0.15"
   resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@types/react/-/react-18.0.15.tgz#d355644c26832dc27f3e6cbf0c4f4603fc4ab7fe"
   integrity sha512-iz3BtLuIYH1uWdsv6wXYdhozhqj20oD4/Hk2DNXIn1kFsmp9x8d9QB6FnPhfkbhd2PgEONt9Q1x/ebkwjfFLow==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@^17":
-  version "17.0.48"
-  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/@types/react/-/react-17.0.48.tgz#a4532a8b91d7b27b8768b6fc0c3bccb760d15a6c"
-  integrity sha512-zJ6IYlJ8cYYxiJfUaZOQee4lh99mFihBoqkOSEGV+dFi9leROW6+PgstzQ+w3gWTnUfskALtQPGHK6dYmPj+2A==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -5144,9 +5126,9 @@ ejs@^2.6.1:
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
 electron-to-chromium@^1.3.564, electron-to-chromium@^1.4.202:
-  version "1.4.205"
-  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/electron-to-chromium/-/electron-to-chromium-1.4.205.tgz#1e5180945c1415f66b2143c5a5eb983fffb2e30f"
-  integrity sha512-sSHlbfqn6CgQqD9muogEwWrw1wi2tHEQ+sunW7ex/kJ9ICucE85JW0E9ekbRDDgLP7NlpoNVUl+el0556RhFIg==
+  version "1.4.206"
+  resolved "https://artifactory.xero-support.com/artifactory/api/npm/npm/electron-to-chromium/-/electron-to-chromium-1.4.206.tgz#580ff85b54d7ec0c05f20b1e37ea0becdd7b0ee4"
+  integrity sha512-h+Fadt1gIaQ06JaIiyqPsBjJ08fV5Q7md+V8bUvQW/9OvXfL2LRICTz2EcnnCP7QzrFTS6/27MRV6Bl9Yn97zA==
 
 elliptic@^6.5.3:
   version "6.5.4"

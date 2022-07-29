@@ -1,10 +1,10 @@
 import { Switch, Route } from 'react-router-dom';
-import Home from 'src/views/Home/Home';
+import StravaActivityList from 'src/views/StravaActivityList';
 
 const Routes = () => (
   <Switch>
     <Route exact path="/">
-      <Home />
+      <StravaActivityList />
     </Route>
   </Switch>
 );

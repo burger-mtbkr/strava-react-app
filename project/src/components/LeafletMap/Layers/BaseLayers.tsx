@@ -6,14 +6,14 @@ const baseMapData = [
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap.Mapnik</a> contributors',
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    checked: false,
+    checked: true,
   },
   {
     name: 'Cycle Map',
     attribution:
       '&copy; <a href="https://b.tile.thunderforest.com">CycleMap.Thunderforest</a> contributors',
     url: 'https://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png',
-    checked: true,
+    checked: false,
   },
 ];
 

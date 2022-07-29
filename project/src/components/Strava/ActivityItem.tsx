@@ -29,7 +29,7 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
 
   return (
     <>
-      <ListItem data-testId={TestIds.activityItemComponent(activity.id)}>
+      <ListItem data-testid={TestIds.activityItemComponent(activity.id)}>
         <Grid container padding={1}>
           <Grid container item marginBottom={1}>
             <Grid item xs={3} lg={2}>
