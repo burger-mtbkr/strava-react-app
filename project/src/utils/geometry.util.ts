@@ -1,24 +1,18 @@
 /* eslint-disable no-undef */
 import polyline from '@mapbox/polyline';
 import { LatLngBounds, LatLngExpression, Polyline } from 'leaflet';
-import { IPoint } from 'src/models';
 
-export const decodePolyline = (encodedString: string | undefined): IPoint[] => {
+export const decodePolyline = (
+  encodedString: string | undefined,
+): LatLngExpression[] => {
   if (!encodedString) return [];
   const decoded = polyline.decode(encodedString);
-  if (decoded?.length < 1) return [];
-  const path: IPoint[] = [];
-  decoded.forEach((p) =>
-    path.push({
-      lat: p[0],
-      lng: p[1],
-    }),
-  );
-
-  return path;
+  return decoded;
 };
 
-export const getPointArrayBounds = (points: IPoint[]): LatLngBounds => {
+export const getPointArrayBounds = (
+  points: LatLngExpression[],
+): LatLngBounds => {
   const poly = new Polyline(points);
   return poly.getBounds();
 };

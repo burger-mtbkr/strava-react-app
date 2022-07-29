@@ -3,14 +3,19 @@
 import { MapContainer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
-import { IStravaActivity } from 'src/models';
+import { ActivityDetail, SummaryActivity } from 'src/models';
 
 import { getEncodedPolylineCenter } from 'src/utils';
 import LayerControl from './LayerControl';
 import LoadingSkeleton from '../Common/Skeleton';
 
-const LeafletMapControl = (activity: IStravaActivity) => {
-  const zoom = 12;
+interface IMapProps {
+  activity: SummaryActivity | ActivityDetail;
+  style: React.CSSProperties | undefined;
+  zoom: number;
+}
+
+const LeafletMapControl = ({ activity, style, zoom }: IMapProps) => {
   const { map } = activity;
   const center = getEncodedPolylineCenter(map.summary_polyline);
 
@@ -19,19 +24,19 @@ const LeafletMapControl = (activity: IStravaActivity) => {
   }, []);
 
   return (
-    <MapContainer
-      center={center}
-      id="ActivityMap"
-      placeholder={<LoadingSkeleton />}
-      style={{
-        height: '250px',
-      }}
-      zoom={zoom}
-      scrollWheelZoom
-      trackResize
-    >
-      <LayerControl {...activity} />
-    </MapContainer>
+    <div style={style}>
+      <MapContainer
+        center={center}
+        id="ActivityMap"
+        placeholder={<LoadingSkeleton />}
+        style={style}
+        zoom={zoom}
+        scrollWheelZoom
+        trackResize
+      >
+        <LayerControl {...activity} />
+      </MapContainer>
+    </div>
   );
 };
 

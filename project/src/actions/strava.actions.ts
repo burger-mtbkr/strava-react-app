@@ -5,6 +5,7 @@ import {
   IFetchStravaAthleteStatsResponse,
   IFetchStravaActivitiesResponse,
   IFetchStravaActivitiesRequest,
+  IFetchStravaActivityResponse,
 } from 'src/models';
 
 const STRAVA_PREFIX = 'STRAVA';
@@ -59,4 +60,17 @@ export const fetchStravaAthleteStatsAction = createAction(
 export const fetchStravaAthleteStatsDoneAction =
   createAction<IFetchStravaAthleteStatsResponse>(
     `${STRAVA_PREFIX}/API/FETCH_ATHLETE_STATS_DONE`,
+  );
+
+export const isActivityLoadingAction = createAction<boolean>(
+  `${STRAVA_PREFIX}/API/IS_LOADING_ACTIVITY`,
+);
+
+export const fetchStravaActivityAction = createAction<number>(
+  `${STRAVA_PREFIX}/API/_FETCH_ACTIVITY`,
+);
+
+export const fetchStravaActivityDoneAction =
+  createAction<IFetchStravaActivityResponse>(
+    `${STRAVA_PREFIX}/API/_FETCH_ACTIVITY_DONE`,
   );

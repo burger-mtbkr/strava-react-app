@@ -1,16 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
 import { IAuthenticateStravaResponse, IStravaSession } from 'src/models';
-import {
-  stravaApi,
-  getObject,
-  getUnix,
-  isSuccessfulResponse,
-  setItem,
-} from 'src/utils';
+import { getObject, getUnix, isSuccessfulResponse, setObject } from 'src/utils';
+import { stravaApi } from './strava.api';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
-export const isAuthorized = (stravaSession?: IStravaSession): boolean => {
+export const isAuthorized = (): boolean => {
+  const stravaSession = getObject<IStravaSession>('strava_session');
   if (!stravaSession) return false;
   const now: number = getUnix();
   return now < stravaSession.expires_at;
@@ -22,7 +18,7 @@ export const authenticateWithStrava = async (
   try {
     const session = getObject<IStravaSession>('strava_session');
     if (!code) {
-      if (isAuthorized(session)) {
+      if (isAuthorized()) {
         return {
           isSuccessful: true,
           stravaSession: session,
@@ -61,9 +57,9 @@ export const authenticateWithStrava = async (
     if (isSuccessfulResponse(response)) {
       const data = response.data as IStravaSession;
 
-      setItem('strava_session', JSON.stringify(data), true);
+      setObject('strava_session', JSON.stringify(data), true);
       if (data.athlete) {
-        setItem('strava_athlete', JSON.stringify(data.athlete), true);
+        setObject('strava_athlete', JSON.stringify(data.athlete), true);
       }
 
       return {

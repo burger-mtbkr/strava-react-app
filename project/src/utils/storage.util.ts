@@ -1,4 +1,4 @@
-export const setItem = (key: string, value: any, useLocal: boolean): any =>
+export const setObject = (key: string, value: any, useLocal: boolean): any =>
   useLocal
     ? localStorage.setItem(key, value)
     : sessionStorage.setItem(key, value);
@@ -23,7 +23,7 @@ export const getObject = <T>(key: string): T | undefined => {
   return obj as T;
 };
 
-export const deleteItem = (key: string): void => {
+export const deleteObject = (key: string): void => {
   localStorage.removeItem(key);
   sessionStorage.removeItem(key);
 };

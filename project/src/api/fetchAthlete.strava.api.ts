@@ -2,16 +2,24 @@
 import axios, { AxiosResponse } from 'axios';
 import {
   IStravaSession,
-  IStravaAthlete,
+  StravaAthlete,
   IFetchStravaAthleteResponse,
 } from 'src/models';
-import { stravaApi, getObject, isSuccessfulResponse, setItem } from 'src/utils';
+import { getObject, isSuccessfulResponse, setObject } from 'src/utils';
+import { stravaApi } from './strava.api';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
 export const fetchStravaAthlete =
   async (): Promise<IFetchStravaAthleteResponse> => {
     try {
+      const athlete = getObject<StravaAthlete>('strava_athlete');
+      if (athlete) {
+        return {
+          athlete,
+          isSuccessful: true,
+        };
+      }
       const stravaSession = getObject<IStravaSession>('strava_session');
       const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/athlete`;
       const response: AxiosResponse<unknown> = await stravaApi.get(
@@ -25,8 +33,8 @@ export const fetchStravaAthlete =
 
       if (isSuccessfulResponse(response)) {
         if (response.data) {
-          const data = response.data as IStravaAthlete;
-          setItem('strava_athlete', JSON.stringify(data), true);
+          const data = response.data as StravaAthlete;
+          setObject('strava_athlete', JSON.stringify(data), true);
 
           return {
             athlete: data,

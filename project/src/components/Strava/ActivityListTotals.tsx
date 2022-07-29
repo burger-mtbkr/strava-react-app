@@ -4,38 +4,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { Grid, Typography } from '@mui/material';
-import { IStravaActivity } from 'src/models';
+import { SummaryActivity } from 'src/models';
 import { toHmString, roundNumber } from 'src/utils';
 
-const totalDistance = (activities: Array<IStravaActivity>): number => {
+const totalDistance = (activities: Array<SummaryActivity>): number => {
   let totalDist = 0.0;
   for (const i in activities) {
-    const a: IStravaActivity = activities[i];
+    const a: SummaryActivity = activities[i];
     totalDist += a.distance;
   }
   return roundNumber(totalDist / 1000, 2);
 };
 
-const totalElevation = (activities: Array<IStravaActivity>): number => {
+const totalElevation = (activities: Array<SummaryActivity>): number => {
   let totalElv = 0.0;
   for (const i in activities) {
-    const a: IStravaActivity = activities[i];
+    const a: SummaryActivity = activities[i];
     totalElv += a.total_elevation_gain;
   }
   return roundNumber(totalElv, 2);
 };
 
-const totalTime = (activities: Array<IStravaActivity>): string => {
+const totalTime = (activities: Array<SummaryActivity>): string => {
   let time = 0;
   for (const i in activities) {
-    const a: IStravaActivity = activities[i];
+    const a: SummaryActivity = activities[i];
     time += a.moving_time;
   }
   return toHmString(time);
 };
 
 const ActivityListTotals = (
-  activities: Array<IStravaActivity>,
+  activities: Array<SummaryActivity>,
 ): JSX.Element => (
   <Grid container justifyItems="center" justifyContent="center" direction="row">
     <Grid item margin={1}>

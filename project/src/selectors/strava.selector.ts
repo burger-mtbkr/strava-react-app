@@ -3,6 +3,8 @@ import {
   IAuthenticateStravaResponse,
   IFetchStravaAthleteResponse,
   IFetchStravaAthleteStatsResponse,
+  StravaAthlete,
+  IFetchStravaActivityResponse,
 } from 'src/models';
 import { TStoreState } from 'src/reducers';
 
@@ -22,7 +24,7 @@ export const getStravaAthleteIsLoading = (state: TStoreState): boolean =>
 export const getStravaAthleteStatsIsLoading = (state: TStoreState): boolean =>
   state.strava.isStatsLoading;
 
-export const getStravaActivityResponse = (
+export const getStravaActivitiesResponse = (
   state: TStoreState,
 ): IFetchStravaActivitiesResponse | undefined =>
   state.strava.activitiesResponse;
@@ -35,3 +37,13 @@ export const getStravaAthleteStatsResponse = (
   state: TStoreState,
 ): IFetchStravaAthleteStatsResponse | undefined =>
   state.strava.athleteStatsResponse;
+
+export const getAthlete = (state: TStoreState): StravaAthlete | undefined =>
+  state.strava.athleteResponse?.athlete;
+
+export const getStravaActivityIsLoading = (state: TStoreState): boolean =>
+  state.strava.isActivityLoading;
+
+export const getStravaActivityResponse = (
+  state: TStoreState,
+): IFetchStravaActivityResponse | undefined => state.strava.activityResponse;

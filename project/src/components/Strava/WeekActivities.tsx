@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Typography, Paper } from '@mui/material';
 import moment from 'moment';
 import { getFirstDayOfCurrentWeek } from 'src/utils';
-import { IStravaActivity } from 'src/models';
+import { SummaryActivity } from 'src/models';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
-import { getStravaActivityResponse } from 'src/selectors';
+import { getStravaActivitiesResponse } from 'src/selectors';
 
 import ActivityList from './ActivityList';
 
@@ -16,10 +16,10 @@ const to = moment(new Date()).unix();
 const WeekActivities = (): JSX.Element => {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState<
-    Array<IStravaActivity> | undefined
+    Array<SummaryActivity> | undefined
   >(undefined);
 
-  const stravaActivityResponse = useSelector(getStravaActivityResponse);
+  const stravaActivityResponse = useSelector(getStravaActivitiesResponse);
 
   useEffect(() => {
     if (

@@ -11,14 +11,13 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  margin-top: 100px;
 }
 
 .header-bar {
+  align-content: center;
+  text-align: center;
   background-color: #fc5200 !important;
-}
-
-.connect-button {
-  margin-top: 5% !important;
 }
 
 /*Hide spinners from number inputs*/

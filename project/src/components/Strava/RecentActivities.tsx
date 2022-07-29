@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import moment from 'moment';
-import { IStravaActivity } from 'src/models';
+import { SummaryActivity } from 'src/models';
 import { Grid, Paper, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
-import { getStravaActivityResponse } from 'src/selectors';
+import { getStravaActivitiesResponse } from 'src/selectors';
 
 import ActivityList from './ActivityList';
 
@@ -15,21 +15,21 @@ const to = moment.utc().unix();
 const RecentActivities = (): JSX.Element => {
   const dispatch = useDispatch();
   const [activities, setActivities] = useState<
-    Array<IStravaActivity> | undefined
+    Array<SummaryActivity> | undefined
   >(undefined);
 
-  const stravaActivityResponse = useSelector(getStravaActivityResponse);
+  const stravaActivitiesResponse = useSelector(getStravaActivitiesResponse);
 
   useEffect(() => {
     if (
-      stravaActivityResponse?.isSuccessful &&
-      stravaActivityResponse.activities
+      stravaActivitiesResponse?.isSuccessful &&
+      stravaActivitiesResponse.activities
     ) {
-      setActivities(stravaActivityResponse.activities);
+      setActivities(stravaActivitiesResponse.activities);
     } else {
       setActivities([]);
     }
-  }, [stravaActivityResponse]);
+  }, [stravaActivitiesResponse]);
 
   useEffect(() => {
     dispatch(

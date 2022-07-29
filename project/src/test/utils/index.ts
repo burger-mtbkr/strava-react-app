@@ -1,4 +1,4 @@
 export * from './rtl-wrapper';
-export * from './strava.mocks';
-export * from './store.mock';
+export * from '../mocks/activities.mock';
+export * from '../mocks/store.mock';
 export * from './testId.util';

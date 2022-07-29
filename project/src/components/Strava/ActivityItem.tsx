@@ -3,20 +3,21 @@
 /* eslint-disable camelcase */
 import { ListItem, Typography, Grid, Divider } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
-import { IStravaActivity, IStravaAthlete } from 'src/models';
+import { SummaryActivity, StravaAthlete } from 'src/models';
 import Moment from 'react-moment';
 import { TestIds } from 'src/test/utils';
-
+import { Link } from 'react-router-dom';
 import MapControl from '../LeafletMap/LeafletMapControl';
 
 interface IStravaActivityGridItemProps {
-  activity: IStravaActivity;
-  athlete: IStravaAthlete | undefined;
+  activity: SummaryActivity;
+  athlete: StravaAthlete | undefined;
 }
 
 const ActivityItem = (props: IStravaActivityGridItemProps) => {
   const { activity, athlete } = props;
   const {
+    id,
     start_date,
     name,
     distance,
@@ -36,7 +37,9 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               <img src={athlete?.profile_medium} alt="profile" />
             </Grid>
             <Grid item xs={9} lg={10}>
-              <Typography variant="h6">{name}</Typography>
+              <Link to={`/activity/${id}`}>
+                <Typography variant="h6">{name}</Typography>
+              </Link>
               <Typography gutterBottom variant="caption">
                 <Moment format="DD-MMM-YYYY HH:mm" local>
                   {start_date}
@@ -66,18 +69,11 @@ const ActivityItem = (props: IStravaActivityGridItemProps) => {
               </Typography>
             </Grid>
           </Grid>
-          <div style={{ height: '250px', width: '100%' }}>
-            <MapControl {...activity} />
-          </div>
-          {/* <GoogleMapControl
-            googleMapURL={googleScript}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={
-              <div style={{ height: '250px', width: '100%' }} />
-            }
-            mapElement={<div style={{ height: `100%` }} />}
-            {...activity}
-          /> */}
+          <MapControl
+            activity={activity}
+            style={{ height: '250px', width: '100%' }}
+            zoom={12}
+          />
         </Grid>
       </ListItem>
       <Divider />
