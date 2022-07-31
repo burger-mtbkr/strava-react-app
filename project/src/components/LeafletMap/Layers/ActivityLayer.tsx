@@ -13,7 +13,7 @@ const polyLineOptions: PolyLineOptions = {
 
 const ActivityLayer = (activity: SummaryActivity | ActivityDetail) => {
   const { id, map, name } = activity;
-  const path = decodePolyline(map.summary_polyline);
+  const path = decodePolyline(map.polyline ?? map.summary_polyline);
 
   return (
     <LayersControl.Overlay checked name={name}>

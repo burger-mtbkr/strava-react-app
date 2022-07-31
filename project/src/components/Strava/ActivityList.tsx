@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
-import { SummaryActivity, StravaAthlete } from 'src/models';
+import { SummaryActivity } from 'src/models';
 import { List, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaAthleteAction } from 'src/actions';
-import { getAthlete, getStravaActivitiesIsLoading } from 'src/selectors';
+import { getStravaActivitiesIsLoading } from 'src/selectors';
 import LoadingSkeleton from '../Common/Skeleton';
-import ActivityItem from './ActivityItem';
+import ActivityListItem from './ActivityListItem';
 import ActivityListTotals from './ActivityListTotals';
 
 const noActivities = (
@@ -22,7 +22,6 @@ const ActivityList = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
   const { activities } = props;
 
-  const athlete: StravaAthlete | undefined = useSelector(getAthlete);
   const isLoading = useSelector(getStravaActivitiesIsLoading);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const ActivityList = (props: Props): JSX.Element => {
           <ActivityListTotals {...activities} />
           <List>
             {activities.slice(0, 7).map((a: SummaryActivity, i: number) => (
-              <ActivityItem activity={a} athlete={athlete} key={i} />
+              <ActivityListItem {...a} key={i} />
             ))}
           </List>
         </>
