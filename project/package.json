@@ -22,7 +22,7 @@
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --env=jsdom --watchAll=false",
     "test:watch": "react-scripts test --env=jsdom",
     "test:coverage": "react-scripts test --transformIgnorePatterns \"node_modules/(?!react-leaflet)/\" --env=jsdom --coverage --watchAll=false",
-    "test:premerge": "npm-run-all lint:fix test:coverage",
+    "test:premerge": "npm-run-all lint:fix test",
     "eject": "react-scripts eject"
   },
   "jest": {
