@@ -8,16 +8,20 @@ import {
   isAuthLoadingAction,
   fetchStravaAthleteStatsDoneAction,
   fetchStravaAthleteDoneAction,
+  fetchStravaActivityDoneAction,
+  isActivityLoadingAction,
 } from 'src/actions';
 import { IStravaState } from 'src/models/strava.model';
 
 export const stravaInitialState: IStravaState = {
   isAuthLoading: false,
   isActivitiesLoading: false,
+  isActivityLoading: false,
   isAthleteLoading: false,
   isStatsLoading: false,
   authResponse: undefined,
   activitiesResponse: undefined,
+  activityResponse: undefined,
   athleteResponse: undefined,
   athleteStatsResponse: undefined,
 };
@@ -32,6 +36,10 @@ export default createReducer(stravaInitialState, (builder) =>
       ...state,
       isActivitiesLoading: payload,
     }))
+    .addCase(isActivityLoadingAction, (state, { payload }) => ({
+      ...state,
+      isActivityLoading: payload,
+    }))
     .addCase(isAthleteLoadingAction, (state, { payload }) => ({
       ...state,
       isAthleteLoading: payload,
@@ -40,7 +48,6 @@ export default createReducer(stravaInitialState, (builder) =>
       ...state,
       isStatsLoading: payload,
     }))
-
     .addCase(authenticateWithStravaDoneAction, (state, { payload }) => ({
       ...state,
       authResponse: payload,
@@ -48,6 +55,10 @@ export default createReducer(stravaInitialState, (builder) =>
     .addCase(fetchStravaActivitiesDoneAction, (state, { payload }) => ({
       ...state,
       activitiesResponse: payload,
+    }))
+    .addCase(fetchStravaActivityDoneAction, (state, { payload }) => ({
+      ...state,
+      activityResponse: payload,
     }))
     .addCase(fetchStravaAthleteDoneAction, (state, { payload }) => ({
       ...state,

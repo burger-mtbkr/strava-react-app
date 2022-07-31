@@ -3,6 +3,7 @@ import { authenticateWithStravaSaga } from './authenticate.strava.saga';
 import { fetchStravaActivitiesSaga } from './fetchActivities.strava.saga';
 import { fetchStravaAthleteSaga } from './fetchAthlete.strava.saga';
 import { fetchStravaAthleteStatsSaga } from './fetchAthleteStats.strava.saga';
+import { fetchStravaActivitySaga } from './fetchActivity.strava.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     fetchStravaActivitiesSaga(),
     fetchStravaAthleteSaga(),
     fetchStravaAthleteStatsSaga(),
+    fetchStravaActivitySaga(),
   ]);
 }

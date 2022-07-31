@@ -1,13 +1,17 @@
 import { rootInitialState, TStoreState } from 'src/reducers';
 import {
-  mockStravaSession,
   mockAthlete,
   mockAthleteStats,
-} from 'src/test/utils';
+  mockDetailActivity,
+  mockStravaSession,
+} from 'src/test/mocks';
+import { mockSummaryActivities } from 'src/test/utils';
 
 import {
+  getAthlete,
   getStravaActivitiesIsLoading,
   getStravaActivityResponse,
+  getStravaActivitiesResponse,
   getStravaAthleteIsLoading,
   getStravaAthleteResponse,
   getStravaAthleteStatsIsLoading,
@@ -21,6 +25,7 @@ const state: TStoreState = {
   strava: {
     isAuthLoading: false,
     isActivitiesLoading: false,
+    isActivityLoading: false,
     isAthleteLoading: false,
     isStatsLoading: false,
     authResponse: {
@@ -31,7 +36,12 @@ const state: TStoreState = {
     activitiesResponse: {
       isSuccessful: true,
       error: undefined,
-      activities: [],
+      activities: mockSummaryActivities,
+    },
+    activityResponse: {
+      isSuccessful: true,
+      error: undefined,
+      activity: mockDetailActivity,
     },
     athleteResponse: {
       isSuccessful: true,
@@ -71,11 +81,11 @@ describe(`Strava selectors`, () => {
     });
   });
 
-  it(`${getStravaActivityResponse.name} should return the correct activitiesResponse`, () => {
-    expect(getStravaActivityResponse(state)).toEqual({
+  it(`${getStravaActivitiesResponse.name} should return the correct activitiesResponse`, () => {
+    expect(getStravaActivitiesResponse(state)).toStrictEqual({
       isSuccessful: true,
       error: undefined,
-      activities: [],
+      activities: mockSummaryActivities,
     });
   });
 
@@ -92,6 +102,18 @@ describe(`Strava selectors`, () => {
       isSuccessful: true,
       error: undefined,
       athleteStats: mockAthleteStats,
+    });
+  });
+
+  it(`${getAthlete.name} should return the correct athlete`, () => {
+    expect(getAthlete(state)).toEqual(mockAthlete);
+  });
+
+  it(`${getStravaActivityResponse.name} should return the correct activity`, () => {
+    expect(getStravaActivityResponse(state)).toEqual({
+      isSuccessful: true,
+      error: undefined,
+      activity: mockDetailActivity,
     });
   });
 });

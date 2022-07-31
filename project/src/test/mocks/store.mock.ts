@@ -1,16 +1,14 @@
 import { rootInitialState, TStoreState } from 'src/reducers';
-import {
-  mockStravaSession,
-  mockStravaActivities,
-  mockAthlete,
-  mockAthleteStats,
-} from './strava.mocks';
+import { mockSummaryActivities } from './activities.mock';
+import { mockAthlete, mockAthleteStats } from './athlete.mock';
+import { mockStravaSession } from './session.mock';
 
 export const mockStoreState: TStoreState = {
   ...rootInitialState,
   strava: {
     isAuthLoading: false,
     isActivitiesLoading: false,
+    isActivityLoading: false,
     isAthleteLoading: false,
     isStatsLoading: false,
     authResponse: {
@@ -21,7 +19,7 @@ export const mockStoreState: TStoreState = {
     activitiesResponse: {
       isSuccessful: true,
       error: undefined,
-      activities: mockStravaActivities,
+      activities: mockSummaryActivities,
     },
     athleteResponse: {
       isSuccessful: true,

@@ -1,17 +1,20 @@
 import { AxiosError } from 'axios';
 
 /* eslint-disable camelcase */
-export interface IEquipment {
+export type Equipment = {
   id: string;
   primary: boolean;
   name: string;
   resource_state: number;
   distance: number;
-}
+};
 
-export interface IStravaAthlete {
+export type AthleteBase = {
   id: number;
   resource_state: number;
+};
+
+export type StravaAthlete = AthleteBase & {
   username: string;
   firstname: string;
   lastname: string;
@@ -34,14 +37,14 @@ export interface IStravaAthlete {
   date_preference: string;
   measurement_preference: string;
   clubs: Array<any>;
-  ftp: any;
+  ftp: unknown;
   weight: number;
-  bikes: Array<IEquipment>;
-  shoes: Array<IEquipment>;
-}
+  bikes: Array<Equipment>;
+  shoes: Array<Equipment>;
+};
 
 export interface IFetchStravaAthleteResponse {
-  athlete?: IStravaAthlete | undefined;
+  athlete?: StravaAthlete | undefined;
   error?: AxiosError | Error;
   isSuccessful?: boolean;
 }

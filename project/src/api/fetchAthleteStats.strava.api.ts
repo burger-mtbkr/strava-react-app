@@ -3,10 +3,11 @@ import axios, { AxiosResponse } from 'axios';
 import {
   IAthleteStats,
   IStravaSession,
-  IStravaAthlete,
+  StravaAthlete,
   IFetchStravaAthleteStatsResponse,
 } from 'src/models';
-import { stravaApi, getObject, isSuccessfulResponse } from 'src/utils';
+import { getObject, isSuccessfulResponse } from 'src/utils';
+import { stravaApi } from './strava.api';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -14,7 +15,7 @@ export const getAthleteStats =
   async (): Promise<IFetchStravaAthleteStatsResponse> => {
     try {
       const stravaSession = getObject<IStravaSession>('strava_session');
-      const athlete = getObject<IStravaAthlete>('strava_athlete');
+      const athlete = getObject<StravaAthlete>('strava_athlete');
 
       if (!athlete)
         return {

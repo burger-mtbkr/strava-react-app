@@ -3,10 +3,11 @@ import axios, { AxiosResponse } from 'axios';
 import {
   IFetchStravaActivitiesRequest,
   IFetchStravaActivitiesResponse,
-  IStravaActivity,
+  SummaryActivity,
   IStravaSession,
 } from 'src/models';
-import { stravaApi, getObject, isSuccessfulResponse } from 'src/utils';
+import { getObject, isSuccessfulResponse } from 'src/utils';
+import { stravaApi } from './strava.api';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
@@ -30,7 +31,7 @@ export const fetchStravaActivities = async ({
 
     if (isSuccessfulResponse(response)) {
       if (response.data) {
-        const data = response.data as Array<IStravaActivity>;
+        const data = response.data as Array<SummaryActivity>;
         return {
           activities: data,
           isSuccessful: true,

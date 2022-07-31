@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { AxiosError } from 'axios';
-import { IStravaAthlete } from 'src/models';
+import { StravaAthlete } from './stravaAthlete.model';
 
 export interface IStravaSession {
   token_type: string;
@@ -8,7 +8,7 @@ export interface IStravaSession {
   expires_in: number;
   refresh_token: string;
   access_token: string;
-  athlete: IStravaAthlete;
+  athlete: StravaAthlete;
 }
 
 export interface IAuthenticateStravaResponse {

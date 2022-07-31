@@ -2,12 +2,13 @@ import MockAdapter from 'axios-mock-adapter';
 import moment from 'moment';
 import { IFetchStravaActivitiesResponse } from 'src/models';
 import { fetchStravaActivities } from 'src/api';
-import { stravaApi, getObject } from 'src/utils';
-import { mockStravaSession } from 'src/test/utils';
+import { getObject } from 'src/utils';
+import { mockStravaSession } from 'src/test/mocks';
+import { stravaApi } from './strava.api';
 
 jest.mock('src/utils/storage.util', () => ({
   getObject: jest.fn(),
-  setItem: jest.fn(),
+  setObject: jest.fn(),
 }));
 
 describe(`[api] ${fetchStravaActivities.name}`, () => {

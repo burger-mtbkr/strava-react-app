@@ -1,7 +1,7 @@
 import { LayersControl, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import { IStravaActivity, PolyLineOptions } from 'src/models';
+import { SummaryActivity, PolyLineOptions, ActivityDetail } from 'src/models';
 import { decodePolyline } from 'src/utils';
 
 const polyLineOptions: PolyLineOptions = {
@@ -11,7 +11,7 @@ const polyLineOptions: PolyLineOptions = {
   strokeWeight: 3,
 };
 
-const ActivityLayer = (activity: IStravaActivity) => {
+const ActivityLayer = (activity: SummaryActivity | ActivityDetail) => {
   const { id, map, name } = activity;
   const path = decodePolyline(map.summary_polyline);
 
