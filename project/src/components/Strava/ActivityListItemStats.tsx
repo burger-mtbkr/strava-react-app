@@ -31,7 +31,7 @@ const ActivityListItemStats = (activity: SummaryActivity) => {
           <img src={athlete?.profile_medium} alt="profile" />
         </Grid>
         <Grid item xs={9} lg={10}>
-          <Link to={`/activity/${id}`}>
+          <Link to={`/activity/${id}`} className="activity-link">
             <Typography variant="h6">{name}</Typography>
           </Link>
           <Typography gutterBottom variant="caption">

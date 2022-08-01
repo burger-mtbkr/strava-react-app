@@ -18,7 +18,6 @@ const ActivityListItem = (activity: SummaryActivity) => {
             <MapControl
               activity={activity}
               style={{ height: '250px', width: '100%' }}
-              zoom={12}
             />
           </Grid>
         </ListItem>

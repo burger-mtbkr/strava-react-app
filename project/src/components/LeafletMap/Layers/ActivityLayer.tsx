@@ -1,8 +1,13 @@
-import { LayersControl, Polyline } from 'react-leaflet';
+import { LayersControl, Polyline, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import { SummaryActivity, PolyLineOptions, ActivityDetail } from 'src/models';
-import { decodePolyline } from 'src/utils';
+import {
+  decodePolyline,
+  getEncodedPolylineCenter,
+  getPointArrayBounds,
+} from 'src/utils';
+import { useEffect } from 'react';
 
 const polyLineOptions: PolyLineOptions = {
   geodesic: true,
@@ -12,8 +17,17 @@ const polyLineOptions: PolyLineOptions = {
 };
 
 const ActivityLayer = (activity: SummaryActivity | ActivityDetail) => {
+  const leafletMap = useMap();
   const { id, map, name } = activity;
-  const path = decodePolyline(map.polyline ?? map.summary_polyline);
+  const encodedRoute = map.polyline ?? map.summary_polyline;
+  const center = getEncodedPolylineCenter(encodedRoute);
+  const path = decodePolyline(encodedRoute);
+  const bounds = getPointArrayBounds(path);
+  const zoom = leafletMap.getBoundsZoom(bounds);
+
+  useEffect(() => {
+    leafletMap.setView(center, zoom);
+  }, [bounds, center, leafletMap, zoom]);
 
   return (
     <LayersControl.Overlay checked name={name}>

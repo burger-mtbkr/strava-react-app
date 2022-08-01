@@ -29,3 +29,29 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.title-link,
+.title-link:visited,
+.title-link:active {
+  color: #fff;
+}
+
+.title-link:hover {
+  font-weight: 600;
+  color: #fff;
+}
+
+.activity-link,
+.activity-link:visited,
+.activity-link:active {
+  color: #000;
+}
+
+.activity-link:hover {
+  font-weight: 600;
+  color: #000;
+}
+
+.leaflet-control-layers-list {
+  text-align: left;
+}

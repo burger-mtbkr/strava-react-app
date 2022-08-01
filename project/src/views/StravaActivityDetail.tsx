@@ -62,7 +62,6 @@ const StravaActivityDetail = () => {
                 <MapControl
                   activity={activity}
                   style={{ height: '500px', width: '100%' }}
-                  zoom={11}
                 />
               )}
             </Grid>

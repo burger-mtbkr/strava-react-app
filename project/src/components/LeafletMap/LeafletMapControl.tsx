@@ -12,12 +12,11 @@ import LoadingSkeleton from '../Common/Skeleton';
 interface IMapProps {
   activity: SummaryActivity | ActivityDetail;
   style: React.CSSProperties | undefined;
-  zoom: number;
 }
 
-const LeafletMapControl = ({ activity, style, zoom }: IMapProps) => {
+const LeafletMapControl = ({ activity, style }: IMapProps) => {
   const { map } = activity;
-  const center = getEncodedPolylineCenter(map.summary_polyline);
+  const center = getEncodedPolylineCenter(map.polyline ?? map.summary_polyline);
 
   useEffect(() => {
     window.dispatchEvent(new Event('resize'));
@@ -30,7 +29,7 @@ const LeafletMapControl = ({ activity, style, zoom }: IMapProps) => {
         id="ActivityMap"
         placeholder={<LoadingSkeleton />}
         style={style}
-        zoom={zoom}
+        zoom={12}
         scrollWheelZoom
         trackResize
       >

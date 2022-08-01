@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { TestIds } from 'src/test/utils/testId.util';
 import { useSelector } from 'react-redux';
 import { getHeaderTitle } from 'src/selectors';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const title = useSelector(getHeaderTitle);
@@ -28,8 +29,11 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, mr: 8 }}>
-            {title}
+            <Link to="" className="title-link">
+              {title}
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>
