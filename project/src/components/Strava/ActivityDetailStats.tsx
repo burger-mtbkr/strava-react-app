@@ -27,9 +27,9 @@ const StravaActivityDetail = (activity: ActivityDetail) => {
         <Grid item spacing={1}>
           <img src={athlete?.profile_medium} alt="profile" />
         </Grid>
-        <Grid item>
+        <Grid item textAlign="start">
           <Typography variant="h6">{name}</Typography>
-          <Typography gutterBottom variant="caption">
+          <Typography variant="caption" color="#7a7a7a">
             <Moment format="HH:mm on dddd, MMMM YYYY" local>
               {start_date}
             </Moment>
@@ -38,44 +38,34 @@ const StravaActivityDetail = (activity: ActivityDetail) => {
       </Grid>
       <Grid container direction="row" spacing={3} marginBottom={2}>
         <Grid item direction="column">
-          <Typography gutterBottom variant="h6">
+          <Typography variant="h6">
             {roundNumber(distance / 1000, 2)} km
           </Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography gutterBottom variant="body2" color="#7a7a7a">
             Distance
           </Typography>
-          <Typography gutterBottom variant="h6">
-            {average_heartrate} bpm
-          </Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography variant="h6">{average_heartrate} bpm</Typography>
+          <Typography gutterBottom variant="body2" color="#7a7a7a">
             Ave HR
           </Typography>
         </Grid>
         <Grid item direction="column">
-          <Typography gutterBottom variant="h6">
-            {toHmsString(moving_time)}
-          </Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography variant="h6">{toHmsString(moving_time)}</Typography>
+          <Typography gutterBottom variant="body2" color="#7a7a7a">
             Moving Time
           </Typography>
-          <Typography gutterBottom variant="h6">
-            {max_heartrate} bpm
-          </Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography variant="h6">{max_heartrate} bpm</Typography>
+          <Typography gutterBottom variant="body2" color="#7a7a7a">
             Max HR
           </Typography>
         </Grid>
         <Grid item direction="column">
-          <Typography gutterBottom variant="h6">
-            {total_elevation_gain} m
-          </Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography variant="h6">{total_elevation_gain} m</Typography>
+          <Typography gutterBottom variant="body2" color="#7a7a7a">
             Elevation
           </Typography>
-          <Typography gutterBottom variant="h6">
-            {kilojoules}
-          </Typography>
-          <Typography gutterBottom variant="body1">
+          <Typography variant="h6">{kilojoules}</Typography>
+          <Typography gutterBottom variant="body2" color="#7a7a7a">
             Calories
           </Typography>
         </Grid>

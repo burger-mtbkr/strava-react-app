@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable camelcase */
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Container, Paper } from '@mui/material';
 import { ActivityDetail } from 'src/models';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -50,24 +50,26 @@ const StravaActivityDetail = () => {
   );
 
   return (
-    <>
-      {isLoading && <LoadingSkeleton />}
-      {!isLoading && !activity && noActivityFound}
-      {!isLoading && activity && (
-        <Grid padding={2}>
-          <Grid container padding={1}>
-            <ActivityDetailStats {...activity} />
-            {activity && (
-              <MapControl
-                activity={activity}
-                style={{ height: '500px', width: '100%' }}
-                zoom={11}
-              />
-            )}
+    <Container maxWidth="xl">
+      <Paper>
+        {isLoading && <LoadingSkeleton />}
+        {!isLoading && !activity && noActivityFound}
+        {!isLoading && activity && (
+          <Grid padding={2}>
+            <Grid container padding={1}>
+              <ActivityDetailStats {...activity} />
+              {activity && (
+                <MapControl
+                  activity={activity}
+                  style={{ height: '500px', width: '100%' }}
+                  zoom={11}
+                />
+              )}
+            </Grid>
           </Grid>
-        </Grid>
-      )}
-    </>
+        )}
+      </Paper>
+    </Container>
   );
 };
 

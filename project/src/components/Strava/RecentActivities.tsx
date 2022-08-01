@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { SummaryActivity } from 'src/models';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
 import { getStravaActivitiesResponse } from 'src/selectors';
@@ -44,12 +44,7 @@ const RecentActivities = (): JSX.Element => {
 
   return (
     <Grid item>
-      <Paper>
-        <Typography gutterBottom variant="h5">
-          Recent Activities
-        </Typography>
-        <ActivityList activities={activities} />
-      </Paper>
+      <ActivityList activities={activities} title="Recent Activities" />
     </Grid>
   );
 };

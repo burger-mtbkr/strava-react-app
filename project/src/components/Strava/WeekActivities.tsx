@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Typography, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import moment from 'moment';
 import { getFirstDayOfCurrentWeek } from 'src/utils';
 import { SummaryActivity } from 'src/models';
@@ -45,10 +45,7 @@ const WeekActivities = (): JSX.Element => {
 
   return (
     <Paper>
-      <Typography gutterBottom variant="h5">
-        Current Week Activities
-      </Typography>
-      <ActivityList activities={activities} />
+      <ActivityList activities={activities} title=" Current Week Activities" />
     </Paper>
   );
 };

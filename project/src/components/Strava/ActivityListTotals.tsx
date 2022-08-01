@@ -37,7 +37,13 @@ const totalTime = (activities: Array<SummaryActivity>): string => {
 const ActivityListTotals = (
   activities: Array<SummaryActivity>,
 ): JSX.Element => (
-  <Grid container justifyItems="center" justifyContent="center" direction="row">
+  <Grid
+    container
+    justifyItems="center"
+    justifyContent="center"
+    direction="row"
+    marginBottom={1}
+  >
     <Grid item margin={1}>
       <Typography variant="h6">{totalTime(activities)}</Typography>
     </Grid>

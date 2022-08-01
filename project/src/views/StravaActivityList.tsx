@@ -1,14 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import { Grid } from '@mui/material';
 import Container from '@mui/material/Container';
-import { TestIds } from 'src/test/utils';
 import StatsSummary from 'src/components/Strava/StatsSummary';
-
 import RecentActivities from 'src/components/Strava/RecentActivities';
 
 const StravaActivityList = (): JSX.Element => (
-  <Container maxWidth="xl" data-testid={TestIds.stravaListComponent}>
+  <Container maxWidth="xl">
     <Grid
       container
       direction="row"
