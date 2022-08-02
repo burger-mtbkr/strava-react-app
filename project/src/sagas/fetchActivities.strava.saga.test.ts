@@ -9,7 +9,7 @@ import {
 describe(`[saga] ${fetchStravaActivitiesSaga.name}`, () => {
   const genObject = fetchStravaActivitiesSaga();
 
-  it(`should wait for every ${fetchStravaActivitiesAction.name} action and call authenticateWithStravaSaga`, () => {
+  it(`should wait for every ${fetchStravaActivitiesAction.name} action and call fetchStravaActivitiesSaga`, () => {
     expect(genObject.next().value).toEqual(
       takeLatest(fetchStravaActivitiesAction, fetchStravaActivitiesAsync),
     );

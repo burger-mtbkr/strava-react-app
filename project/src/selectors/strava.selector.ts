@@ -5,6 +5,8 @@ import {
   IFetchStravaAthleteStatsResponse,
   StravaAthlete,
   IFetchStravaActivityResponse,
+  ElevationResponse,
+  ActivityStreamResponse,
 } from 'src/models';
 import { TStoreState } from 'src/reducers';
 
@@ -23,6 +25,12 @@ export const getStravaAthleteIsLoading = (state: TStoreState): boolean =>
 
 export const getStravaAthleteStatsIsLoading = (state: TStoreState): boolean =>
   state.strava.isStatsLoading;
+
+export const getElevationDataIsLoading = (state: TStoreState): boolean =>
+  state.strava.isElevationDataLoading;
+
+export const getActivityStreamIsLoading = (state: TStoreState): boolean =>
+  state.strava.isActivitiesLoading;
 
 export const getStravaActivitiesResponse = (
   state: TStoreState,
@@ -47,3 +55,11 @@ export const getStravaActivityIsLoading = (state: TStoreState): boolean =>
 export const getStravaActivityResponse = (
   state: TStoreState,
 ): IFetchStravaActivityResponse | undefined => state.strava.activityResponse;
+
+export const getElevationDataResponse = (
+  state: TStoreState,
+): ElevationResponse | undefined => state.strava.elevationResponse;
+
+export const getActivityStreamResponse = (
+  state: TStoreState,
+): ActivityStreamResponse | undefined => state.strava.activityStreamResponse;

@@ -12,6 +12,8 @@ import {
   isActivityLoadingAction,
   isElevationDataLoadingAction,
   fetchElevationDataDoneAction,
+  isActivityStreamLoadingAction,
+  fetchActivityStreamDoneAction,
 } from 'src/actions';
 import { IStravaState } from 'src/models/strava.model';
 
@@ -22,12 +24,14 @@ export const stravaInitialState: IStravaState = {
   isAthleteLoading: false,
   isStatsLoading: false,
   isElevationDataLoading: false,
+  isActivityStreamLoading: false,
   authResponse: undefined,
   activitiesResponse: undefined,
   activityResponse: undefined,
   athleteResponse: undefined,
   athleteStatsResponse: undefined,
   elevationResponse: undefined,
+  activityStreamResponse: undefined,
 };
 
 export default createReducer(stravaInitialState, (builder) =>
@@ -56,6 +60,10 @@ export default createReducer(stravaInitialState, (builder) =>
       ...state,
       isElevationDataLoading: payload,
     }))
+    .addCase(isActivityStreamLoadingAction, (state, { payload }) => ({
+      ...state,
+      isActivityStreamLoading: payload,
+    }))
     .addCase(authenticateWithStravaDoneAction, (state, { payload }) => ({
       ...state,
       authResponse: payload,
@@ -79,5 +87,9 @@ export default createReducer(stravaInitialState, (builder) =>
     .addCase(fetchElevationDataDoneAction, (state, { payload }) => ({
       ...state,
       elevationResponse: payload,
+    }))
+    .addCase(fetchActivityStreamDoneAction, (state, { payload }) => ({
+      ...state,
+      activityStreamResponse: payload,
     })),
 );

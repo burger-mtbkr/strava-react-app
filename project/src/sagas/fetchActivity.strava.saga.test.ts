@@ -6,7 +6,7 @@ import { fetchStravaActivitySaga, fetchStravaActivityAsync } from 'src/sagas';
 describe(`[saga] ${fetchStravaActivitySaga.name}`, () => {
   const genObject = fetchStravaActivitySaga();
 
-  it(`should wait for every ${fetchStravaActivityAction.name} action and call authenticateWithStravaSaga`, () => {
+  it(`should wait for every ${fetchStravaActivityAction.name} action and call fetchStravaActivitySaga`, () => {
     expect(genObject.next().value).toEqual(
       takeLatest(fetchStravaActivityAction, fetchStravaActivityAsync),
     );

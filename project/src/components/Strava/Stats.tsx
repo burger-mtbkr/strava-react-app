@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Typography, List, ListItem } from '@mui/material';
 import { IStatTotals } from 'src/models';

@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   mockElevationRequest,
   mockOpenElevationApiResults,
-  mockResponse,
+  mockElevationResponse,
 } from 'src/test/mocks/elevation.mock';
 import { fetchElevationData } from './fetchElevationData.api';
 import { openElevationApi } from './openElevation.api';
@@ -18,7 +18,7 @@ describe(`[api] ${fetchElevationData.name}`, () => {
   it('should return a successful response when the api call succeeds', async () => {
     mock.onPost('lookup').reply(200, mockOpenElevationApiResults);
     await fetchElevationData(mockElevationRequest).then((res) => {
-      expect(res).toStrictEqual(mockResponse);
+      expect(res).toStrictEqual(mockElevationResponse);
     });
   });
 

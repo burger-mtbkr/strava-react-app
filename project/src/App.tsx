@@ -11,7 +11,7 @@ import {
 import { authenticateWithStravaAction } from 'src/actions';
 
 import { useQuery } from 'src/hooks';
-import Routes from './redux/routes/Routes';
+import Routes from './routes/Routes';
 import Header from './components/Header/Header';
 
 const App = () => {

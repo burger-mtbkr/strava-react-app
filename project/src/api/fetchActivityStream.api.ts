@@ -1,22 +1,24 @@
 import axios, { AxiosResponse } from 'axios';
 import {
   IStravaSession,
-  IFetchStravaActivityResponse,
-  ActivityDetail,
+  ActivityStreamResponse,
+  StreamSet,
+  ActivityStreamRequest,
 } from 'src/models';
 import { getObject, isSuccessfulResponse } from 'src/utils';
 import { stravaApi } from './strava.api';
 
 const apiBaseEndpoint = 'https://www.strava.com';
 
-export const fetchStravaActivity = async (
-  id: number,
-): Promise<IFetchStravaActivityResponse> => {
+export const fetchStravaActivityStream = async ({
+  id,
+  types,
+}: ActivityStreamRequest): Promise<ActivityStreamResponse> => {
   try {
     const stravaSession = getObject<IStravaSession>('strava_session');
-    const activitiesEndPoint = `${apiBaseEndpoint}/api/v3/activities/${id}`;
+    const activityStreamEndPoint = `${apiBaseEndpoint}/api/v3/activities/${id}/streams?keys=${types.join()}&key_by_type=${true}`;
     const response: AxiosResponse<unknown> = await stravaApi.get(
-      activitiesEndPoint,
+      activityStreamEndPoint,
       {
         headers: {
           Authorization: `Bearer ${stravaSession?.access_token}`,
@@ -26,9 +28,9 @@ export const fetchStravaActivity = async (
 
     if (isSuccessfulResponse(response)) {
       if (response.data) {
-        const data = response.data as ActivityDetail;
+        const data = response.data as Array<StreamSet>;
         return {
-          activity: data,
+          stream: data,
           isSuccessful: true,
         };
       }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { LatLng } from 'leaflet';
 import axios, { AxiosResponse } from 'axios';
 

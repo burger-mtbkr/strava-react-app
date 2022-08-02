@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable camelcase */
 import { Typography, Grid } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
 import { StravaAthlete, ActivityDetail } from 'src/models';

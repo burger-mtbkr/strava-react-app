@@ -33,7 +33,7 @@ export const mockElevationResults = [
   new LatLng(20, 20, 545),
 ];
 
-export const mockResponse = {
+export const mockElevationResponse = {
   results: mockElevationResults,
   isSuccessful: true,
 };

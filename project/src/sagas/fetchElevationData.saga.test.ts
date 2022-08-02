@@ -8,7 +8,7 @@ import {
 describe(`[saga] ${fetchElevationDataSaga.name}`, () => {
   const genObject = fetchElevationDataSaga();
 
-  it(`should wait for every ${fetchElevationDataAction.name} action and call authenticateWithStravaSaga`, () => {
+  it(`should wait for every ${fetchElevationDataAction.name} action and call fetchElevationDataSaga`, () => {
     expect(genObject.next().value).toEqual(
       takeLatest(fetchElevationDataAction, fetchElevationDataAsync),
     );

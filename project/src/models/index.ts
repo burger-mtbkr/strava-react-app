@@ -12,3 +12,4 @@ export * from './stravaSegment.model';
 export * from './stravaLap.model';
 export * from './stravaPhoto.model';
 export * from './elevation.model';
+export * from './stravaActivityStream.model';
