@@ -1,3 +1,6 @@
+import { AxiosError } from 'axios';
+import { LatLng } from 'leaflet';
+
 export type LongitudeLatitude = {
   longitude: number;
   latitude: number;
@@ -12,5 +15,11 @@ export type ElevationRequest = {
 };
 
 export type ElevationResponse = {
+  results?: Array<LatLng>;
+  error?: AxiosError | Error;
+  isSuccessful?: boolean;
+};
+
+export type ElevationResults = {
   results: Array<LongitudeLatitudeElevation>;
 };

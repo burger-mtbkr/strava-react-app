@@ -9,8 +9,11 @@ import {
   fetchStravaAthleteDoneAction,
   isActivityLoadingAction,
   fetchStravaActivityDoneAction,
+  isElevationDataLoadingAction,
+  fetchElevationDataDoneAction,
 } from 'src/actions';
 import {
+  ElevationResponse,
   IAuthenticateStravaResponse,
   IFetchStravaActivitiesResponse,
   IFetchStravaActivityResponse,
@@ -25,6 +28,7 @@ import {
   mockStravaSession,
 } from 'src/test/mocks';
 import { mockSummaryActivities } from 'src/test/utils';
+import { mockElevationResults } from 'src/test/mocks/elevation.mock';
 
 describe(`[reducers] app reducer`, () => {
   it(`reduces ${isActivitiesLoadingAction.name} correctly`, () => {
@@ -50,6 +54,14 @@ describe(`[reducers] app reducer`, () => {
   it(`reduces ${isAuthLoadingAction.name} correctly`, () => {
     const state = reducer(stravaInitialState, isAuthLoadingAction(true));
     expect(state.isAuthLoading).toEqual(true);
+  });
+
+  it(`reduces ${isElevationDataLoadingAction.name} correctly`, () => {
+    const state = reducer(
+      stravaInitialState,
+      isElevationDataLoadingAction(true),
+    );
+    expect(state.isElevationDataLoading).toEqual(true);
   });
 
   it(`reduces ${authenticateWithStravaDoneAction.name} correctly`, () => {
@@ -115,5 +127,18 @@ describe(`[reducers] app reducer`, () => {
       fetchStravaAthleteStatsDoneAction(response),
     );
     expect(state.athleteStatsResponse).toEqual(response);
+  });
+
+  it(`reduces ${fetchElevationDataDoneAction.name} correctly`, () => {
+    const response: ElevationResponse = {
+      isSuccessful: true,
+      results: mockElevationResults,
+    };
+
+    const state = reducer(
+      stravaInitialState,
+      fetchElevationDataDoneAction(response),
+    );
+    expect(state.elevationResponse).toEqual(response);
   });
 });

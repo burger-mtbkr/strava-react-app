@@ -1,3 +1,4 @@
+import { ElevationResponse } from './elevation.model';
 import { IFetchStravaAthleteResponse } from './stravaAthlete.model';
 import { IFetchStravaAthleteStatsResponse } from './stravaAthleteStats.model';
 import { IFetchStravaActivityResponse } from './stravaDetailedActivity.model';
@@ -10,9 +11,11 @@ export interface IStravaState {
   isActivityLoading: boolean;
   isAthleteLoading: boolean;
   isStatsLoading: boolean;
+  isElevationDataLoading: boolean;
   authResponse?: IAuthenticateStravaResponse;
   activitiesResponse?: IFetchStravaActivitiesResponse;
   activityResponse?: IFetchStravaActivityResponse;
   athleteResponse?: IFetchStravaAthleteResponse;
   athleteStatsResponse?: IFetchStravaAthleteStatsResponse;
+  elevationResponse?: ElevationResponse;
 }
