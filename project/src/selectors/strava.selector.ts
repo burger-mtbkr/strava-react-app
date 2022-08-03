@@ -30,7 +30,7 @@ export const getElevationDataIsLoading = (state: TStoreState): boolean =>
   state.strava.isElevationDataLoading;
 
 export const getActivityStreamIsLoading = (state: TStoreState): boolean =>
-  state.strava.isActivitiesLoading;
+  state.strava.isActivityStreamLoading;
 
 export const getStravaActivitiesResponse = (
   state: TStoreState,

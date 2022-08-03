@@ -13,13 +13,13 @@ import { useEffect, useState } from 'react';
 import { fetchStravaActivityAction } from 'src/actions';
 import LoadingSkeleton from 'src/components/Common/Skeleton';
 import ActivityDetailStats from 'src/components/Strava/ActivityDetailStats';
+import ElevationGraph from 'src/components/Strava/ElevationGraph';
 import MapControl from '../components/LeafletMap/LeafletMapControl';
 
 const StravaActivityDetail = () => {
   const dispatch = useDispatch();
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
-
   const [activity, setActivity] = useState<ActivityDetail | undefined>(
     undefined,
   );
@@ -51,23 +51,43 @@ const StravaActivityDetail = () => {
 
   return (
     <Container maxWidth="xl">
-      <Paper>
-        {isLoading && <LoadingSkeleton />}
-        {!isLoading && !activity && noActivityFound}
-        {!isLoading && activity && (
-          <Grid padding={2}>
-            <Grid container padding={1}>
-              <ActivityDetailStats {...activity} />
-              {activity && (
+      {isLoading && (
+        <Paper>
+          <LoadingSkeleton />
+        </Paper>
+      )}
+      {!isLoading && !activity && noActivityFound}
+      {!isLoading && activity && (
+        <Grid padding={2}>
+          <Grid container item padding={1}>
+            <Grid container direction="row">
+              <Grid item xs={12} md={8} lg={9} marginBottom={3}>
                 <MapControl
                   activity={activity}
-                  style={{ height: '500px', width: '100%' }}
+                  style={{
+                    height: '400px',
+                    minWidth: '400px',
+                    marginRight: '20px',
+                  }}
                 />
-              )}
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={4}
+                lg={3}
+                className="no-left-padding"
+                marginBottom={3}
+              >
+                <ActivityDetailStats {...activity} />
+              </Grid>
+            </Grid>
+            <Grid item xs={12} md={8} lg={9} className="no-left-padding">
+              <ElevationGraph {...activity} />
             </Grid>
           </Grid>
-        )}
-      </Paper>
+        </Grid>
+      )}
     </Container>
   );
 };

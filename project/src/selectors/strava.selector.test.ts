@@ -3,7 +3,7 @@ import {
   mockAthlete,
   mockAthleteStats,
   mockDetailActivity,
-  mockDistanceStream,
+  mockStreamSet,
   mockStravaSession,
   mockElevationResults,
 } from 'src/test/mocks';
@@ -69,7 +69,7 @@ const state: TStoreState = {
     activityStreamResponse: {
       isSuccessful: true,
       error: undefined,
-      stream: mockDistanceStream,
+      stream: mockStreamSet,
     },
   },
 };
@@ -155,7 +155,7 @@ describe(`Strava selectors`, () => {
     expect(getActivityStreamResponse(state)).toEqual({
       isSuccessful: true,
       error: undefined,
-      stream: mockDistanceStream,
+      stream: mockStreamSet,
     });
   });
 });

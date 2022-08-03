@@ -31,7 +31,11 @@ const ActivityList = (props: Props): JSX.Element => {
 
   return (
     <>
-      {isLoading && <LoadingSkeleton />}
+      {isLoading && (
+        <Paper>
+          <LoadingSkeleton />
+        </Paper>
+      )}
       {!isLoading && (!activities || activities?.length < 1) && noActivities}
       {!isLoading && activities && activities?.length > 0 && (
         <>

@@ -77,6 +77,10 @@ export const fetchStravaActivityDoneAction =
     `${STRAVA_PREFIX}/API/_FETCH_ACTIVITY_DONE`,
   );
 
+export const clearStravaActivityAction = createAction(
+  `${STRAVA_PREFIX}/CLEAR_ACTIVITY`,
+);
+
 export const isActivityStreamLoadingAction = createAction<boolean>(
   `${STRAVA_PREFIX}/API/IS_LOADING_ACTIVITY_STREAM`,
 );
@@ -89,3 +93,7 @@ export const fetchActivityStreamDoneAction =
   createAction<ActivityStreamResponse>(
     `${STRAVA_PREFIX}/API/_FETCH_ACTIVITY_STREAM_DONE`,
   );
+
+export const clearActivityStreamAction = createAction(
+  `${STRAVA_PREFIX}/CLEAR_ACTIVITY_STREAM`,
+);

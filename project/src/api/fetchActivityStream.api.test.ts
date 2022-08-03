@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import { ActivityStreamResponse } from 'src/models';
 import { fetchStravaActivityStream } from 'src/api';
 import { getObject } from 'src/utils';
-import { mockDistanceStream, mockStravaSession } from 'src/test/mocks';
+import { mockStreamSet, mockStravaSession } from 'src/test/mocks';
 import { stravaApi } from './strava.api';
 
 jest.mock('src/utils/storage.util', () => ({
@@ -29,13 +29,13 @@ describe(`[api] ${fetchStravaActivityStream.name}`, () => {
   });
 
   it('should return a successful response when the api call succeeds', async () => {
-    mock.onGet(activityStreamEndPoint).reply(200, mockDistanceStream);
+    mock.onGet(activityStreamEndPoint).reply(200, mockStreamSet);
     await fetchStravaActivityStream({ id, types: ['distance'] }).then(
       (res: ActivityStreamResponse) => {
         expect(res.isSuccessful).toBe(true);
         expect(res.error).toBeUndefined();
         expect(res.stream).toBeDefined();
-        expect(res.stream).toEqual(mockDistanceStream);
+        expect(res.stream).toEqual(mockStreamSet);
       },
     );
   });

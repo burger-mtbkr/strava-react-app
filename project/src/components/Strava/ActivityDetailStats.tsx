@@ -1,4 +1,4 @@
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Container } from '@mui/material';
 import { toHmsString, roundNumber } from 'src/utils';
 import { StravaAthlete, ActivityDetail } from 'src/models';
 import Moment from 'react-moment';
@@ -19,12 +19,17 @@ const StravaActivityDetail = (activity: ActivityDetail) => {
   } = activity;
 
   return (
-    <>
-      <Grid container item spacing={1} marginBottom={3}>
-        <Grid item spacing={1}>
+    <Container
+      className="no-left-padding"
+      sx={{
+        minWidth: 450,
+      }}
+    >
+      <Grid item container direction="row" marginBottom={2}>
+        <Grid item marginRight={2}>
           <img src={athlete?.profile_medium} alt="profile" />
         </Grid>
-        <Grid item textAlign="start">
+        <Grid item textAlign="start" marginBottom={1}>
           <Typography variant="h6">{name}</Typography>
           <Typography variant="caption" color="#7a7a7a">
             <Moment format="HH:mm on dddd, MMMM YYYY" local>
@@ -33,7 +38,7 @@ const StravaActivityDetail = (activity: ActivityDetail) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container direction="row" spacing={3} marginBottom={2}>
+      <Grid container direction="row" spacing={3}>
         <Grid item direction="column">
           <Typography variant="h6">
             {roundNumber(distance / 1000, 2)} km
@@ -67,7 +72,7 @@ const StravaActivityDetail = (activity: ActivityDetail) => {
           </Typography>
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };
 
