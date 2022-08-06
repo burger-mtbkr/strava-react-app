@@ -15,12 +15,10 @@ const darkTheme = createTheme({
   },
 });
 
-const persistor = persistStore(store);
-
 const Root = () => (
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={null} persistor={persistStore(store)}>
         <BrowserRouter>
           <ThemeProvider theme={darkTheme}>
             <App />

@@ -6,7 +6,6 @@ body {
 
 .App {
   align-content: center;
-  text-align: center;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -47,6 +46,10 @@ input[type='number'] {
   color: #000;
 }
 
+.activity-list-stats {
+  text-align: center;
+}
+
 .activity-link:hover {
   font-weight: 600;
   color: #000;
@@ -54,4 +57,13 @@ input[type='number'] {
 
 .leaflet-control-layers-list {
   text-align: left;
+}
+
+.no-left-padding {
+  padding-left: 0 !important;
+}
+
+#elevation-container {
+  max-width: 100% !important;
+  padding: 0 !important;
 }

@@ -3,7 +3,9 @@ import {
   mockAthlete,
   mockAthleteStats,
   mockDetailActivity,
+  mockStreamSet,
   mockStravaSession,
+  mockElevationResults,
 } from 'src/test/mocks';
 import { mockSummaryActivities } from 'src/test/utils';
 
@@ -18,6 +20,10 @@ import {
   getStravaAthleteStatsResponse,
   getStravaAuthenticateResponse,
   getStravaAuthIsLoading,
+  getElevationDataIsLoading,
+  getActivityStreamIsLoading,
+  getElevationDataResponse,
+  getActivityStreamResponse,
 } from './strava.selector';
 
 const state: TStoreState = {
@@ -28,6 +34,8 @@ const state: TStoreState = {
     isActivityLoading: false,
     isAthleteLoading: false,
     isStatsLoading: false,
+    isElevationDataLoading: false,
+    isActivityStreamLoading: false,
     authResponse: {
       isSuccessful: true,
       error: undefined,
@@ -53,6 +61,16 @@ const state: TStoreState = {
       error: undefined,
       athleteStats: mockAthleteStats,
     },
+    elevationResponse: {
+      isSuccessful: true,
+      error: undefined,
+      results: mockElevationResults,
+    },
+    activityStreamResponse: {
+      isSuccessful: true,
+      error: undefined,
+      stream: mockStreamSet,
+    },
   },
 };
 
@@ -71,6 +89,14 @@ describe(`Strava selectors`, () => {
 
   it(`${getStravaAthleteStatsIsLoading.name} should return the correct state`, () => {
     expect(getStravaAthleteStatsIsLoading(state)).toEqual(false);
+  });
+
+  it(`${getElevationDataIsLoading.name} should return the correct state`, () => {
+    expect(getElevationDataIsLoading(state)).toEqual(false);
+  });
+
+  it(`${getActivityStreamIsLoading.name} should return the correct state`, () => {
+    expect(getActivityStreamIsLoading(state)).toEqual(false);
   });
 
   it(`${getStravaAuthenticateResponse.name} should return the correct authResponse`, () => {
@@ -114,6 +140,22 @@ describe(`Strava selectors`, () => {
       isSuccessful: true,
       error: undefined,
       activity: mockDetailActivity,
+    });
+  });
+  ///
+  it(`${getElevationDataResponse.name} should return the correct activity`, () => {
+    expect(getElevationDataResponse(state)).toEqual({
+      isSuccessful: true,
+      error: undefined,
+      results: mockElevationResults,
+    });
+  });
+
+  it(`${getActivityStreamResponse.name} should return the correct activity`, () => {
+    expect(getActivityStreamResponse(state)).toEqual({
+      isSuccessful: true,
+      error: undefined,
+      stream: mockStreamSet,
     });
   });
 });

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBikeSharp';
 import { Button } from '@mui/material';
 

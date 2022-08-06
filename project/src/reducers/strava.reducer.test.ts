@@ -11,8 +11,14 @@ import {
   fetchStravaActivityDoneAction,
   isElevationDataLoadingAction,
   fetchElevationDataDoneAction,
+  isActivityStreamLoadingAction,
+  fetchActivityStreamAction,
+  fetchActivityStreamDoneAction,
+  clearStravaActivityAction,
+  clearActivityStreamAction,
 } from 'src/actions';
 import {
+  ActivityStreamResponse,
   ElevationResponse,
   IAuthenticateStravaResponse,
   IFetchStravaActivitiesResponse,
@@ -25,6 +31,7 @@ import {
   mockAthlete,
   mockAthleteStats,
   mockDetailActivity,
+  mockStreamSet,
   mockStravaSession,
 } from 'src/test/mocks';
 import { mockSummaryActivities } from 'src/test/utils';
@@ -62,6 +69,14 @@ describe(`[reducers] app reducer`, () => {
       isElevationDataLoadingAction(true),
     );
     expect(state.isElevationDataLoading).toEqual(true);
+  });
+
+  it(`reduces ${isActivityStreamLoadingAction.name} correctly`, () => {
+    const state = reducer(
+      stravaInitialState,
+      isActivityStreamLoadingAction(true),
+    );
+    expect(state.isActivityStreamLoading).toEqual(true);
   });
 
   it(`reduces ${authenticateWithStravaDoneAction.name} correctly`, () => {
@@ -116,6 +131,11 @@ describe(`[reducers] app reducer`, () => {
     expect(state.athleteResponse).toEqual(response);
   });
 
+  it(`reduces ${clearStravaActivityAction.name} correctly`, () => {
+    const state = reducer(stravaInitialState, clearStravaActivityAction());
+    expect(state.activityResponse).toBeUndefined();
+  });
+
   it(`reduces ${fetchStravaAthleteStatsDoneAction.name} correctly`, () => {
     const response: IFetchStravaAthleteStatsResponse = {
       isSuccessful: true,
@@ -140,5 +160,23 @@ describe(`[reducers] app reducer`, () => {
       fetchElevationDataDoneAction(response),
     );
     expect(state.elevationResponse).toEqual(response);
+  });
+
+  it(`reduces ${fetchActivityStreamAction.name} correctly`, () => {
+    const response: ActivityStreamResponse = {
+      isSuccessful: true,
+      stream: mockStreamSet,
+    };
+
+    const state = reducer(
+      stravaInitialState,
+      fetchActivityStreamDoneAction(response),
+    );
+    expect(state.activityStreamResponse).toEqual(response);
+  });
+
+  it(`reduces ${clearActivityStreamAction.name} correctly`, () => {
+    const state = reducer(stravaInitialState, clearActivityStreamAction());
+    expect(state.activityStreamResponse).toBeUndefined();
   });
 });

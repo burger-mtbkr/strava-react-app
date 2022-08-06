@@ -1,11 +1,4 @@
 // eslint-disable-next-line no-shadow
-export enum FeatureType {
-  Polygon,
-  Circle,
-  Point,
-  Polyline,
-}
-
 export type PolyLineOptions = {
   geodesic: boolean;
   strokeColor: string;

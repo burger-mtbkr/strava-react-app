@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { LayersControl, TileLayer } from 'react-leaflet';
 
 const baseMapData = [

@@ -35,7 +35,7 @@ const StatsSummary = (): JSX.Element => {
     dispatch(fetchStravaAthleteStatsAction());
   }, [dispatch]);
   return (
-    <Paper>
+    <Paper className="activity-list-stats">
       {isLoading ? (
         <LoadingSkeleton />
       ) : (

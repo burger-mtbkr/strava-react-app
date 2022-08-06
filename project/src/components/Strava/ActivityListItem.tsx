@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable camelcase */
 import { ListItem, Grid, Paper } from '@mui/material';
 import { SummaryActivity } from 'src/models';
 import { TestIds } from 'src/test/utils';
