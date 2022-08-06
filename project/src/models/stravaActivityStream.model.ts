@@ -1,5 +1,15 @@
 import { AxiosError } from 'axios';
 
+export type StreamTypes =
+  | 'time'
+  | 'distance'
+  | 'latlng'
+  | 'altitude'
+  | 'heartrate'
+  | 'cadence'
+  | 'watts'
+  | 'temp';
+
 export type StreamData = {
   data: Array<number>;
   series_type: string;
@@ -15,7 +25,37 @@ export interface AltitudeStreamSet {
   altitude: StreamData;
 }
 
-export type StreamSet = DistanceStreamSet & AltitudeStreamSet;
+export interface TimeStreamSet {
+  time: StreamData;
+}
+
+export interface LatLngStreamSet {
+  latlng: StreamData;
+}
+export interface HeartrateStreamSet {
+  heartrate: StreamData;
+}
+
+export interface CadenceStreamSet {
+  cadence: StreamData;
+}
+
+export interface TempStreamSet {
+  temp: StreamData;
+}
+
+export interface WattsStreamSet {
+  watts: StreamData;
+}
+
+export type StreamSet = TimeStreamSet &
+  DistanceStreamSet &
+  LatLngStreamSet &
+  AltitudeStreamSet &
+  HeartrateStreamSet &
+  CadenceStreamSet &
+  TempStreamSet &
+  WattsStreamSet;
 
 export type ActivityStreamResponse = {
   stream?: StreamSet;

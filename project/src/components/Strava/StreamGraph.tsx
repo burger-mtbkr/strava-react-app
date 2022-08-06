@@ -3,19 +3,40 @@ import { Typography, Grid, Container } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActivityStreamAction } from 'src/actions';
-import { ActivityDetail, VictoryLineData } from 'src/models';
+import { ActivityDetail, StreamTypes, VictoryLineData } from 'src/models';
 
 import {
   getActivityStreamIsLoading,
   getActivityStreamResponse,
 } from 'src/selectors';
 import { VictoryChart, VictoryLine, VictoryTheme } from 'victory';
-import { formatLineDataFromStream } from '../../utils/lineGraph.util';
+import { formatLineDataFromStreamOverDistance } from '../../utils/lineGraph.util';
 import LoadingSkeleton from '../Common/Skeleton';
 
-const ElevationGraph = (activity: ActivityDetail): JSX.Element => {
+type StreamGraphProps = {
+  activityDetail: ActivityDetail;
+  lineColour: string;
+  parentBorderColour: string;
+  title: string;
+  streamType: StreamTypes;
+  highDomain?: number;
+  lowDomain?: number;
+};
+
+const StreamGraph = (props: StreamGraphProps): JSX.Element => {
   const dispatch = useDispatch();
-  const { id, elev_low, elev_high } = activity;
+
+  const {
+    activityDetail,
+    lineColour,
+    highDomain,
+    lowDomain,
+    title,
+    parentBorderColour,
+    streamType,
+  } = props;
+  const { id } = activityDetail;
+
   const [data, setData] = useState<Array<VictoryLineData> | undefined>(
     undefined,
   );
@@ -27,7 +48,7 @@ const ElevationGraph = (activity: ActivityDetail): JSX.Element => {
     dispatch(
       fetchActivityStreamAction({
         id,
-        types: ['altitude'],
+        types: [streamType],
       }),
     );
   }, [dispatch, id]);
@@ -39,7 +60,7 @@ const ElevationGraph = (activity: ActivityDetail): JSX.Element => {
       streamResponse.stream
     ) {
       const { stream } = streamResponse;
-      setData(formatLineDataFromStream(stream));
+      setData(formatLineDataFromStreamOverDistance(stream, streamType));
     } else {
       setData(undefined);
     }
@@ -58,7 +79,7 @@ const ElevationGraph = (activity: ActivityDetail): JSX.Element => {
       {!isLoading && data && (
         <Grid container item>
           <Grid item textAlign="start">
-            <Typography variant="h6">Elevation Graph</Typography>
+            <Typography variant="h6">{title}</Typography>
           </Grid>
           <Grid container direction="row">
             <VictoryChart
@@ -68,14 +89,14 @@ const ElevationGraph = (activity: ActivityDetail): JSX.Element => {
             >
               <VictoryLine
                 style={{
-                  data: { stroke: '#c43a31' },
+                  data: { stroke: lineColour },
                   parent: {
-                    border: '1px solid #c3c4c3',
+                    border: `1px solid ${parentBorderColour}`,
                   },
                 }}
                 data={data}
-                minDomain={elev_low}
-                maxDomain={elev_high}
+                minDomain={lowDomain}
+                maxDomain={highDomain}
               />
             </VictoryChart>
           </Grid>
@@ -85,4 +106,4 @@ const ElevationGraph = (activity: ActivityDetail): JSX.Element => {
   );
 };
 
-export default ElevationGraph;
+export default StreamGraph;

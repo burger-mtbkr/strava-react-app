@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { fetchStravaActivityAction } from 'src/actions';
 import LoadingSkeleton from 'src/components/Common/Skeleton';
 import ActivityDetailStats from 'src/components/Strava/ActivityDetailStats';
-import ElevationGraph from 'src/components/Strava/ElevationGraph';
+import StreamGraph from 'src/components/Strava/StreamGraph';
 import MapControl from '../components/LeafletMap/LeafletMapControl';
 
 const StravaActivityDetail = () => {
@@ -82,8 +82,27 @@ const StravaActivityDetail = () => {
                 <ActivityDetailStats {...activity} />
               </Grid>
             </Grid>
+            {/* <Grid item xs={12} md={8} lg={9} className="no-left-padding">
+              <StreamGraph
+                activityDetail={activity}
+                lineColour="#008000"
+                parentBorderColour="#888777"
+                title="Elevation Graph"
+                streamType="altitude"
+                highDomain={activity.elev_low}
+                lowDomain={activity.elev_low}
+              />
+            </Grid> */}
             <Grid item xs={12} md={8} lg={9} className="no-left-padding">
-              <ElevationGraph {...activity} />
+              <StreamGraph
+                activityDetail={activity}
+                lineColour="#FF0000"
+                parentBorderColour="#888777"
+                title="Heart Rate"
+                streamType="heartrate"
+                highDomain={activity.max_heartrate}
+                lowDomain={0}
+              />
             </Grid>
           </Grid>
         </Grid>
