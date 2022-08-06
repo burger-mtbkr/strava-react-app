@@ -8,12 +8,14 @@ import {
   getActivityStreamIsLoading,
   getActivityStreamResponse,
 } from 'src/selectors';
-import { VictoryChart, VictoryLine, VictoryTheme } from 'victory';
+import { VictoryChart, VictoryArea, VictoryTheme } from 'victory';
 import { formatLineDataFromStreamOverDistance } from '../../utils/lineGraph.util';
 import LoadingSkeleton from '../Common/Skeleton';
 
 type StreamGraphProps = {
   lineColour: string;
+  fillColour: string;
+
   parentBorderColour: string;
   title: string;
   streamType: StreamTypes;
@@ -21,9 +23,10 @@ type StreamGraphProps = {
   lowDomain?: number;
 };
 
-const StreamGraph = (props: StreamGraphProps): JSX.Element => {
+const StreamAreaGraph = (props: StreamGraphProps): JSX.Element => {
   const {
     lineColour,
+    fillColour,
     highDomain,
     lowDomain,
     title,
@@ -72,9 +75,12 @@ const StreamGraph = (props: StreamGraphProps): JSX.Element => {
               width={1000}
               height={300}
             >
-              <VictoryLine
+              <VictoryArea
                 style={{
-                  data: { stroke: lineColour },
+                  data: {
+                    stroke: lineColour,
+                    fill: fillColour,
+                  },
                   parent: {
                     border: `1px solid ${parentBorderColour}`,
                   },
@@ -91,4 +97,4 @@ const StreamGraph = (props: StreamGraphProps): JSX.Element => {
   );
 };
 
-export default StreamGraph;
+export default StreamAreaGraph;

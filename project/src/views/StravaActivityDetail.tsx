@@ -16,7 +16,8 @@ import {
 } from 'src/actions';
 import LoadingSkeleton from 'src/components/Common/Skeleton';
 import ActivityDetailStats from 'src/components/Strava/ActivityDetailStats';
-import StreamGraph from 'src/components/Strava/StreamGraph';
+import StreamAreaGraph from 'src/components/Strava/StreamAreaGraph';
+import StreamLineGraph from 'src/components/Strava/StreamLineGraph';
 import MapControl from '../components/LeafletMap/LeafletMapControl';
 
 const StravaActivityDetail = () => {
@@ -95,8 +96,9 @@ const StravaActivityDetail = () => {
               </Grid>
             </Grid>
             <Grid item xs={12} md={8} lg={9} className="no-left-padding">
-              <StreamGraph
-                lineColour="#008000"
+              <StreamAreaGraph
+                lineColour="#39700b"
+                fillColour="#75a549"
                 parentBorderColour="#888777"
                 title="Elevation Graph"
                 streamType="altitude"
@@ -105,7 +107,7 @@ const StravaActivityDetail = () => {
               />
             </Grid>
             <Grid item xs={12} md={8} lg={9} className="no-left-padding">
-              <StreamGraph
+              <StreamLineGraph
                 lineColour="#FF0000"
                 parentBorderColour="#888777"
                 title="Heart Rate"
@@ -116,7 +118,7 @@ const StravaActivityDetail = () => {
             </Grid>
             {activity.average_cadence && activity.average_cadence > 0 && (
               <Grid item xs={12} md={8} lg={9} className="no-left-padding">
-                <StreamGraph
+                <StreamLineGraph
                   lineColour="#515151"
                   parentBorderColour="#888777"
                   title="Cadence"
@@ -128,8 +130,8 @@ const StravaActivityDetail = () => {
             )}
             {activity.type !== 'VirtualRide' && (
               <Grid item xs={12} md={8} lg={9} className="no-left-padding">
-                <StreamGraph
-                  lineColour="gold"
+                <StreamLineGraph
+                  lineColour="#998100"
                   parentBorderColour="#888777"
                   title="Temperature"
                   streamType="temp"
