@@ -10,7 +10,10 @@ import {
   getStravaActivityResponse,
 } from 'src/selectors';
 import { useEffect, useState } from 'react';
-import { fetchStravaActivityAction } from 'src/actions';
+import {
+  fetchActivityStreamAction,
+  fetchStravaActivityAction,
+} from 'src/actions';
 import LoadingSkeleton from 'src/components/Common/Skeleton';
 import ActivityDetailStats from 'src/components/Strava/ActivityDetailStats';
 import StreamGraph from 'src/components/Strava/StreamGraph';
@@ -41,6 +44,15 @@ const StravaActivityDetail = () => {
       setActivity(undefined);
     }
   }, [stravaActivityResponse]);
+
+  useEffect(() => {
+    dispatch(
+      fetchActivityStreamAction({
+        id,
+        types: ['altitude', 'heartrate', 'temp'],
+      }),
+    );
+  }, [dispatch, id]);
 
   const noActivityFound = (
     <Typography
@@ -82,9 +94,8 @@ const StravaActivityDetail = () => {
                 <ActivityDetailStats {...activity} />
               </Grid>
             </Grid>
-            {/* <Grid item xs={12} md={8} lg={9} className="no-left-padding">
+            <Grid item xs={12} md={8} lg={9} className="no-left-padding">
               <StreamGraph
-                activityDetail={activity}
                 lineColour="#008000"
                 parentBorderColour="#888777"
                 title="Elevation Graph"
@@ -92,10 +103,9 @@ const StravaActivityDetail = () => {
                 highDomain={activity.elev_low}
                 lowDomain={activity.elev_low}
               />
-            </Grid> */}
+            </Grid>
             <Grid item xs={12} md={8} lg={9} className="no-left-padding">
               <StreamGraph
-                activityDetail={activity}
                 lineColour="#FF0000"
                 parentBorderColour="#888777"
                 title="Heart Rate"
@@ -104,6 +114,18 @@ const StravaActivityDetail = () => {
                 lowDomain={0}
               />
             </Grid>
+            {activity.type !== 'VirtualRide' && (
+              <Grid item xs={12} md={8} lg={9} className="no-left-padding">
+                <StreamGraph
+                  lineColour="gold"
+                  parentBorderColour="#888777"
+                  title="Temperature"
+                  streamType="temp"
+                  highDomain={40}
+                  lowDomain={0}
+                />
+              </Grid>
+            )}
           </Grid>
         </Grid>
       )}

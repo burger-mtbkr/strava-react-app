@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Typography, Grid, Container } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchActivityStreamAction } from 'src/actions';
-import { ActivityDetail, StreamTypes, VictoryLineData } from 'src/models';
+import { useSelector } from 'react-redux';
+import { StreamTypes, VictoryLineData } from 'src/models';
 
 import {
   getActivityStreamIsLoading,
@@ -14,7 +13,6 @@ import { formatLineDataFromStreamOverDistance } from '../../utils/lineGraph.util
 import LoadingSkeleton from '../Common/Skeleton';
 
 type StreamGraphProps = {
-  activityDetail: ActivityDetail;
   lineColour: string;
   parentBorderColour: string;
   title: string;
@@ -24,10 +22,7 @@ type StreamGraphProps = {
 };
 
 const StreamGraph = (props: StreamGraphProps): JSX.Element => {
-  const dispatch = useDispatch();
-
   const {
-    activityDetail,
     lineColour,
     highDomain,
     lowDomain,
@@ -35,23 +30,13 @@ const StreamGraph = (props: StreamGraphProps): JSX.Element => {
     parentBorderColour,
     streamType,
   } = props;
-  const { id } = activityDetail;
 
   const [data, setData] = useState<Array<VictoryLineData> | undefined>(
     undefined,
   );
 
-  const streamResponse = useSelector(getActivityStreamResponse);
   const isLoading = useSelector(getActivityStreamIsLoading);
-
-  useEffect(() => {
-    dispatch(
-      fetchActivityStreamAction({
-        id,
-        types: [streamType],
-      }),
-    );
-  }, [dispatch, id]);
+  const streamResponse = useSelector(getActivityStreamResponse);
 
   useEffect(() => {
     if (
@@ -70,7 +55,7 @@ const StreamGraph = (props: StreamGraphProps): JSX.Element => {
     <Container
       className="no-left-padding"
       sx={{
-        minHeight: 300,
+        minHeight: 200,
         minWidth: 400,
         marginRight: '20px',
       }}
@@ -85,7 +70,7 @@ const StreamGraph = (props: StreamGraphProps): JSX.Element => {
             <VictoryChart
               theme={VictoryTheme.material}
               width={1000}
-              height={250}
+              height={300}
             >
               <VictoryLine
                 style={{

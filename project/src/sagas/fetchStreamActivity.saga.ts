@@ -5,6 +5,7 @@ import {
   isActivityStreamLoadingAction,
   fetchActivityStreamAction,
   fetchActivityStreamDoneAction,
+  clearActivityStreamAction,
 } from 'src/actions';
 import { ActivityStreamResponse, ActivityStreamRequest } from 'src/models';
 
@@ -13,6 +14,7 @@ export function* fetchActivityStreamAsync(action: {
 }): SagaIterator {
   try {
     yield put(isActivityStreamLoadingAction(true));
+    yield put(clearActivityStreamAction());
 
     const response: ActivityStreamResponse = yield call(
       fetchStravaActivityStream,

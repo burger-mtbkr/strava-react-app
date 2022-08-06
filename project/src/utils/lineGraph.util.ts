@@ -7,11 +7,12 @@ export const formatLineDataFromStreamOverDistance = (
 ): Array<VictoryLineData> => {
   const graphData: Array<VictoryLineData> = [];
 
-  streamSet[streamType].data.forEach((a: number, i: number) => {
-    graphData.push({
-      x: roundNumber(streamSet.distance.data[i] / 1000, 2),
-      y: a,
+  if (streamSet[streamType])
+    streamSet[streamType].data.forEach((a: number, i: number) => {
+      graphData.push({
+        x: roundNumber(streamSet.distance.data[i] / 1000, 2),
+        y: a,
+      });
     });
-  });
   return graphData;
 };

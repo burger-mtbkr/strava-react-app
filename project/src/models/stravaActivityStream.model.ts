@@ -40,7 +40,7 @@ export interface CadenceStreamSet {
   cadence: StreamData;
 }
 
-export interface TempStreamSet {
+export interface TemperatureStream {
   temp: StreamData;
 }
 
@@ -54,7 +54,7 @@ export type StreamSet = TimeStreamSet &
   AltitudeStreamSet &
   HeartrateStreamSet &
   CadenceStreamSet &
-  TempStreamSet &
+  TemperatureStream &
   WattsStreamSet;
 
 export type ActivityStreamResponse = {
@@ -65,5 +65,5 @@ export type ActivityStreamResponse = {
 
 export type ActivityStreamRequest = {
   id: number;
-  types: Array<string>;
+  types: Array<StreamTypes>;
 };
