@@ -28,7 +28,7 @@ export const fetchStravaActivityStream = async ({
 
     if (isSuccessfulResponse(response)) {
       if (response.data) {
-        const data = response.data as Array<StreamSet>;
+        const data = response.data as StreamSet;
         return {
           stream: data,
           isSuccessful: true,

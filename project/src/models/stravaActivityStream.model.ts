@@ -8,7 +8,8 @@ export type StreamTypes =
   | 'heartrate'
   | 'cadence'
   | 'watts'
-  | 'temp';
+  | 'temp'
+  | 'velocity_smooth';
 
 export type StreamData = {
   data: Array<number>;
@@ -48,6 +49,10 @@ export interface WattsStreamSet {
   watts: StreamData;
 }
 
+export interface SmoothVelocityStream {
+  velocity_smooth: StreamData;
+}
+
 export type StreamSet = TimeStreamSet &
   DistanceStreamSet &
   LatLngStreamSet &
@@ -55,7 +60,8 @@ export type StreamSet = TimeStreamSet &
   HeartrateStreamSet &
   CadenceStreamSet &
   TemperatureStream &
-  WattsStreamSet;
+  WattsStreamSet &
+  SmoothVelocityStream;
 
 export type ActivityStreamResponse = {
   stream?: StreamSet;

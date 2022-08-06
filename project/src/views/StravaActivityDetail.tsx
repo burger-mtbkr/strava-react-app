@@ -49,7 +49,7 @@ const StravaActivityDetail = () => {
     dispatch(
       fetchActivityStreamAction({
         id,
-        types: ['altitude', 'heartrate', 'temp'],
+        types: ['altitude', 'heartrate', 'temp', 'cadence'],
       }),
     );
   }, [dispatch, id]);
@@ -114,6 +114,18 @@ const StravaActivityDetail = () => {
                 lowDomain={0}
               />
             </Grid>
+            {activity.average_cadence && activity.average_cadence > 0 && (
+              <Grid item xs={12} md={8} lg={9} className="no-left-padding">
+                <StreamGraph
+                  lineColour="#515151"
+                  parentBorderColour="#888777"
+                  title="Cadence"
+                  streamType="cadence"
+                  highDomain={140}
+                  lowDomain={0}
+                />
+              </Grid>
+            )}
             {activity.type !== 'VirtualRide' && (
               <Grid item xs={12} md={8} lg={9} className="no-left-padding">
                 <StreamGraph
