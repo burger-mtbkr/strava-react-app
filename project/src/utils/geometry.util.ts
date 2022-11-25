@@ -26,5 +26,8 @@ export const getEncodedPolylineBounds = (
 
 export const getEncodedPolylineCenter = (
   encodedString: string | undefined,
-): LatLngExpression =>
-  getEncodedPolylineBounds(encodedString).getCenter() as LatLngExpression;
+): LatLngExpression | undefined => {
+  return encodedString
+    ? (getEncodedPolylineBounds(encodedString).getCenter() as LatLngExpression)
+    : undefined;
+};

@@ -23,34 +23,34 @@ export interface DistanceStreamSet {
 }
 
 export interface AltitudeStreamSet {
-  altitude: StreamData;
+  altitude?: StreamData;
 }
 
 export interface TimeStreamSet {
-  time: StreamData;
+  time?: StreamData;
 }
 
 export interface LatLngStreamSet {
-  latlng: StreamData;
+  latlng?: StreamData;
 }
 export interface HeartrateStreamSet {
-  heartrate: StreamData;
+  heartrate?: StreamData;
 }
 
 export interface CadenceStreamSet {
-  cadence: StreamData;
+  cadence?: StreamData;
 }
 
 export interface TemperatureStream {
-  temp: StreamData;
+  temp?: StreamData;
 }
 
 export interface WattsStreamSet {
-  watts: StreamData;
+  watts?: StreamData;
 }
 
 export interface SmoothVelocityStream {
-  velocity_smooth: StreamData;
+  velocity_smooth?: StreamData;
 }
 
 export type StreamSet = TimeStreamSet &

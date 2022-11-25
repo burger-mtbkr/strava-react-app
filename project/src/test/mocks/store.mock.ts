@@ -6,6 +6,8 @@ import { mockStravaSession } from './session.mock';
 export const mockStoreState: TStoreState = {
   ...rootInitialState,
   strava: {
+    isElevationDataLoading: false,
+    isActivityStreamLoading: false,
     isAuthLoading: false,
     isActivitiesLoading: false,
     isActivityLoading: false,
@@ -31,5 +33,8 @@ export const mockStoreState: TStoreState = {
       error: undefined,
       athleteStats: mockAthleteStats,
     },
+    activityResponse: undefined,
+    elevationResponse: undefined,
+    activityStreamResponse: undefined,
   },
 };

@@ -16,13 +16,15 @@ interface IMapProps {
 
 const LeafletMapControl = ({ activity, style }: IMapProps) => {
   const { map } = activity;
-  const center = getEncodedPolylineCenter(map.polyline ?? map.summary_polyline);
+  const { polyline, summary_polyline } = map;
+
+  const center = getEncodedPolylineCenter(polyline ?? summary_polyline);
 
   useEffect(() => {
     window.dispatchEvent(new Event('resize'));
   }, []);
 
-  return (
+  return center ? (
     <div style={style}>
       <MapContainer
         center={center}
@@ -36,7 +38,7 @@ const LeafletMapControl = ({ activity, style }: IMapProps) => {
         <LayerControl {...activity} />
       </MapContainer>
     </div>
-  );
+  ) : null;
 };
 
 export default LeafletMapControl;

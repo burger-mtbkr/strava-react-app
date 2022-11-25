@@ -26,7 +26,7 @@ const ActivityLayer = (activity: SummaryActivity | ActivityDetail) => {
   const zoom = leafletMap.getBoundsZoom(bounds);
 
   useEffect(() => {
-    leafletMap.setView(center, zoom);
+    if (center) leafletMap.setView(center, zoom);
   }, [bounds, center, leafletMap, zoom]);
 
   return (
