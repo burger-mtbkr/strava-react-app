@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-render-in-setup */
 import { render, screen } from '@testing-library/react';
 import { mockSummaryActivities } from 'src/test/utils';
 import ActivityListTotals from './ActivityListTotals';

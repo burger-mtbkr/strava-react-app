@@ -2,8 +2,7 @@ import { screen } from '@testing-library/react';
 import { rootInitialState } from 'src/reducers';
 import Header from 'src/components/Header/Header';
 import App from 'src/App';
-
-import { renderWithRedux, TestIds } from 'src/test/utils';
+import { renderWithRedux, TestIds } from './test/utils';
 
 describe(`${Header.name} tests`, () => {
   test('renders App Header', () => {
