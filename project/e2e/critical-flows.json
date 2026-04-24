@@ -1,0 +1,30 @@
+{
+  "requiredCoveragePercent": 60,
+  "flows": [
+    {
+      "id": "auth-connect",
+      "description": "User can access connect-to-Strava entry point.",
+      "automated": true
+    },
+    {
+      "id": "auth-callback",
+      "description": "User returns from Strava callback and app restores shell.",
+      "automated": true
+    },
+    {
+      "id": "activity-route-shell",
+      "description": "Activity detail route mounts application shell and header.",
+      "automated": true
+    },
+    {
+      "id": "activity-list-happy-path",
+      "description": "Authenticated user sees recent activities and summary stats.",
+      "automated": false
+    },
+    {
+      "id": "activity-detail-happy-path",
+      "description": "Authenticated user views activity detail map and metrics.",
+      "automated": false
+    }
+  ]
+}

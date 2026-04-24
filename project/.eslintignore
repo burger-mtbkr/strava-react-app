@@ -1,5 +1,9 @@
 node_modules/*
 dist/*
+coverage/*
+test-results/*
+e2e/*
+scripts/*
 .lintstagedrc.json
 .babelrc.js
 .eslintrc.js

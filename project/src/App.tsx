@@ -34,7 +34,7 @@ const App = () => {
   useEffect(() => {
     if (isSuccessful && stravaSession) {
       if (code) {
-        window.location.assign('http://localhost:3000/');
+        window.location.assign(import.meta.env.VITE_STRAVA_CALLBACK_URL || '/');
       }
       setAuthorized(true);
     } else {
