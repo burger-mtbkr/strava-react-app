@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-render-in-setup */
 import { screen } from '@testing-library/react';
 import { mockStoreState, renderWithRedux } from 'src/test/utils';
 import StatsSummary from './StatsSummary';

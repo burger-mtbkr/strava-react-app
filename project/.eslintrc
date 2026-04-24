@@ -1,10 +1,19 @@
 {
   "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "react-hooks", "import", "react"],
   "env": {
     "es6": true,
-    "browser": true
+    "browser": true,
+    "jest": true
   },
-  "extends": ["wesbos/typescript"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "ignorePatterns": ["node_modules/", "dist/", "coverage/", "test-results/", "e2e/", "scripts/"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -14,14 +23,16 @@
     }
   },
   "rules": {
-    "jsx-a11y/anchor-is-valid": 0,
+    "camelcase": 0,
     "no-plusplus": 0,
-    "restrict-template-expressions": 0,
-    "camelcase": 0
+    "no-loss-of-precision": 0,
+    "react-hooks/set-state-in-effect": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-unused-vars": 0
   },
   "overrides": [
     {
-      "files": ["*.jsx", "*.tsx", "*.js", "*.ts"],
+      "files": ["**/*.jsx", "**/*.tsx", "**/*.js", "**/*.ts"],
       "rules": {
         "no-trailing-spaces": "error",
         "prettier/prettier": [
@@ -40,9 +51,7 @@
         "@typescript-eslint/no-unsafe-call": 0,
         "@typescript-eslint/no-unused-expressions": 0,
         "@typescript-eslint/no-unsafe-member-access": 0,
-        "@typescript-eslint/require-await": 0,
-        "@typescript-eslint/restrict-template-expressions": 0,
-        "@typescript-eslint/naming-convention": 0
+        "@typescript-eslint/require-await": 0
       }
     }
   ]

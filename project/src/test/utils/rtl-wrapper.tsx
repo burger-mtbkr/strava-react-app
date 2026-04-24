@@ -20,14 +20,13 @@ const darkTheme = createTheme({
 const TestWrapper =
   (store: Store) =>
   // eslint-disable-next-line react/display-name
-  ({ children }: { children?: React.ReactNode }) =>
-    (
-      <Provider store={store}>
-        <BrowserRouter>
-          <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
-        </BrowserRouter>
-      </Provider>
-    );
+  ({ children }: { children?: React.ReactNode }) => (
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+      </BrowserRouter>
+    </Provider>
+  );
 
 const renderWithRedux = (
   component: React.ReactElement,

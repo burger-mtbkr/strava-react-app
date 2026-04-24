@@ -20,7 +20,9 @@ export const store = configureStore({
       ...reducer,
     }),
   ),
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools:
+    (typeof process !== 'undefined' ? process.env.NODE_ENV : 'development') !==
+    'production',
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(sagaMiddleware).concat(logger),
 });

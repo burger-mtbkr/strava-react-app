@@ -12,9 +12,8 @@ import { IFetchStravaAthleteStatsResponse } from 'src/models';
 export function* fetchStravaAthleteStatsAsync(): SagaIterator {
   try {
     yield put(isStatsLoadingActions(true));
-    const response: IFetchStravaAthleteStatsResponse = yield call(
-      getAthleteStats,
-    );
+    const response: IFetchStravaAthleteStatsResponse =
+      yield call(getAthleteStats);
 
     yield put(fetchStravaAthleteStatsDoneAction(response));
   } catch (error) {

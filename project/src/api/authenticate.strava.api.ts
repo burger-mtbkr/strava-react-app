@@ -26,8 +26,8 @@ export const authenticateWithStrava = async (
       }
     }
 
-    const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID ?? '';
-    const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET ?? '';
+    const clientId = import.meta.env.VITE_STRAVA_CLIENT_ID ?? '';
+    const clientSecret = import.meta.env.VITE_STRAVA_CLIENT_SECRET ?? '';
     const grantType = code ? 'authorization_code' : 'refresh_token';
 
     let stravaEndPoint = `${apiBaseEndpoint}/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}`;
