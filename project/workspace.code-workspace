@@ -6,6 +6,9 @@
   ],
   "settings": {
     "prettier.configPath": ".prettierrc",
-    "files.eol": "\n"
+    "files.eol": "\n",
+    "cSpell.words": [
+      "Strava"
+    ]
   }
 }
