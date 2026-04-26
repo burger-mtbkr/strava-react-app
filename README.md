@@ -2,6 +2,10 @@
 
 React and TypeScript app that connects to Strava and shows activities on an interactive map ([React Leaflet](https://react-leaflet.js.org/)). The application code lives in **[`project/`](./project)**. For scripts, environment variables, and local setup, see the **[`project/README.md`](./project/README.md)**.
 
+## Preview
+
+![Strava activities map in the app](./Screenshot.png)
+
 ## Tech stack
 
 - [Node.js](https://nodejs.org/) and **npm** — [Vite](https://vitejs.dev/) 7, React 18, TypeScript
