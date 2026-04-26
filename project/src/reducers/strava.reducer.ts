@@ -61,10 +61,12 @@ const stravaSlice = createSlice({
     ) => {
       state.isActivityStreamLoading = payload;
     },
-    authenticateWithStravaAction: (
-      _state,
-      _action: PayloadAction<string | undefined>,
-    ) => {},
+    authenticateWithStravaAction: (state) => {
+      state.isAuthLoading = true;
+    },
+    clearStravaAuthErrorAction: (state) => {
+      state.authResponse = undefined;
+    },
     authenticateWithStravaDoneAction: (
       state,
       { payload }: PayloadAction<IAuthenticateStravaResponse>,
@@ -145,6 +147,7 @@ export const {
   isActivityStreamLoadingAction,
   authenticateWithStravaAction,
   authenticateWithStravaDoneAction,
+  clearStravaAuthErrorAction,
   fetchStravaActivitiesAction,
   fetchStravaActivitiesDoneAction,
   fetchStravaAthleteAction,

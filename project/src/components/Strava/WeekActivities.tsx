@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Paper } from '@mui/material';
 import moment from 'moment';
 import { getFirstDayOfCurrentWeek } from 'src/utils';
 import { SummaryActivity } from 'src/models';
@@ -44,9 +43,7 @@ const WeekActivities = (): JSX.Element => {
   }, [dispatch]);
 
   return (
-    <Paper>
-      <ActivityList activities={activities} title=" Current Week Activities" />
-    </Paper>
+    <ActivityList activities={activities} title="Current Week Activities" />
   );
 };
 

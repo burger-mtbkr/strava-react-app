@@ -5,6 +5,7 @@ export {
   isStatsLoadingActions,
   authenticateWithStravaAction,
   authenticateWithStravaDoneAction,
+  clearStravaAuthErrorAction,
   fetchStravaActivitiesAction,
   fetchStravaActivitiesDoneAction,
   fetchStravaAthleteAction,

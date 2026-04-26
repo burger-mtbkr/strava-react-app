@@ -5,7 +5,7 @@ import ActivityListTotals from './ActivityListTotals';
 describe(`${ActivityListTotals.name} tests`, () => {
   describe('when strava is connected', () => {
     beforeEach(() => {
-      render(<ActivityListTotals {...mockSummaryActivities} />);
+      render(<ActivityListTotals activities={mockSummaryActivities} />);
     });
 
     it(`should render the total time`, () => {

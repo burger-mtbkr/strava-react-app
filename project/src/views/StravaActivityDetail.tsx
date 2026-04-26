@@ -73,25 +73,31 @@ const StravaActivityDetail = () => {
       {!isLoading && activity && (
         <Grid padding={2}>
           <Grid container item padding={1}>
-            <Grid container direction="row">
-              <Grid item xs={12} md={8} lg={9} marginBottom={3}>
-                <MapControl
-                  activity={activity}
-                  style={{
-                    height: '400px',
-                    minWidth: '400px',
-                    marginRight: '20px',
+            <Grid container direction="row" spacing={{ xs: 2, md: 3 }}>
+              <Grid item xs={12} md={8} lg={9} marginBottom={0}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    borderRadius: 2,
+                    overflow: 'hidden',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    boxShadow: '0 1px 3px rgba(15, 23, 42, 0.06)',
+                    height: '100%',
+                    minHeight: 400,
                   }}
-                />
+                >
+                  <MapControl
+                    activity={activity}
+                    style={{
+                      height: '400px',
+                      width: '100%',
+                      minWidth: 'min(100%, 400px)',
+                    }}
+                  />
+                </Paper>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                lg={3}
-                className="no-left-padding"
-                marginBottom={3}
-              >
+              <Grid item xs={12} md={4} lg={3} marginBottom={0}>
                 <ActivityDetailStats {...activity} />
               </Grid>
             </Grid>
