@@ -19,7 +19,7 @@ describe(`${Stats.name} tests`, () => {
   });
 
   it(`should render the Total distance label`, () => {
-    const totalDistanceLabel = screen.getByText('Total distance:');
+    const totalDistanceLabel = screen.getByText('Total distance');
     expect(totalDistanceLabel).toBeInTheDocument();
   });
   it(`should render the Total distance value`, () => {
@@ -28,7 +28,7 @@ describe(`${Stats.name} tests`, () => {
   });
 
   it(`should render the Moving time label`, () => {
-    const movingTimeLabel = screen.getByText('Moving time:');
+    const movingTimeLabel = screen.getByText('Moving time');
     expect(movingTimeLabel).toBeInTheDocument();
   });
   it(`should render the Moving time value`, () => {
@@ -37,7 +37,7 @@ describe(`${Stats.name} tests`, () => {
   });
 
   it(`should render the Elevation gain label`, () => {
-    const elevationGainLabel = screen.getByText('Elevation gain:');
+    const elevationGainLabel = screen.getByText('Elevation gain');
     expect(elevationGainLabel).toBeInTheDocument();
   });
   it(`should render the Elevation gain value`, () => {
@@ -46,7 +46,7 @@ describe(`${Stats.name} tests`, () => {
   });
 
   it(`should render the Activity count label`, () => {
-    const activityCountLabel = screen.getByText('Activity count:');
+    const activityCountLabel = screen.getByText('Activities');
     expect(activityCountLabel).toBeInTheDocument();
   });
   it(`should render the Activity count value`, () => {
@@ -55,7 +55,7 @@ describe(`${Stats.name} tests`, () => {
   });
 
   it(`should render the Achievement count label`, () => {
-    const achievementCountLabel = screen.getByText('Achievement count:');
+    const achievementCountLabel = screen.getByText('Achievements');
     expect(achievementCountLabel).toBeInTheDocument();
   });
   it(`should render the Achievement count value`, () => {

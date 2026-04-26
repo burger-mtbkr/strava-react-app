@@ -1,27 +1,51 @@
 # Strava React App
 
-This app now uses Vite for local development and production builds.
+React + TypeScript app that connects to Strava and shows activities on an interactive map (React Leaflet). Builds and dev server use [Vite](https://vitejs.dev/).
+
+## Prerequisites
+
+- Node.js and npm (see your team’s supported versions; this repo uses Vite 7 and React 18).
 
 ## Scripts
 
-- `npm run dev` / `npm start`: Start Vite dev server.
-- `npm run build`: Create a production build with Vite.
-- `npm run preview`: Preview the production build locally.
-- `npm test`: Run unit/integration tests with Jest.
-- `npm run test:coverage`: Run Jest with coverage thresholds enabled.
-- `npm run e2e`: Run Playwright critical-flow tests.
-- `npm run coverage:critical-flows`: Validate critical-flow scenario coverage gate.
-- `npm run validate`: Run lint + unit coverage + critical-flow gate.
+| Command | Purpose |
+| --- | --- |
+| `npm run start:local` | Dev server with `environments/.env.local` |
+| `npm run start:dev` | Dev server with `environments/.env.development` |
+| `npm start` / `npm run dev` | Dev server (no `env-cmd`; use only if env vars are already available to Vite) |
+| `npm run build` | Production build |
+| `npm run preview` | Serve the production build locally |
+| `npm test` | Jest unit/integration tests |
+| `npm run test:watch` | Jest in watch mode |
+| `npm run test:coverage` | Jest with coverage thresholds |
+| `npm run e2e` | Playwright tests |
+| `npm run e2e:ui` | Playwright UI mode |
+| `npm run e2e:headed` | Playwright headed browser |
+| `npm run coverage:critical-flows` | Critical-flow coverage gate |
+| `npm run lint` / `npm run lint:fix` | ESLint |
+| `npm run validate` | Lint + unit coverage + critical-flow gate |
 
-## Environment Variables
+## Environment variables
 
-Vite requires client-side environment variables to use the `VITE_` prefix.  
-Define them in `environments/.env.local` or `environments/.env.development`.
+Vite only exposes variables prefixed with `VITE_` to the client. Put values in `environments/.env.local` or `environments/.env.development` and run `npm run start:local` or `npm run start:dev` so they are loaded.
 
-Required keys:
+### Strava OAuth (required for typical use)
 
-- `VITE_STRAVA_CLIENT_ID`
-- `VITE_STRAVA_CLIENT_SECRET`
-- `VITE_STRAVA_CALLBACK_URL`
-- `VITE_STRAVA_BASE_MAP_TOKEN`
-- `VITE_THUNDER_FOREST_API_KEY`
+| Variable | Purpose |
+| --- | --- |
+| `VITE_STRAVA_CLIENT_ID` | Strava OAuth `client_id` |
+| `VITE_STRAVA_CLIENT_SECRET` | Strava OAuth `client_secret` (used when exchanging the auth code for tokens) |
+| `VITE_STRAVA_CALLBACK_URL` | OAuth redirect URL (must match your Strava app settings) |
+
+The map uses free basemaps (**Open Street Map**, **CyclOSM**) with no API keys.
+
+### Thunderforest (optional)
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_THUNDER_FOREST_API_KEY` | API key from [Thunderforest](https://www.thunderforest.com/) for the extra basemaps (Cycle Map, Landscape, Outdoors, Pioneer, Neighbourhood, Atlas). **Omit it or leave it empty if you do not use Thunderforest.** Without a key, those entries still appear in the map layer control but are disabled; the free OSM-based layers above work without it. |
+
+## Strava API
+
+- [Strava API reference](https://developers.strava.com/docs/reference)
+- [Strava API playground](https://developers.strava.com/playground/#/)

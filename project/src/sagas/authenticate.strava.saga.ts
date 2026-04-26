@@ -12,7 +12,6 @@ export function* authenticateWithStravaAsync(action: {
   payload: string | undefined;
 }): SagaIterator {
   try {
-    yield put(isAuthLoadingAction(true));
     const response: IAuthenticateStravaResponse = yield call(
       authenticateWithStrava,
       action.payload,

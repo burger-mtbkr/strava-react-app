@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { SummaryActivity } from 'src/models';
-import { Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStravaActivitiesAction } from 'src/actions';
 import { getStravaActivitiesResponse } from 'src/selectors';
@@ -43,9 +43,9 @@ const RecentActivities = (): JSX.Element => {
   }, [dispatch]);
 
   return (
-    <Grid item>
+    <Box sx={{ width: '100%' }}>
       <ActivityList activities={activities} title="Recent Activities" />
-    </Grid>
+    </Box>
   );
 };
 

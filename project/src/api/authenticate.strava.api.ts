@@ -51,6 +51,7 @@ export const authenticateWithStrava = async (
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
+        timeout: 30_000,
       },
     );
 

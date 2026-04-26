@@ -1,16 +1,17 @@
 body {
   margin: 0;
-  background-color: #fff;
-  color: #333;
+  background-color: #f4f4f6;
+  color: #1a1a1a;
 }
 
+/* Fixed AppBar (toolbar ~64px) + 10px gap before main content */
 .App {
   align-content: center;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  margin-top: 100px;
+  margin-top: calc(64px + 10px);
 }
 
 .header-bar {
@@ -33,6 +34,7 @@ input[type='number'] {
 .title-link:visited,
 .title-link:active {
   color: #fff;
+  text-decoration: none;
 }
 
 .title-link:hover {
@@ -43,16 +45,13 @@ input[type='number'] {
 .activity-link,
 .activity-link:visited,
 .activity-link:active {
-  color: #000;
-}
-
-.activity-list-stats {
-  text-align: center;
+  color: #1a1a1a;
+  text-decoration: none;
 }
 
 .activity-link:hover {
   font-weight: 600;
-  color: #000;
+  color: #fc5200;
 }
 
 .leaflet-control-layers-list {

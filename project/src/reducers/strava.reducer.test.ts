@@ -3,7 +3,9 @@ import {
   isAthleteLoadingAction,
   isStatsLoadingActions,
   isAuthLoadingAction,
+  authenticateWithStravaAction,
   authenticateWithStravaDoneAction,
+  clearStravaAuthErrorAction,
   fetchStravaActivitiesDoneAction,
   fetchStravaAthleteStatsDoneAction,
   fetchStravaAthleteDoneAction,
@@ -61,6 +63,26 @@ describe(`[reducers] app reducer`, () => {
   it(`reduces ${isAuthLoadingAction.name} correctly`, () => {
     const state = reducer(stravaInitialState, isAuthLoadingAction(true));
     expect(state.isAuthLoading).toEqual(true);
+  });
+
+  it(`reduces ${authenticateWithStravaAction.name} by setting auth loading`, () => {
+    const state = reducer(
+      stravaInitialState,
+      authenticateWithStravaAction(undefined),
+    );
+    expect(state.isAuthLoading).toEqual(true);
+  });
+
+  it(`reduces ${clearStravaAuthErrorAction.name} correctly`, () => {
+    const withAuth = reducer(
+      stravaInitialState,
+      authenticateWithStravaDoneAction({
+        isSuccessful: false,
+        error: new Error('x'),
+      }),
+    );
+    const state = reducer(withAuth, clearStravaAuthErrorAction());
+    expect(state.authResponse).toBeUndefined();
   });
 
   it(`reduces ${isElevationDataLoadingAction.name} correctly`, () => {
